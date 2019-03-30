@@ -2,6 +2,7 @@ import {StandardRepair} from './standard-repair';
 
 export class DiaryEntry {
   // id: number;
+  // vehicleId: number;
   // date: Date;
   // mileage: number;
   // repairs: StandardRepair[];
@@ -12,6 +13,7 @@ export class DiaryEntry {
 
   constructor(
     public id?: number,
+    public vehicleId?: number,
     public date?: Date,
     public mileage?: number,
     public repairs?: StandardRepair[],

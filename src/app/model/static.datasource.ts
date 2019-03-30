@@ -8,8 +8,8 @@ import {Vehicle} from './vehicle';
 @Injectable()
 export class StaticDataSource {
   private diary: DiaryEntry[] = [
-      new DiaryEntry(1, new Date('2019-01-02'), 120000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
-      new DiaryEntry(2, new Date('2019-03-20'), 150000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
+      new DiaryEntry(1, 1, new Date('2019-01-02'), 120000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
+      new DiaryEntry(2, 1, new Date('2019-03-20'), 150000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
   ];
   private owners: Owner[] = [
     new Owner(1, 'Jan', 'Testowy', '777 888 999', 'Notatka')
@@ -24,8 +24,8 @@ export class StaticDataSource {
     new Vehicle(3, 'DWR 4567', 'Seat', 'Ibiza', null, 2002, 'VIN 333', 350000, 'Notatka3', [])
   ];
 
-  getDiary(id: number): Observable<DiaryEntry[]> {
-    return from([this.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.id === id)]);
+  getDiary(vehicleId: number): Observable<DiaryEntry[]> {
+    return from([this.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.vehicleId === vehicleId)]);
   }
 
   getOwner(id: number): Observable<Owner> {
