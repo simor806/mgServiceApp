@@ -1,4 +1,4 @@
-export class StandardService {
+export class StandardRepair {
   id: number;
   name: string;
 }

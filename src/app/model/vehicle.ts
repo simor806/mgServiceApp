@@ -1,5 +1,5 @@
 import {Owner} from './owner';
-import {Repair} from './repair';
+import {DiaryEntry} from './diary-entry';
 
 export class Vehicle {
   id: string;
@@ -11,6 +11,6 @@ export class Vehicle {
   mileage: number;
   note: string;
   owners: Owner[];
-  repairs: Repair[];
-
+  diary: DiaryEntry[];
+  hasLongLifeOil: boolean;
 }
