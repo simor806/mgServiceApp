@@ -5,7 +5,7 @@ import {DiaryComponent} from './dashboard/diary/diary.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: VehiclesComponent},
-  {path: 'diary', component: DiaryComponent},
+  {path: 'vehicles/:id', component: DiaryComponent},
   {path: '**', redirectTo: 'dashboard'},
 
 ];

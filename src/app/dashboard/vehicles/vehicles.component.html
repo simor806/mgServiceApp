@@ -1,3 +1,20 @@
-<ul>
-  <li *ngFor="let vehicle of vehicles" routerLink="/diary">{{vehicle.registrationNumber}}</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Registration number</th>
+      <th>Brand, model, engine</th>
+      <th>Year</th>
+      <th>Mileage</th>
+      <th>Owners</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of vehicles" [routerLink]="['/vehicles', vehicle.id]">
+      <td>{{vehicle.registrationNumber}}</td>
+      <td>{{vehicle.brand}} {{vehicle.model}} {{vehicle.engine}}</td>
+      <td>{{vehicle.year}}</td>
+      <td>{{vehicle.mileage}}</td>
+      <td>{{vehicle.owners[0]}}</td>
+    </tr>
+  </tbody>
+</table>

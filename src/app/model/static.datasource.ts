@@ -19,21 +19,21 @@ export class StaticDataSource {
     new StandardRepair(2, 'Wymiana oleju')
   ];
   private vehicles: Vehicle[] = [
-    new Vehicle(1, 'OST 4509', 'VW', 'Passat', 'TDI 1.9', 2012, 'VIN 123', 150000, 'Notatka', []),
-    new Vehicle(2, 'OPO 1234', 'KIA', 'Ceed', null, 2010, 'VIN 222', 250000, 'Notatka2', []),
-    new Vehicle(3, 'DWR 4567', 'Seat', 'Ibiza', null, 2002, 'VIN 333', 350000, 'Notatka3', [])
+    new Vehicle(null, 1, 'OST 4509', 'VW', 'Passat', 'TDI 1.9', 2012, 'VIN 123', 150000, 'Notatka', []),
+    new Vehicle(null, 2, 'OPO 1234', 'KIA', 'Ceed', null, 2010, 'VIN 222', 250000, 'Notatka2', []),
+    new Vehicle(null, 3, 'DWR 4567', 'Seat', 'Ibiza', null, 2002, 'VIN 333', 350000, 'Notatka3', [])
   ];
 
   getDiary(vehicleId: number): Observable<DiaryEntry[]> {
-    return from([this.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.vehicleId === vehicleId)]);
+    return from([this.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.vehicleId == vehicleId)]);
   }
 
   getOwner(id: number): Observable<Owner> {
-    return from(this.owners.filter((owner: Owner) => owner.id === id));
+    return from(this.owners.filter((owner: Owner) => owner.id == id));
   }
 
   getStandardRepair(id: number): Observable<StandardRepair> {
-    return from(this.standardRepairs.filter((repair: StandardRepair) => repair.id === id));
+    return from(this.standardRepairs.filter((repair: StandardRepair) => repair.id == id));
   }
 
   getVehicles(): Observable<Vehicle[]> {

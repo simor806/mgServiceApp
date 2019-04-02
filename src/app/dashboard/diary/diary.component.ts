@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StaticDataSource} from '../../model/static.datasource';
-import {Vehicle} from '../../model/vehicle';
 import {DiaryEntry} from '../../model/diary-entry';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-diary',
@@ -12,10 +12,12 @@ export class DiaryComponent implements OnInit {
 
   public diary: DiaryEntry[];
 
-  constructor(private staticDS: StaticDataSource) { }
+  constructor(private route: ActivatedRoute, private staticDS: StaticDataSource) { }
 
   ngOnInit() {
-    this.staticDS.getDiary(1).subscribe((diary: DiaryEntry[]) => this.diary = diary);
+    this.route.params.subscribe((params: Params) => {
+      this.staticDS.getDiary(params['id']).subscribe((diary: DiaryEntry[]) => this.diary = diary);
+    });
   }
 
 }
