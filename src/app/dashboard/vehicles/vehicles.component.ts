@@ -5,7 +5,7 @@ import {Vehicle} from '../../model/vehicle';
 @Component({
   selector: 'app-vehicles',
   templateUrl: './vehicles.component.html',
-  styleUrls: ['./vehicles.component.sass']
+  styleUrls: ['./vehicles.component.scss']
 })
 export class VehiclesComponent implements OnInit {
 

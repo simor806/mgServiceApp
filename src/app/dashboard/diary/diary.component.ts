@@ -6,7 +6,7 @@ import {DiaryEntry} from '../../model/diary-entry';
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
-  styleUrls: ['./diary.component.sass']
+  styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
 
