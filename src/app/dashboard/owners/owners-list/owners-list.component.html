@@ -1,0 +1,16 @@
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Note</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let owner of owners" [routerLink]="['/owners', owner.id]">
+    <td>{{owner.firstName}} {{owner.lastName}}</td>
+    <td>{{owner.phone}}</td>
+    <td>{{owner.note}}</td>
+  </tr>
+  </tbody>
+</table>

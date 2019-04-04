@@ -32,6 +32,10 @@ export class StaticDataSource {
     return from(this.owners.filter((owner: Owner) => owner.id == id));
   }
 
+  getOwners(): Observable<Owner[]> {
+    return from([this.owners]);
+  }
+
   getStandardRepair(id: number): Observable<StandardRepair> {
     return from(this.standardRepairs.filter((repair: StandardRepair) => repair.id == id));
   }
