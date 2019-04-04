@@ -1,3 +1,27 @@
-<ul>
-  <li *ngFor="let diaryEntry of diary">{{diaryEntry.date}}</li>
-</ul>
+<table>
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Mileage</th>
+    <th>Oil changed</th>
+    <th>Repairs</th>
+    <th>Images</th>
+    <th>Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let diaryEntry of diary">
+    <td>{{diaryEntry.date}}</td>
+    <td>{{diaryEntry.mileage}}</td>
+    <td>{{diaryEntry.isOilChanged}}</td>
+    <td>
+      <ul>
+        <li *ngFor="let repair of diaryEntry.repairs">{{repair}} | </li>
+      </ul>
+    </td>
+    <td>
+      <img *ngFor="let imgUrl of diaryEntry.imageUrls" src="{{imgUrl}}">
+    <td>{{diaryEntry.note}}</td>
+  </tr>
+  </tbody>
+</table>
