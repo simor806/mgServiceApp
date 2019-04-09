@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {StaticDataSource} from '../../../model/static.datasource';
 import {Owner} from '../../../model/owner';
+import {OwnerService} from '../owner.service';
 
 @Component({
   selector: 'app-owners-list',
@@ -11,10 +11,10 @@ export class OwnersListComponent implements OnInit {
 
   public owners: Owner[];
 
-  constructor(private staticDS: StaticDataSource) { }
+  constructor(private ownerService: OwnerService) { }
 
   ngOnInit() {
-    this.staticDS.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
+    this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
   }
 
 }

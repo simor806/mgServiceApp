@@ -12,7 +12,6 @@ export class StaticDataSource {
       new DiaryEntry(2, 1, new Date('2019-03-20'), 150000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
   ];
   private owners: Owner[] = [
-    new Owner(1, 'Jan', 'Testowy', '777 888 999', 'Notatka')
   ];
   private standardRepairs: StandardRepair[] = [
     new StandardRepair(1, 'Przegląd'),

@@ -1,0 +1,32 @@
+{
+  "owners": [
+    {
+      "id": 1,
+      "firstName": "Mario",
+      "lastName": "Maruda",
+      "phone": "111 222 444",
+      "note": "notatka 1"
+    },
+    {
+      "id": 2,
+      "firstName": "Luigi",
+      "lastName": "Mario",
+      "phone": "111 222 555",
+      "note": "notatka 2"
+    },
+    {
+      "id": 3,
+      "firstName": "Karl",
+      "lastName": "Ahathon",
+      "phone": "111 222 000",
+      "note": "notatka 3"
+    },
+    {
+      "id": 4,
+      "firstName": "Szymon",
+      "lastName": "Radziej",
+      "phone": "666875002",
+      "note": "Nic2"
+    }
+  ]
+}
