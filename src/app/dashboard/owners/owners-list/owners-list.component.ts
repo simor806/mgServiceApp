@@ -17,4 +17,10 @@ export class OwnersListComponent implements OnInit {
     this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
   }
 
+  public deleteOwner(ownerId: number) {
+    this.ownerService.deleteOwner(ownerId).subscribe((owner: Owner) => {
+      this.owners.splice(this.owners.findIndex((ownerItem: Owner) => ownerItem.id === ownerId), 1);
+    }, () => console.log(`Error deleting client with id=${ownerId}`));
+  }
+
 }

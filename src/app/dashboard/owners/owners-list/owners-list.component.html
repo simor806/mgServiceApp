@@ -4,13 +4,18 @@
     <th>Name</th>
     <th>Phone</th>
     <th>Note</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let owner of owners" [routerLink]="['/owners', owner.id]">
+  <tr *ngFor="let owner of owners">
     <td>{{owner.firstName}} {{owner.lastName}}</td>
     <td>{{owner.phone}}</td>
     <td>{{owner.note}}</td>
+    <td>
+      <span style="color: orange; margin-right: 20px" [routerLink]="['/owners', owner.id]">edit</span>
+      <span style="color: red;" (click)="deleteOwner(owner.id)">x</span>
+    </td>
   </tr>
   </tbody>
 </table>
