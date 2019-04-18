@@ -71,7 +71,7 @@
 
         <div class="control-group">
           <label class="control-label">Właściciel:</label>
-          <select type="text" formControlName="owners" multiple>
+          <select type="text" formControlName="ownersIds" multiple>
             <option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</option>
           </select>
           <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->

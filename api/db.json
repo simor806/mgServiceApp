@@ -23,7 +23,7 @@
     },
     {
       "id": 4,
-      "firstName": "Szymon",
+      "firstName": "Dorota",
       "lastName": "Radziej",
       "phone": "666875002",
       "note": "Nic2"
@@ -39,7 +39,7 @@
       "year": 2009,
       "vin": "asdf",
       "note": null,
-      "owners": [
+      "ownersIds": [
         2,
         4
       ],

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {VehiclesComponent} from './dashboard/vehicles/vehicles.component';
+import {VehiclesListComponent} from './dashboard/vehicles/vehicles-list.component';
 import {DiaryComponent} from './dashboard/diary/diary.component';
 import {OwnersListComponent} from './dashboard/owners/owners-list/owners-list.component';
 import {OwnerResolver} from './dashboard/owners/owner.resolver';
@@ -9,7 +9,7 @@ import {VehicleFormComponent} from './dashboard/vehicles/vehicle-form/vehicle-fo
 import {VehicleResolver} from './dashboard/vehicles/vehicle.resolver';
 
 const routes: Routes = [
-  {path: 'dashboard', component: VehiclesComponent},
+  {path: 'dashboard', component: VehiclesListComponent},
   {path: 'vehicles/:id/diary', component: DiaryComponent},
   {path: 'vehicles', redirectTo: 'dashboard'},
   {path: 'vehicles/:id', component: VehicleFormComponent, resolve: {vehicle: VehicleResolver}},

@@ -14,7 +14,11 @@
       <td>{{vehicle.brand}} {{vehicle.model}} {{vehicle.engine}}</td>
       <td>{{vehicle.year}}</td>
       <td>{{vehicle.mileage}}</td>
-      <td>{{vehicle.owners[0]}}</td>
+      <td>
+        <div *ngFor="let ownerId of vehicle.ownersIds">
+          {{owners.get(ownerId).fullName}}
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,4 +1,3 @@
-import {Owner} from './owner';
 import {DiaryEntry} from './diary-entry';
 
 export interface VehicleAttrs {
@@ -11,7 +10,7 @@ export interface VehicleAttrs {
   vin: string;
   mileage: number;
   note: string;
-  owners: Owner[];
+  ownersIds: number[];
   diary: DiaryEntry[];
   hasLongLifeOil: boolean;
 }
@@ -26,7 +25,7 @@ export class Vehicle {
   vin: string;
   mileage: number;
   note: string;
-  owners: Owner[];
+  ownersIds: number[];
   diary: DiaryEntry[];
   hasLongLifeOil: boolean;
 
@@ -40,7 +39,7 @@ export class Vehicle {
       this.vin = vehicleAttrs.vin;
       this.mileage = vehicleAttrs.mileage;
       this.note = vehicleAttrs.note;
-      this.owners = vehicleAttrs.owners;
+      this.ownersIds = vehicleAttrs.ownersIds;
       this.diary = vehicleAttrs.diary;
       this.hasLongLifeOil = vehicleAttrs.hasLongLifeOil;
     }
