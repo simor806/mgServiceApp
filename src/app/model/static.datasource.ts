@@ -17,11 +17,7 @@ export class StaticDataSource {
     new StandardRepair(1, 'Przegląd'),
     new StandardRepair(2, 'Wymiana oleju')
   ];
-  private vehicles: Vehicle[] = [
-    new Vehicle(null, 1, 'OST 4509', 'VW', 'Passat', 'TDI 1.9', 2012, 'VIN 123', 150000, 'Notatka', []),
-    new Vehicle(null, 2, 'OPO 1234', 'KIA', 'Ceed', null, 2010, 'VIN 222', 250000, 'Notatka2', []),
-    new Vehicle(null, 3, 'DWR 4567', 'Seat', 'Ibiza', null, 2002, 'VIN 333', 350000, 'Notatka3', [])
-  ];
+  private vehicles: Vehicle[] = [];
 
   getDiary(vehicleId: number): Observable<DiaryEntry[]> {
     return from([this.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.vehicleId == vehicleId)]);

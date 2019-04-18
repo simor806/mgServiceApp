@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{form.get('id').value ? 'Edycja pojazdu' : 'Rejestracja pojazdu'}}</h1>
+
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="control-group">
+          <label class="control-label">Numer rejestracyjny:</label>
+          <input type="text" formControlName="registrationNumber">
+          <span *ngIf="form.get('registrationNumber').hasError('required') && form.get('registrationNumber').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('firstName').hasError('pilotName')" class="error">-->
+            <!--zacznij wielką literą-->
+          <!--</span>-->
+        </div>
+        <div class="control-group">
+          <label class="control-label">Marka:</label>
+          <input type="text" formControlName="brand">
+          <span *ngIf="form.get('brand').hasError('required') && form.get('brand').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+            <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Model:</label>
+          <input type="text" formControlName="model">
+          <span *ngIf="form.get('model').hasError('required') && form.get('model').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Silnik:</label>
+          <input type="text" formControlName="engine">
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Rok produkcji:</label>
+          <input type="number" formControlName="year">
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">VIN:</label>
+          <input type="text" formControlName="vin">
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Właściciel:</label>
+          <select type="text" formControlName="owners" multiple>
+            <option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</option>
+          </select>
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Olej longlife:</label>
+          <input type="checkbox" formControlName="hasLongLifeOil">
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Notatka:</label>
+          <textarea formControlName="note"></textarea>
+          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
+          <!--podaj wartość-->
+          <!--</span>-->
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Zapisz</button>
+      </form>
+      <button type="button" routerLink="../..">Anuluj</button>
+    </div>
+  </div>
+</div>
+

@@ -28,5 +28,22 @@
       "phone": "666875002",
       "note": "Nic2"
     }
+  ],
+  "vehicles": [
+    {
+      "id": 1,
+      "registrationNumber": "OST 0987",
+      "brand": "VW",
+      "model": "Polo",
+      "engine": "TDI",
+      "year": 2009,
+      "vin": "asdf",
+      "note": null,
+      "owners": [
+        2,
+        4
+      ],
+      "hasLongLifeOil": null
+    }
   ]
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {StaticDataSource} from '../../model/static.datasource';
 import {Vehicle} from '../../model/vehicle';
+import {VehicleService} from './vehicle.service';
 
 @Component({
   selector: 'app-vehicles',
@@ -11,10 +11,10 @@ export class VehiclesComponent implements OnInit {
 
   public vehicles: Vehicle[];
 
-  constructor(private staticDS: StaticDataSource) { }
+  constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
-    this.staticDS.getVehicles().subscribe((vehicles: Vehicle[]) => this.vehicles = vehicles);
+    this.vehicleService.getVehicles().subscribe((vehicles: Vehicle[]) => this.vehicles = vehicles);
   }
 
 }

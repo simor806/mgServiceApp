@@ -17,46 +17,31 @@ export interface VehicleAttrs {
 }
 
 export class Vehicle {
-  // id: number;
-  // registrationNumber: string;
-  // brand: string;
-  // model: string;
-  // engine: string;
-  // year: number;
-  // vin: string;
-  // mileage: number;
-  // note: string;
-  // owners: Owner[];
-  // diary: DiaryEntry[];
-  // hasLongLifeOil: boolean;
+  id: number;
+  registrationNumber: string;
+  brand: string;
+  model: string;
+  engine: string;
+  year: number;
+  vin: string;
+  mileage: number;
+  note: string;
+  owners: Owner[];
+  diary: DiaryEntry[];
+  hasLongLifeOil: boolean;
 
-  constructor(
-    vehicleAttrs: VehicleAttrs,
-    public id?: number,
-    public registrationNumber?: string,
-    public brand?: string,
-    public model?: string,
-    public engine?: string,
-    public year?: number,
-    public vin?: string,
-    public mileage?: number,
-    public note?: string,
-    public owners?: Owner[],
-    public diary?: DiaryEntry[],
-    public hasLongLifeOil?: boolean) {
-
-    // constructor(vehicleAttrs: VehicleAttrs) {
-      this.id = vehicleAttrs && vehicleAttrs.id || id;
-      this.registrationNumber = vehicleAttrs && vehicleAttrs.registrationNumber || registrationNumber;
-      this.brand = vehicleAttrs && vehicleAttrs.brand || brand;
-      this.model = vehicleAttrs && vehicleAttrs.model || model;
-      this.engine = vehicleAttrs && vehicleAttrs.engine || engine;
-      this.year = vehicleAttrs && vehicleAttrs.year || year;
-      this.vin = vehicleAttrs && vehicleAttrs.vin || vin;
-      this.mileage = vehicleAttrs && vehicleAttrs.mileage || mileage;
-      this.note = vehicleAttrs && vehicleAttrs.note || note;
-      this.owners = vehicleAttrs && vehicleAttrs.owners || owners;
-      this.diary = vehicleAttrs && vehicleAttrs.diary || diary;
-      this.hasLongLifeOil = vehicleAttrs && vehicleAttrs.hasLongLifeOil || hasLongLifeOil;
+  constructor(vehicleAttrs: Partial<VehicleAttrs> = {}) {
+      this.id = vehicleAttrs.id;
+      this.registrationNumber = vehicleAttrs.registrationNumber;
+      this.brand = vehicleAttrs.brand;
+      this.model = vehicleAttrs.model;
+      this.engine = vehicleAttrs.engine;
+      this.year = vehicleAttrs.year;
+      this.vin = vehicleAttrs.vin;
+      this.mileage = vehicleAttrs.mileage;
+      this.note = vehicleAttrs.note;
+      this.owners = vehicleAttrs.owners;
+      this.diary = vehicleAttrs.diary;
+      this.hasLongLifeOil = vehicleAttrs.hasLongLifeOil;
     }
 }
