@@ -46,7 +46,7 @@ export class OwnerService {
   }
 
   public deleteOwner(ownerId: number): Observable<Owner> {
-    return this.http.delete<OwnerAttrs>(`/api/owners/${ownerId}`);
+    return this.http.delete<Owner>(`/api/owners/${ownerId}`);
   }
 
 
