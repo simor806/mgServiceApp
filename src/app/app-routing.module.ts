@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {VehiclesListComponent} from './dashboard/vehicles/vehicles-list.component';
+import {VehiclesListComponent} from './dashboard/vehicles/vehicle-list/vehicles-list.component';
 import {DiaryComponent} from './dashboard/diary/diary.component';
 import {OwnersListComponent} from './dashboard/owners/owners-list/owners-list.component';
 import {OwnerResolver} from './dashboard/owners/owner.resolver';

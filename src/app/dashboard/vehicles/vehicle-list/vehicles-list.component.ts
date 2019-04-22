@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Vehicle} from '../../model/vehicle';
-import {VehicleService} from './vehicle.service';
-import {OwnerService} from '../owners/owner.service';
-import {Owner} from '../../model/owner';
+import {Vehicle} from '../../../model/vehicle';
+import {VehicleService} from '../vehicle.service';
+import {OwnerService} from '../../owners/owner.service';
+import {Owner} from '../../../model/owner';
 import {forkJoin} from 'rxjs';
 
 @Component({
