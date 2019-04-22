@@ -22,7 +22,7 @@ export class OwnerService {
 
   getOwner(id: number): Observable<Owner> {
     return this.http.get<OwnerAttrs>(`/api/owners/${id}`).pipe(
-      map((pilotAttrs) => new Owner(pilotAttrs))
+      map((ownerAttrs) => new Owner(ownerAttrs))
     );
   }
 
