@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {from, Observable} from 'rxjs';
 import {DiaryEntry} from './diary-entry';
 import {Owner} from './owner';
-import {StandardRepair} from './standard-repair';
+import {Repair} from './repair';
 import {Vehicle} from './vehicle';
 
 @Injectable()
@@ -13,10 +13,7 @@ export class StaticDataSource {
   ];
   private owners: Owner[] = [
   ];
-  private standardRepairs: StandardRepair[] = [
-    new StandardRepair(1, 'Przegląd'),
-    new StandardRepair(2, 'Wymiana oleju')
-  ];
+  private standardRepairs: Repair[] = [];
   private vehicles: Vehicle[] = [];
 
   getDiary(vehicleId: number): Observable<DiaryEntry[]> {
@@ -31,8 +28,8 @@ export class StaticDataSource {
     return from([this.owners]);
   }
 
-  getStandardRepair(id: number): Observable<StandardRepair> {
-    return from(this.standardRepairs.filter((repair: StandardRepair) => repair.id == id));
+  getStandardRepair(id: number): Observable<Repair> {
+    return from(this.standardRepairs.filter((repair: Repair) => repair.id == id));
   }
 
   getVehicles(): Observable<Vehicle[]> {

@@ -1,0 +1,24 @@
+<table>
+  <tr *ngFor="let repair of repairs">
+    <td>
+      <span *ngIf="!repairsToEdit.get(repair.id)">{{repair.name}}</span>
+      <input #repairNameInput [hidden]="!repairsToEdit.get(repair.id)" [value]="repair.name">
+    </td>
+    <td>
+      <span *ngIf="!repairsToEdit.get(repair.id)" style="color: orange" (click)="repairsToEdit.set(repair.id, true)">edit</span>
+      <span *ngIf="repairsToEdit.get(repair.id)" style="color: green" (click)="saveRepair(repair.id, repairNameInput.value)">save</span>
+    </td>
+    <td>
+      <span style="color: red;" (click)="deleteRepair(repair.id)">x</span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input #newRepairNameInput type="text">
+    </td>
+    <td>
+      <span style="color: green" (click)="saveRepair(null, newRepairNameInput.value); newRepairNameInput.value = '';">save</span>
+    </td>
+  </tr>
+</table>
+

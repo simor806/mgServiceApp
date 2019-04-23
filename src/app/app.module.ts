@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {OwnersModule} from './dashboard/owners/owners.module';
+import {RepairsModule} from './dashboard/repairs/repairs.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {OwnersModule} from './dashboard/owners/owners.module';
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
-    OwnersModule
+    OwnersModule,
+    RepairsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

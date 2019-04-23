@@ -1,4 +1,4 @@
-import {StandardRepair} from './standard-repair';
+import {Repair} from './repair';
 
 export class DiaryEntry {
   // id: number;
@@ -16,7 +16,7 @@ export class DiaryEntry {
     public vehicleId?: number,
     public date?: Date,
     public mileage?: number,
-    public repairs?: StandardRepair[],
+    public repairs?: Repair[],
     public additionalRepairs?: string[],
     public isOilChanged?: boolean,
     public note?: string,

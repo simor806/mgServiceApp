@@ -25,8 +25,30 @@
       "id": 4,
       "firstName": "Dorota",
       "lastName": "Radziej",
-      "phone": "666875002",
-      "note": "Nic2"
+      "phone": "666875002346",
+      "note": "Moja ukochana"
+    }
+  ],
+  "repairs": [
+    {
+      "id": 1,
+      "name": "Wymiana oleju"
+    },
+    {
+      "id": 2,
+      "name": "Wymiana opon"
+    },
+    {
+      "id": 3,
+      "name": "Regeneracja silnika"
+    },
+    {
+      "id": 4,
+      "name": "Nabicie klimatyzacji"
+    },
+    {
+      "id": 5,
+      "name": "Lakierowanie"
     }
   ],
   "vehicles": [

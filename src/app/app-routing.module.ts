@@ -7,6 +7,7 @@ import {OwnerFormComponent} from './dashboard/owners/owner-form/owner-form.compo
 import {VehicleFormComponent} from './dashboard/vehicles/vehicle-form/vehicle-form.component';
 import {VehicleResolver} from './dashboard/vehicles/vehicle.resolver';
 import {VehicleDetailsComponent} from './dashboard/vehicles/vehicle-details/vehicle-details.component';
+import {RepairListComponent} from './dashboard/repairs/repair-list/repair-list.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: VehiclesListComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'vehicles/:id', component: VehicleFormComponent, resolve: {vehicle: VehicleResolver}},
   {path: 'owners', component: OwnersListComponent},
   {path: 'owners/:id', component: OwnerFormComponent, resolve: {owner: OwnerResolver}},
+  {path: 'repairs', component: RepairListComponent},
   {path: '**', redirectTo: 'dashboard'},
 
 ];
