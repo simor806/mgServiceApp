@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{form.get('id').value ? 'Edycja wpisu dziennika napraw' : 'Rejestracja wpisu dziennika napraw'}}</h1>
+
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="control-group">
+          <label class="control-label">Data:</label>
+          <input type="date" formControlName="date">
+          <span *ngIf="form.get('date').hasError('required') && form.get('date').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('firstName').hasError('pilotName')" class="error">-->
+            <!--zacznij wielką literą-->
+          <!--</span>-->
+        </div>
+        <div class="control-group">
+          <label class="control-label">Przebieg:</label>
+          <input type="text" formControlName="mileage">
+          <span *ngIf="form.get('mileage').hasError('required') && form.get('mileage').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+            <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Wykonane naprawy (standardowe):</label>
+          <select type="text" formControlName="repairs" multiple>
+            <option *ngFor="let repair of repairs" [value]="repair.name">{{repair.name}}</option>
+          </select>
+          <span *ngIf="form.get('repairs').hasError('required') && form.get('repairs').touched" class="error">
+            podaj wartość
+          </span>
+          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
+          <!--zakazane nazwisko-->
+          <!--</span>-->
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Dodatkowe naprawy:</label>
+          <textarea formControlName="additionalRepairs"></textarea>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Wymiana oleju:</label>
+          <input type="checkbox" formControlName="isOilChanged" [value]="false">
+        </div>
+
+
+        <div class="control-group">
+          <label class="control-label">Notatka:</label>
+          <textarea formControlName="note"></textarea>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Zapisz</button>
+      </form>
+      <button type="button" routerLink="../..">Anuluj</button>
+    </div>
+  </div>
+</div>
+

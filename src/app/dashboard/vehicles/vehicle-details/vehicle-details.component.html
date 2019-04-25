@@ -1,15 +1,15 @@
-<h1>{{vehicle.registrationNumber}}</h1>
-<h2>{{vehicle.brand}} {{vehicle.model}} {{vehicle.engine}}</h2>
+<h1>{{vehicle?.registrationNumber}}</h1>
+<h2>{{vehicle?.brand}} {{vehicle?.model}} {{vehicle?.engine}}</h2>
 
-<strong>Rok produkcji: </strong><span>{{vehicle.year}}</span><br>
-<strong>Numer VIN: </strong><span>{{vehicle.vin}}</span><br>
-<strong>Olej longlife: </strong><input type="checkbox" [checked]="vehicle.hasLongLifeOil"><br>
-<strong>Właściciel(e): </strong><span *ngFor="let owner of vehicle.ownersIds">{{owner}}</span><br>
+<strong>Rok produkcji: </strong><span>{{vehicle?.year}}</span><br>
+<strong>Numer VIN: </strong><span>{{vehicle?.vin}}</span><br>
+<strong>Olej longlife: </strong><input type="checkbox" [checked]="vehicle?.hasLongLifeOil"><br>
+<strong>Właściciel(e): </strong><span *ngFor="let owner of vehicle?.ownersIds">{{owner}}</span><br>
 
-<strong>Przebieg: </strong><span>{{vehicle.mileage}}</span><br>
+<strong>Przebieg: </strong><span>{{vehicle?.mileage}}</span><br>
 
-<span style="color: orange;" [routerLink]="['/vehicles', vehicle.id]">edit</span><br>
-<span style="color: red;" (click)="deleteVehicle(vehicle.id)">delete</span><br>
+<span style="color: orange;" [routerLink]="['/vehicles', vehicle?.id]">edit</span><br>
+<span style="color: red;" (click)="deleteVehicle(vehicle?.id)">delete</span><br>
 
 
-<app-diary [vehicleId]="vehicle.id"></app-diary>
+<app-diary [vehicleId]="vehicleId"></app-diary>

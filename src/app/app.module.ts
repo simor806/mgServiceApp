@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {OwnersModule} from './dashboard/owners/owners.module';
 import {RepairsModule} from './dashboard/repairs/repairs.module';
+import {DiaryModule} from './dashboard/diary/diary.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {RepairsModule} from './dashboard/repairs/repairs.module';
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
+    DiaryModule,
     OwnersModule,
     RepairsModule
   ],

@@ -7,10 +7,7 @@ import {Vehicle} from './vehicle';
 
 @Injectable()
 export class StaticDataSource {
-  private diary: DiaryEntry[] = [
-      new DiaryEntry(1, 1, new Date('2019-01-02'), 120000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
-      new DiaryEntry(2, 1, new Date('2019-03-20'), 150000, [], ['Myjnia', 'Odgrzybianie'], false, 'Notatka'),
-  ];
+  private diary: DiaryEntry[] = [];
   private owners: Owner[] = [
   ];
   private standardRepairs: Repair[] = [];

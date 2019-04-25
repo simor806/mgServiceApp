@@ -7,6 +7,7 @@
     <th>Repairs</th>
     <th>Images</th>
     <th>Notes</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -16,12 +17,15 @@
     <td>{{diaryEntry.isOilChanged}}</td>
     <td>
       <ul>
-        <li *ngFor="let repair of diaryEntry.repairs">{{repair}} | </li>
+        <li *ngFor="let repair of diaryEntry.repairs">{{repair}}</li>
+        <li *ngFor="let additionalRepair of diaryEntry.additionalRepairs">{{additionalRepair}}</li>
       </ul>
     </td>
     <td>
       <img *ngFor="let imgUrl of diaryEntry.imageUrls" src="{{imgUrl}}">
     <td>{{diaryEntry.note}}</td>
+    <td><span style="color:orange;" [routerLink]="['/vehicles', vehicleId, 'diary', diaryEntry.id]">edit</span> </td>
   </tr>
   </tbody>
 </table>
+<button [routerLink]="['/vehicles', vehicleId, 'diary', 'new']">Dodaj wpis</button>

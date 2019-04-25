@@ -1,25 +1,35 @@
-import {Repair} from './repair';
+export interface DiaryEntryAttrs {
+  id: number;
+  vehicleId: number;
+  date: Date;
+  mileage: number;
+  repairs: string[];
+  additionalRepairs: string[];
+  isOilChanged: boolean;
+  note: string;
+  imageUrls: string[];
+}
 
 export class DiaryEntry {
-  // id: number;
-  // vehicleId: number;
-  // date: Date;
-  // mileage: number;
-  // repairs: StandardRepair[];
-  // additionalRepairs: string[];
-  // isOilChanged: boolean;
-  // note: string;
-  // imageUrls: string[];
+  id: number;
+  vehicleId: number;
+  date: Date;
+  mileage: number;
+  repairs: string[];
+  additionalRepairs: string[];
+  isOilChanged: boolean;
+  note: string;
+  imageUrls: string[];
 
-  constructor(
-    public id?: number,
-    public vehicleId?: number,
-    public date?: Date,
-    public mileage?: number,
-    public repairs?: Repair[],
-    public additionalRepairs?: string[],
-    public isOilChanged?: boolean,
-    public note?: string,
-    public imageUrls?: string[]) {
+  constructor(diaryEntryAttrs: Partial<DiaryEntryAttrs> = {}) {
+    this.id = diaryEntryAttrs.id;
+    this.vehicleId = diaryEntryAttrs.vehicleId;
+    this.date = diaryEntryAttrs.date;
+    this.mileage = diaryEntryAttrs.mileage;
+    this.repairs = diaryEntryAttrs.repairs;
+    this.additionalRepairs = diaryEntryAttrs.additionalRepairs;
+    this.isOilChanged = diaryEntryAttrs.isOilChanged;
+    this.note = diaryEntryAttrs.note;
+    this.imageUrls = diaryEntryAttrs.imageUrls;
   }
 }

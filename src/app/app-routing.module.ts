@@ -8,10 +8,13 @@ import {VehicleFormComponent} from './dashboard/vehicles/vehicle-form/vehicle-fo
 import {VehicleResolver} from './dashboard/vehicles/vehicle.resolver';
 import {VehicleDetailsComponent} from './dashboard/vehicles/vehicle-details/vehicle-details.component';
 import {RepairListComponent} from './dashboard/repairs/repair-list/repair-list.component';
+import {DiaryFormComponent} from './dashboard/diary/diary-form/diary-form.component';
+import {DiaryResolver} from './dashboard/diary/diary.resolver';
 
 const routes: Routes = [
   {path: 'dashboard', component: VehiclesListComponent},
   {path: 'vehicles/:id/diary', component: VehicleDetailsComponent},
+  {path: 'vehicles/:vehicleId/diary/:id', component: DiaryFormComponent, resolve: {diary: DiaryResolver}},
   {path: 'vehicles', redirectTo: 'dashboard'},
   {path: 'vehicles/:id', component: VehicleFormComponent, resolve: {vehicle: VehicleResolver}},
   {path: 'owners', component: OwnersListComponent},

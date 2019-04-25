@@ -67,5 +67,38 @@
       ],
       "hasLongLifeOil": null
     }
+  ],
+  "diary": [
+    {
+      "id": 1,
+      "vehicleId": "1",
+      "date": "2019-04-25",
+      "mileage": "120001",
+      "repairs": [
+        "Lakierowanie"
+      ],
+      "additionalRepairs": [
+        "r1",
+        "r2"
+      ],
+      "isOilChanged": null,
+      "note": "Nic2",
+      "imageUrls": null
+    },
+    {
+      "id": 2,
+      "vehicleId": "1",
+      "date": "2019-04-25",
+      "mileage": "120000",
+      "repairs": [
+        "Nabicie klimatyzacji"
+      ],
+      "additionalRepairs": [
+        "Inne"
+      ],
+      "isOilChanged": true,
+      "note": "Nic",
+      "imageUrls": null
+    }
   ]
 }
