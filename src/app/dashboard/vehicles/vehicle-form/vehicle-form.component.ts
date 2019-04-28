@@ -56,7 +56,7 @@ export class VehicleFormComponent implements OnInit {
   save(): void {
     const vehicleAttrs = this.form.value;
     this.vehicleService.saveVehicle(vehicleAttrs).subscribe(
-      () => this.router.navigate(['../..'], {relativeTo: this.route}),
+      (vehicle: Vehicle) => this.router.navigate(['/vehicles', vehicle.id, 'diary'], {relativeTo: this.route}),
       () => alert('Nie udało się zapisać pojazdu!')
     );
   }
