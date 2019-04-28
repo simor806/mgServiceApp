@@ -1,7 +1,7 @@
 export interface DiaryEntryAttrs {
   id: number;
   vehicleId: number;
-  date: Date;
+  date: string;
   mileage: number;
   repairs: string[];
   additionalRepairs: string[];
@@ -13,7 +13,7 @@ export interface DiaryEntryAttrs {
 export class DiaryEntry {
   id: number;
   vehicleId: number;
-  date: Date;
+  date: string;
   mileage: number;
   repairs: string[];
   additionalRepairs: string[];

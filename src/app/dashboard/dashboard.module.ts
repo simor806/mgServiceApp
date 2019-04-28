@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { VehiclesListComponent } from './vehicles/vehicle-list/vehicles-list.component';
 import {ModelModule} from '../model/model.module';
 import { DiaryComponent } from './diary/diary.component';
@@ -19,6 +19,7 @@ import {DiaryModule} from './diary/diary.module';
     FormsModule,
     ReactiveFormsModule,
     DiaryModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class DashboardModule { }

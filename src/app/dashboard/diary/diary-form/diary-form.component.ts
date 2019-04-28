@@ -6,6 +6,7 @@ import {DiaryService} from '../diary.service';
 import {DiaryEntry, DiaryEntryAttrs} from '../../../model/diary-entry';
 import {RepairService} from '../../repairs/repair.service';
 import {Repair} from '../../../model/repair';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-diary-form',
@@ -20,6 +21,7 @@ export class DiaryFormComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private diaryService: DiaryService,
+              private datePipe: DatePipe,
               private repairsService: RepairService) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class DiaryFormComponent implements OnInit {
           vehicleId: new FormControl(diary.vehicleId, {
             validators: [Validators.required]
           }),
-          date: new FormControl(diary.date, {
+          date: new FormControl(diary.date || this.datePipe.transform(Date.now(), 'yyyy-MM-dd'), {
             validators: [Validators.required]
           }),
           mileage: new FormControl(diary.mileage, {
