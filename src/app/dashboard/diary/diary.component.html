@@ -11,7 +11,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let diaryEntry of diary">
+  <tr *ngFor="let diaryEntry of vehicle?.diary">
     <td>{{diaryEntry.date}}</td>
     <td>{{diaryEntry.mileage}}</td>
     <td>{{diaryEntry.isOilChanged}}</td>
@@ -24,8 +24,8 @@
     <td>
       <img *ngFor="let imgUrl of diaryEntry.imageUrls" src="{{imgUrl}}">
     <td>{{diaryEntry.note}}</td>
-    <td><span style="color:orange;" [routerLink]="['/vehicles', vehicleId, 'diary', diaryEntry.id]">edit</span> </td>
+    <td><span style="color:orange;" [routerLink]="['/vehicles', vehicle?.id, 'diary', diaryEntry.id]">edit</span> </td>
   </tr>
   </tbody>
 </table>
-<button [routerLink]="['/vehicles', vehicleId, 'diary', 'new']">Dodaj wpis</button>
+<button [routerLink]="['/vehicles', vehicle?.id, 'diary', 'new']">Dodaj wpis</button>

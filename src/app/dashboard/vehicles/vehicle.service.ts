@@ -18,7 +18,7 @@ export class VehicleService {
   }
 
   getVehicle(id: number): Observable<Vehicle> {
-    return this.http.get<VehicleAttrs>(`/api/vehicles/${id}`).pipe(
+    return this.http.get<VehicleAttrs>(`/api/vehicles/${id}?_embed=diary`).pipe(
       map((pilotAttrs) => new Vehicle(pilotAttrs))
     );
   }

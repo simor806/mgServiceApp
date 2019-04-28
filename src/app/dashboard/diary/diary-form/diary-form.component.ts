@@ -30,7 +30,7 @@ export class DiaryFormComponent implements OnInit {
       .subscribe((diary: DiaryEntry) => {
         this.form = new FormGroup({
           id: new FormControl(diary.id),
-          vehicleId: new FormControl(diary.vehicleId, {
+          vehicleId: new FormControl(Number(diary.vehicleId), {
             validators: [Validators.required]
           }),
           date: new FormControl(diary.date || this.datePipe.transform(Date.now(), 'yyyy-MM-dd'), {

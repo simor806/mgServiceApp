@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DiaryEntry} from '../../model/diary-entry';
-import {DiaryService} from './diary.service';
+import {Vehicle} from '../../model/vehicle';
 
 @Component({
   selector: 'app-diary',
@@ -9,14 +8,11 @@ import {DiaryService} from './diary.service';
 })
 export class DiaryComponent implements OnInit {
 
-  @Input() vehicleId: number;
-  public diary: DiaryEntry[];
+  @Input() vehicle: Vehicle;
 
-  constructor(private diaryService: DiaryService) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    if (this.vehicleId) {
-      this.diaryService.getDiaryByVehicleId(this.vehicleId).subscribe((diary: DiaryEntry[]) => this.diary = diary);
-    }
   }
 }
