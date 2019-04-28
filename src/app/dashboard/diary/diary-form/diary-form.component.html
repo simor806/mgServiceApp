@@ -56,7 +56,7 @@
 
         <button type="submit" [disabled]="form.invalid">Zapisz</button>
       </form>
-      <button type="button" routerLink="../..">Anuluj</button>
+      <button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">Anuluj</button>
     </div>
   </div>
 </div>

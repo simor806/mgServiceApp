@@ -10,13 +10,13 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class VehicleDetailsComponent implements OnInit {
 
-  @Input() public vehicle: Vehicle;
+  public vehicle: Vehicle;
   public vehicleId: number;
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService) { }
 
   ngOnInit() {
-    this.vehicleId = Number(this.route.snapshot.params.id);
+    this.vehicleId = Number(this.route.snapshot.params.vehicleId);
     this.vehicleService.getVehicle(this.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);
   }
 

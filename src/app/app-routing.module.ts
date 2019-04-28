@@ -13,7 +13,7 @@ import {DiaryResolver} from './dashboard/diary/diary.resolver';
 
 const routes: Routes = [
   {path: 'dashboard', component: VehiclesListComponent},
-  {path: 'vehicles/:id/diary', component: VehicleDetailsComponent},
+  {path: 'vehicles/:vehicleId/diary', component: VehicleDetailsComponent},
   {path: 'vehicles/:vehicleId/diary/:id', component: DiaryFormComponent, resolve: {diary: DiaryResolver}},
   {path: 'vehicles', redirectTo: 'dashboard'},
   {path: 'vehicles/:id', component: VehicleFormComponent, resolve: {vehicle: VehicleResolver}},
