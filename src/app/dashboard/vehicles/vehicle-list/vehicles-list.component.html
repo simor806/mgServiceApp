@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Registration number</th>
       <th>Brand, model, engine</th>
       <th>Year</th>
@@ -10,6 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let vehicle of vehicles" [routerLink]="['/vehicles', vehicle.id, 'diary']">
+      <td><app-vehicle-alert [vehicle]="vehicle" [isIcon]="true"></app-vehicle-alert></td>
       <td>{{vehicle.registrationNumber}}</td>
       <td>{{vehicle.brand}} {{vehicle.model}} {{vehicle.engine}}</td>
       <td>{{vehicle.year}}</td>

@@ -15,6 +15,7 @@ export class VehicleAlertComponent implements OnInit {
   public readonly MILEAGE_TO_OIL_CHANGE = 10000;
   public readonly MILEAGE_TO_OIL_LONGLIFE_CHANGE = 30000;
   @Input() public vehicle: Vehicle;
+  @Input() public isIcon = false;
   public shouldChangeOilBecauseDate = false;
   public shouldChangeOilBecauseMileage = false;
   public oilNeverChanged = false;
@@ -26,7 +27,7 @@ export class VehicleAlertComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.vehicle && this.vehicle.diary.length > 0) {
+    if (this.vehicle && this.vehicle.diary && this.vehicle.diary.length > 0) {
       const diaryEntriesWithLastOilChanged = this.vehicle.diary.filter((diaryEntry: DiaryEntry) => diaryEntry.isOilChanged);
       if (diaryEntriesWithLastOilChanged.length > 0) {
         this.checkOilByDate(diaryEntriesWithLastOilChanged[0]);

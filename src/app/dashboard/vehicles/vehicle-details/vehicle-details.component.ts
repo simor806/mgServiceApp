@@ -19,21 +19,10 @@ export class VehicleDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.vehicleId = Number(this.route.snapshot.params.vehicleId);
-    this.vehicleService.getVehicle(this.vehicleId).subscribe((vehicle: Vehicle) => {
-      this.vehicle = vehicle;
-      this.sortDiaryByDate(this.vehicle.diary);
-    });
+    this.vehicleService.getVehicle(this.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);
   }
 
   public deleteVehicle(vehicleId: number) {
     this.vehicleService.deleteVehicle(vehicleId);
-  }
-
-  private sortDiaryByDate(diary: DiaryEntry[]) {
-    diary.sort((previousDiaryEntry, nextDiaryEntry) => {
-      const a = previousDiaryEntry.date.split('/').reverse().join();
-      const b = nextDiaryEntry.date.split('/').reverse().join();
-      return b < a ? -1 : (b > a ? 1 : 0);
-    });
   }
 }
