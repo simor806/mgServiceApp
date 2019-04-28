@@ -58,28 +58,27 @@
       "brand": "VW",
       "model": "Polo",
       "engine": "TDI",
-      "year": 2009,
-      "vin": "asdf",
+      "year": 2010,
+      "vin": "asdfgh",
       "note": null,
       "ownersIds": [
         2,
         4
       ],
-      "hasLongLifeOil": null
+      "hasLongLifeOil": true
     }
   ],
   "diary": [
     {
       "id": 1,
-      "vehicleId": "1",
-      "date": "2019-04-25",
+      "vehicleId": 1,
+      "date": "2019-04-28",
       "mileage": "120001",
       "repairs": [
         "Lakierowanie"
       ],
       "additionalRepairs": [
-        "r1",
-        "r2"
+        "r1"
       ],
       "isOilChanged": null,
       "note": "Nic2",
@@ -87,8 +86,8 @@
     },
     {
       "id": 2,
-      "vehicleId": "1",
-      "date": "2019-04-25",
+      "vehicleId": 1,
+      "date": "2017-04-02",
       "mileage": "120000",
       "repairs": [
         "Nabicie klimatyzacji"
@@ -97,6 +96,19 @@
         "Inne"
       ],
       "isOilChanged": true,
+      "note": "Nic",
+      "imageUrls": null
+    },
+    {
+      "id": 5,
+      "vehicleId": 1,
+      "date": "2019-05-01",
+      "mileage": "150002",
+      "repairs": [
+        "Regeneracja silnika"
+      ],
+      "additionalRepairs": null,
+      "isOilChanged": false,
       "note": "Nic",
       "imageUrls": null
     }

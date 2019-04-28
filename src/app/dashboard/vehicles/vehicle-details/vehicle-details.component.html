@@ -11,5 +11,6 @@
 <span style="color: orange;" [routerLink]="['/vehicles', vehicle?.id]">edit</span><br>
 <span style="color: red;" (click)="deleteVehicle(vehicle?.id)">delete</span><br>
 
+<app-vehicle-alert *ngIf="vehicle" [vehicle]="vehicle"></app-vehicle-alert>
 
-<app-diary [vehicle]="vehicle"></app-diary>
+<app-diary *ngIf="vehicle" [vehicle]="vehicle"></app-diary>
