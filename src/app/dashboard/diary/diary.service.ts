@@ -13,7 +13,7 @@ export class DiaryService {
   }
 
   getDiaryByVehicleId(vehicleId: number): Observable<DiaryEntry[]> {
-    return this.http.get<DiaryEntryAttrs[]>(`/api/diary?vehicleId=${vehicleId}`).pipe(
+    return this.http.get<DiaryEntryAttrs[]>(`/api/vehicles/${vehicleId}/diary`).pipe(
       map((data) => data.map((diaryEntryAttrs) => new DiaryEntry(diaryEntryAttrs)))
     );
   }
