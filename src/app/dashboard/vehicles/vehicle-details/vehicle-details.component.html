@@ -6,7 +6,7 @@
 <strong>Olej longlife: </strong><input type="checkbox" [checked]="vehicle?.hasLongLifeOil"><br>
 <strong>Właściciel(e): </strong><span *ngFor="let owner of vehicle?.ownersIds">{{owner}}</span><br>
 
-<strong>Przebieg: </strong><span>{{vehicle?.mileage}}</span><br>
+<strong>Przebieg: </strong><span>{{vehicle?.diary[0].mileage || '?'}} km</span><br>
 
 <span style="color: orange;" [routerLink]="['/vehicles', vehicle?.id]">edit</span><br>
 <span style="color: red;" (click)="deleteVehicle(vehicle?.id)">delete</span><br>
