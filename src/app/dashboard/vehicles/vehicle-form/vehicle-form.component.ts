@@ -6,6 +6,7 @@ import {VehicleService} from '../vehicle.service';
 import {Vehicle} from '../../../model/vehicle';
 import {OwnerService} from '../../owners/owner.service';
 import {Owner} from '../../../model/owner';
+import {carsBrands} from '../../../model/car-list';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -14,8 +15,9 @@ import {Owner} from '../../../model/owner';
 })
 export class VehicleFormComponent implements OnInit {
 
-  form: FormGroup;
+  public form: FormGroup;
   public owners: Owner[];
+  public brandsModelsMap = carsBrands;
 
   constructor(private route: ActivatedRoute,
               private router: Router,

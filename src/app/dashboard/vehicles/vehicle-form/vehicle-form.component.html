@@ -16,18 +16,19 @@
         </div>
         <div class="control-group">
           <label class="control-label">Marka:</label>
-          <input type="text" formControlName="brand">
+          <select type="text" formControlName="brand">
+            <option *ngFor="let brand of brandsModelsMap | keyvalue" [value]="brand.key">{{brand.key}}</option>
+          </select>
           <span *ngIf="form.get('brand').hasError('required') && form.get('brand').touched" class="error">
             podaj wartość
           </span>
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-            <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Model:</label>
-          <input type="text" formControlName="model">
+          <select type="text" formControlName="model">
+            <option *ngFor="let model of brandsModelsMap.get(form.get('brand').value)" [value]="model">{{model}}</option>
+          </select>
           <span *ngIf="form.get('model').hasError('required') && form.get('model').touched" class="error">
             podaj wartość
           </span>
