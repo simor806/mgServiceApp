@@ -5,7 +5,7 @@
 <strong>Numer VIN: </strong><span>{{vehicle?.vin}}</span><br>
 <strong>Olej longlife: </strong><input type="checkbox" [checked]="vehicle?.hasLongLifeOil"><br>
 <strong>Właściciel(e): </strong>
-  <div *ngFor="let ownerId of vehicle.ownersIds">
+  <div *ngFor="let ownerId of vehicle?.ownersIds">
     <span>{{owners.get(ownerId).fullName}}</span>
     <span style="font-size: smaller"> ({{owners.get(ownerId).phone}})</span>
   </div>
