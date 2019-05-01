@@ -18,7 +18,8 @@
       <td>{{vehicle.diary[0].mileage || '?'}} km</td>
       <td>
         <div *ngFor="let ownerId of vehicle.ownersIds">
-          {{owners.get(ownerId).fullName}}
+          <span>{{owners.get(ownerId).fullName}}</span>
+          <span style="font-size: smaller"> ({{owners.get(ownerId).phone}})</span>
         </div>
       </td>
     </tr>

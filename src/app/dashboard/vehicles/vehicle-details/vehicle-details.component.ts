@@ -2,7 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Vehicle} from '../../../model/vehicle';
 import {VehicleService} from '../vehicle.service';
 import {ActivatedRoute} from '@angular/router';
-import {DiaryEntry} from '../../../model/diary-entry';
+import {OwnerService} from '../../owners/owner.service';
+import {forkJoin} from 'rxjs';
+import {Owner} from '../../../model/owner';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -13,13 +15,20 @@ export class VehicleDetailsComponent implements OnInit {
 
   public vehicle: Vehicle;
   public vehicleId: number;
+  public owners = new Map<number, Owner>();
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService) {
+  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private ownerService: OwnerService) {
   }
 
   ngOnInit() {
     this.vehicleId = Number(this.route.snapshot.params.vehicleId);
-    this.vehicleService.getVehicle(this.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);
+    forkJoin(
+      this.vehicleService.getVehicle(this.vehicleId),
+      this.ownerService.getOwners()
+    ).subscribe(([vehicle, owners]) => {
+        this.vehicle = vehicle;
+        owners.forEach((owner: Owner) => this.owners.set(owner.id, owner));
+    });
   }
 
   public deleteVehicle(vehicleId: number) {

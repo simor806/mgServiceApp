@@ -4,7 +4,12 @@
 <strong>Rok produkcji: </strong><span>{{vehicle?.year}}</span><br>
 <strong>Numer VIN: </strong><span>{{vehicle?.vin}}</span><br>
 <strong>Olej longlife: </strong><input type="checkbox" [checked]="vehicle?.hasLongLifeOil"><br>
-<strong>Właściciel(e): </strong><span *ngFor="let owner of vehicle?.ownersIds">{{owner}}</span><br>
+<strong>Właściciel(e): </strong>
+  <div *ngFor="let ownerId of vehicle.ownersIds">
+    <span>{{owners.get(ownerId).fullName}}</span>
+    <span style="font-size: smaller"> ({{owners.get(ownerId).phone}})</span>
+  </div>
+<br>
 
 <strong>Przebieg: </strong><span>{{vehicle?.diary[0].mileage || '?'}} km</span><br>
 
