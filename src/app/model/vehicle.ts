@@ -23,7 +23,6 @@ export class Vehicle {
   engine: string;
   year: number;
   vin: string;
-  mileage: number;
   note: string;
   ownersIds: number[];
   diary: DiaryEntry[];
@@ -37,7 +36,6 @@ export class Vehicle {
       this.engine = vehicleAttrs.engine;
       this.year = vehicleAttrs.year;
       this.vin = vehicleAttrs.vin;
-      this.mileage = vehicleAttrs.mileage;
       this.note = vehicleAttrs.note;
       this.ownersIds = vehicleAttrs.ownersIds;
       this.diary = vehicleAttrs.diary;

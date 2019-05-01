@@ -15,7 +15,7 @@
       <td>{{vehicle.registrationNumber}}</td>
       <td>{{vehicle.brand}} {{vehicle.model}} {{vehicle.engine}}</td>
       <td>{{vehicle.year}}</td>
-      <td>{{vehicle.mileage}}</td>
+      <td>{{vehicle.diary[0].mileage || '?'}}</td>
       <td>
         <div *ngFor="let ownerId of vehicle.ownersIds">
           {{owners.get(ownerId).fullName}}
