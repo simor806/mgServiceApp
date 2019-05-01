@@ -41,7 +41,6 @@ export class VehicleFormComponent implements OnInit {
           engine: new FormControl(vehicle.engine),
           year: new FormControl(vehicle.year),
           vin: new FormControl(vehicle.vin),
-          // mileage: new FormControl(vehicle.mileage),
           note: new FormControl(vehicle.note),
           ownersIds: new FormControl(vehicle.ownersIds, {
             validators: [Validators.required]
