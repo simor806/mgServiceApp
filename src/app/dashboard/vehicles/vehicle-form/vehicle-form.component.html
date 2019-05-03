@@ -62,12 +62,12 @@
         <div class="control-group">
           <label class="control-label">VIN:</label>
           <input type="text" formControlName="vin">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
+          <span *ngIf="form.get('vin').hasError('min') && form.get('vin').touched" class="error">
+            Za mało znaków, numer VIN powinien mieć 17 znaków
+          </span>
+          <span *ngIf="form.get('vin').hasError('max')" class="error">
+            Za dużo znaków, numer VIN powinien mieć 17 znaków
+          </span>
         </div>
 
         <div class="control-group">

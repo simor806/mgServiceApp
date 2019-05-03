@@ -22,7 +22,7 @@ export class VehicleFormComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private ownerService: OwnerService,
-              private  vehicleService: VehicleService) {
+              private vehicleService: VehicleService) {
   }
 
   ngOnInit() {
@@ -42,7 +42,9 @@ export class VehicleFormComponent implements OnInit {
           }),
           engine: new FormControl(vehicle.engine),
           year: new FormControl(vehicle.year),
-          vin: new FormControl(vehicle.vin),
+          vin: new FormControl(vehicle.vin, {
+            validators: [Validators.min(17), Validators.max(17)]
+          }),
           note: new FormControl(vehicle.note),
           ownersIds: new FormControl(vehicle.ownersIds, {
             validators: [Validators.required]
