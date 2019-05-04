@@ -51,7 +51,7 @@ export class VehicleFormComponent implements OnInit {
           ownersIds: new FormControl(vehicle.ownersIds, {
             validators: [Validators.required]
           }),
-          hasLongLifeOil: new FormControl(vehicle.hasLongLifeOil),
+          hasLongLifeOil: new FormControl(vehicle.hasLongLifeOil || false),
         }, {updateOn: 'blur'});
       });
 
