@@ -51,12 +51,9 @@
         <div class="control-group">
           <label class="control-label">Rok produkcji:</label>
           <input type="number" formControlName="year">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
+          <span *ngIf="(form.get('year').hasError('min') || form.get('year').hasError('max')) && form.get('year').touched" class="error">
+            Nieprawidłowy rok produkcji
+          </span>
         </div>
 
         <div class="control-group">

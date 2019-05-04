@@ -41,7 +41,9 @@ export class VehicleFormComponent implements OnInit {
             validators: [Validators.required]
           }),
           engine: new FormControl(vehicle.engine),
-          year: new FormControl(vehicle.year),
+          year: new FormControl(vehicle.year, {
+            validators: [Validators.min(1900), Validators.max(2100)]
+          }),
           vin: new FormControl(vehicle.vin, {
             validators: [Validators.minLength(17), Validators.maxLength(17)]
           }),
