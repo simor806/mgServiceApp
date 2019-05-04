@@ -10,9 +10,6 @@
           <span *ngIf="form.get('registrationNumber').hasError('required') && form.get('registrationNumber').touched" class="error">
             podaj wartość
           </span>
-          <!--<span *ngIf="form.get('firstName').hasError('pilotName')" class="error">-->
-            <!--zacznij wielką literą-->
-          <!--</span>-->
         </div>
         <div class="control-group">
           <label class="control-label">Marka:</label>
@@ -32,20 +29,11 @@
           <span *ngIf="form.get('model').hasError('required') && form.get('model').touched" class="error">
             podaj wartość
           </span>
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Silnik:</label>
           <input type="text" formControlName="engine">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
@@ -72,34 +60,16 @@
           <select type="text" formControlName="ownersIds" multiple>
             <option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</option>
           </select>
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Olej longlife:</label>
           <input type="checkbox" formControlName="hasLongLifeOil">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Notatka:</label>
           <textarea formControlName="note"></textarea>
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <button type="submit" [disabled]="form.invalid">Zapisz</button>
