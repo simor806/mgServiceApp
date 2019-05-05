@@ -7,6 +7,7 @@ import {DiaryEntry, DiaryEntryAttrs} from '../../../model/diary-entry';
 import {RepairService} from '../../repairs/repair.service';
 import {Repair} from '../../../model/repair';
 import {DatePipe} from '@angular/common';
+import {DiaryValidators} from '../diary-validators';
 
 @Component({
   selector: 'app-diary-form',
@@ -46,7 +47,10 @@ export class DiaryFormComponent implements OnInit {
           isOilChanged: new FormControl(diary.isOilChanged),
           note: new FormControl(diary.note),
           imageUrls: new FormControl(diary.imageUrls)
-        }, {updateOn: 'blur'});
+        }, {
+          asyncValidators: [DiaryValidators.validateWithOtherDiaryEntries],
+          updateOn: 'change'
+        });
       });
 
     this.repairsService.getRepairs().subscribe((repairs: Repair[]) => this.repairs = repairs);

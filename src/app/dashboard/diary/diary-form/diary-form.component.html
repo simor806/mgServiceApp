@@ -8,21 +8,25 @@
           <label class="control-label">Data:</label>
           <input type="date" formControlName="date">
           <span *ngIf="form.get('date').hasError('required') && form.get('date').touched" class="error">
-            podaj wartość
+            Podaj wartość
           </span>
-          <!--<span *ngIf="form.get('firstName').hasError('pilotName')" class="error">-->
-            <!--zacznij wielką literą-->
-          <!--</span>-->
+          <span *ngIf="form.hasError('sameDates') && form.get('date').touched" class="error">
+            Istnieje już wpis w dzienniku napraw pod tą datą
+          </span>
         </div>
+
         <div class="control-group">
           <label class="control-label">Przebieg:</label>
-          <input type="text" formControlName="mileage">
+          <input type="number" formControlName="mileage">
           <span *ngIf="form.get('mileage').hasError('required') && form.get('mileage').touched" class="error">
-            podaj wartość
+            Podaj wartość
           </span>
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-            <!--zakazane nazwisko-->
-          <!--</span>-->
+          <span *ngIf="form.hasError('mileageTooSmall') && form.get('mileage').touched" class="error">
+            Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?
+          </span>
+          <span *ngIf="form.hasError('mileageTooBig') && form.get('mileage').touched" class="error">
+            Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku
+          </span>
         </div>
 
         <div class="control-group">
