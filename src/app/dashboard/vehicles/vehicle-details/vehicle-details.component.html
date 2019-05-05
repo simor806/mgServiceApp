@@ -14,7 +14,7 @@
 <strong>Przebieg: </strong><span>{{vehicle?.diary[0]?.mileage || '?'}} km</span><br>
 
 <span style="color: orange;" [routerLink]="['/vehicles', vehicle?.id]">edit</span><br>
-<span style="color: red;" (click)="deleteVehicle(vehicle?.id)">delete</span><br>
+<span style="color: red;" (click)="openDeleteVehicleConfirmationDialog(vehicle?.id)">delete</span><br>
 
 <app-vehicle-alert *ngIf="vehicle" [vehicle]="vehicle"></app-vehicle-alert>
 

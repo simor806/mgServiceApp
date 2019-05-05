@@ -1,10 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Vehicle} from '../../../model/vehicle';
 import {VehicleService} from '../vehicle.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OwnerService} from '../../owners/owner.service';
 import {forkJoin} from 'rxjs';
 import {Owner} from '../../../model/owner';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../gui/confirmation-dialog/confirmation-dialog.component';
+import {DiaryService} from '../../diary/diary.service';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -17,7 +20,14 @@ export class VehicleDetailsComponent implements OnInit {
   public vehicleId: number;
   public owners = new Map<number, Owner>();
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private ownerService: OwnerService) {
+  private dialogRef: MatDialogRef<ConfirmationDialogComponent>;
+
+  constructor(public dialog: MatDialog,
+              private diaryService: DiaryService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private ownerService: OwnerService,
+              private vehicleService: VehicleService) {
   }
 
   ngOnInit() {
@@ -32,6 +42,22 @@ export class VehicleDetailsComponent implements OnInit {
   }
 
   public deleteVehicle(vehicleId: number) {
-    this.vehicleService.deleteVehicle(vehicleId);
+    this.vehicleService.deleteVehicle(vehicleId).subscribe(
+      () => this.router.navigate(['/dashboard']),
+      () => console.log('Wystąpił błąd podczas usuwania pojazdu')
+    );
+  }
+
+  openDeleteVehicleConfirmationDialog(vehicleId: number) {
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = 'Pojazd zostanie usunięty z bazy. Czy chcesz kontynuować?'
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteVehicle(vehicleId);
+      }
+      this.dialogRef = null;
+    });
   }
 }

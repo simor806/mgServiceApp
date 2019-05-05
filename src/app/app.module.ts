@@ -7,6 +7,8 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {OwnersModule} from './dashboard/owners/owners.module';
 import {RepairsModule} from './dashboard/repairs/repairs.module';
 import {DiaryModule} from './dashboard/diary/diary.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GuiModule} from './dashboard/gui/gui.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,11 @@ import {DiaryModule} from './dashboard/diary/diary.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DashboardModule,
     DiaryModule,
+    GuiModule,
     OwnersModule,
     RepairsModule
   ],
