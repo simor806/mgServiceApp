@@ -44,7 +44,7 @@ export class DiaryFormComponent implements OnInit {
             validators: [Validators.required]
           }),
           additionalRepairs: new FormControl(diary.additionalRepairs ? diary.additionalRepairs.join('\n') : null),
-          isOilChanged: new FormControl(diary.isOilChanged),
+          isOilChanged: new FormControl(diary.isOilChanged || false),
           note: new FormControl(diary.note),
           imageUrls: new FormControl(diary.imageUrls)
         }, {
