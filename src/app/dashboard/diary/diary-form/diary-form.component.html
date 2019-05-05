@@ -34,17 +34,15 @@
           <select type="text" formControlName="repairs" multiple>
             <option *ngFor="let repair of repairs" [value]="repair.name">{{repair.name}}</option>
           </select>
-          <span *ngIf="form.get('repairs').hasError('required') && form.get('repairs').touched" class="error">
-            podaj wartość
-          </span>
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Dodatkowe naprawy:</label>
           <textarea formControlName="additionalRepairs"></textarea>
+
+          <span *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched)" class="error">
+            Wybierz wykonaną usługę z listy usług lub dopisz niestandardową usługę
+          </span>
         </div>
 
         <div class="control-group">

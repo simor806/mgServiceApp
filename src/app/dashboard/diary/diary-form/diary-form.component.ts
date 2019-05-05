@@ -48,6 +48,7 @@ export class DiaryFormComponent implements OnInit {
           note: new FormControl(diary.note),
           imageUrls: new FormControl(diary.imageUrls)
         }, {
+          validators: [DiaryValidators.repairsRequired],
           asyncValidators: [DiaryValidators.validateWithOtherDiaryEntries],
           updateOn: 'change'
         });

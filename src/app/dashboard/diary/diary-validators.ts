@@ -6,6 +6,13 @@ import * as moment from 'moment';
 
 export class DiaryValidators {
 
+  static repairsRequired(formGroup: FormGroup) {
+    const repairs = formGroup.get('repairs') as FormControl;
+    const additionalRepairs = formGroup.get('additionalRepairs') as FormControl;
+
+    return (repairs.value || additionalRepairs.value) ? null : {repairsRequired: true};
+  }
+
   static validateWithOtherDiaryEntries(formGroup: FormGroup) {
     const id = formGroup.get('id') as FormControl;
     const mileage = formGroup.get('mileage') as FormControl;
