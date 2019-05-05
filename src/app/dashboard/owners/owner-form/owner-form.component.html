@@ -10,9 +10,6 @@
           <span *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched" class="error">
             podaj wartość
           </span>
-          <!--<span *ngIf="form.get('firstName').hasError('pilotName')" class="error">-->
-            <!--zacznij wielką literą-->
-          <!--</span>-->
         </div>
         <div class="control-group">
           <label class="control-label">Nazwisko:</label>
@@ -20,31 +17,16 @@
           <span *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched" class="error">
             podaj wartość
           </span>
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-            <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Telefon:</label>
           <input type="text" formControlName="phone">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-            <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <div class="control-group">
           <label class="control-label">Notatka:</label>
           <input type="text" formControlName="note">
-          <!--<span *ngIf="form.get('phone').hasError('required') && form.get('phone').touched" class="error">-->
-          <!--podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.get('lastName').hasError('pilotForbidden')" class="error">-->
-          <!--zakazane nazwisko-->
-          <!--</span>-->
         </div>
 
         <button type="submit" [disabled]="form.invalid">Zapisz</button>
