@@ -41,21 +41,24 @@ export class VehicleDetailsComponent implements OnInit {
     });
   }
 
-  public deleteVehicle(vehicleId: number) {
-    this.vehicleService.deleteVehicle(vehicleId).subscribe(
+  public deleteVehicle() {
+    this.vehicleService.deleteVehicle(this.vehicle.id).subscribe(
       () => this.router.navigate(['/dashboard']),
       () => console.log('Wystąpił błąd podczas usuwania pojazdu')
     );
   }
 
-  openDeleteVehicleConfirmationDialog(vehicleId: number) {
+  openDeleteVehicleConfirmationDialog() {
     this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       disableClose: false
     });
-    this.dialogRef.componentInstance.confirmMessage = 'Pojazd zostanie usunięty z bazy. Czy chcesz kontynuować?'
+    this.dialogRef.componentInstance.confirmTitle = 'Usunąć pojazd?';
+    this.dialogRef.componentInstance.confirmMessage = `Pojazd ${this.vehicle.registrationNumber} zostanie trwale usunięty z bazy.`;
+    this.dialogRef.componentInstance.confirmColor = 'warn';
+    this.dialogRef.componentInstance.confirmButton = 'Usuń';
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteVehicle(vehicleId);
+        this.deleteVehicle();
       }
       this.dialogRef = null;
     });

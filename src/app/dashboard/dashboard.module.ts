@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { VehicleDetailsComponent } from './vehicles/vehicle-details/vehicle-details.component';
 import {DiaryModule} from './diary/diary.module';
 import { VehicleAlertComponent } from './vehicles/vehicle-alert/vehicle-alert.component';
+import {GuiModule} from './gui/gui.module';
 
 @NgModule({
   declarations: [VehiclesListComponent, VehicleFormComponent, VehicleDetailsComponent, VehicleAlertComponent],
@@ -18,7 +19,8 @@ import { VehicleAlertComponent } from './vehicles/vehicle-alert/vehicle-alert.co
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    DiaryModule
+    DiaryModule,
+    GuiModule
   ],
   providers: [DatePipe]
 })
