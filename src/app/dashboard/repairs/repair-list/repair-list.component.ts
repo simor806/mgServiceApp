@@ -19,6 +19,9 @@ export class RepairListComponent implements OnInit {
   }
 
   public saveRepair(repairId: number, repairName: string): void {
+    if (!repairName) {
+      return;
+    }
     this.repairService.saveRepair({'id': repairId, 'name': repairName} as RepairAttrs).subscribe((editedRepair: Repair) => {
       this.getRepairs();
     });
