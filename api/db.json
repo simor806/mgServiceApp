@@ -27,6 +27,13 @@
       "lastName": "Radziej",
       "phone": "666875002346",
       "note": "Moja ukochana"
+    },
+    {
+      "id": 5,
+      "firstName": "Szymek",
+      "lastName": "Radziej",
+      "phone": "0700880",
+      "note": "kochanie "
     }
   ],
   "repairs": [
@@ -49,16 +56,20 @@
     {
       "id": 5,
       "name": "Lakierowanie"
+    },
+    {
+      "id": 6,
+      "name": "Czyszczenie felg"
     }
   ],
   "vehicles": [
     {
       "id": 1,
       "registrationNumber": "OST 0987",
-      "brand": "VW",
-      "model": "Polo",
+      "brand": "Alfa Romeo",
+      "model": "M3",
       "engine": "TDI",
-      "year": 2010,
+      "year": 300000,
       "vin": "asdfgh",
       "note": null,
       "ownersIds": [
@@ -66,6 +77,20 @@
         4
       ],
       "hasLongLifeOil": true
+    },
+    {
+      "id": 2,
+      "registrationNumber": "OPO24415",
+      "brand": "Volkswagen",
+      "model": "Passat",
+      "engine": "1,9",
+      "year": 2004,
+      "vin": "85478524444544444",
+      "note": null,
+      "ownersIds": [
+        4
+      ],
+      "hasLongLifeOil": false
     }
   ],
   "diary": [
@@ -103,13 +128,26 @@
       "id": 5,
       "vehicleId": 1,
       "date": "2019-05-01",
-      "mileage": "150002",
+      "mileage": 150000,
       "repairs": [
         "Regeneracja silnika"
       ],
       "additionalRepairs": null,
       "isOilChanged": false,
       "note": "Nic",
+      "imageUrls": null
+    },
+    {
+      "id": 6,
+      "vehicleId": 2,
+      "date": "2019-05-05",
+      "mileage": 240000,
+      "repairs": [
+        "Czyszczenie felg"
+      ],
+      "additionalRepairs": null,
+      "isOilChanged": false,
+      "note": null,
       "imageUrls": null
     }
   ]

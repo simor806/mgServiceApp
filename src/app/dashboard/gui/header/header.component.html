@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs="true">
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <h6><a routerLink="/dashboard">MGservice</a></h6>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs="true">
+    <ul fxLayout fxLayoutGap="24px" class="navigation-items">
+      <li>
+        <a routerLink="/dashboard">
+          <mat-icon matTooltip="Pojazdy">directions_car</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/owners">
+          <mat-icon matTooltip="Klienci">group</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/repairs">
+          <mat-icon matTooltip="Standardowe naprawy">settings</mat-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import {MatButtonModule, MatDialogModule} from '@angular/material';
+import { HeaderComponent } from './header/header.component';
+import { LayoutComponent } from './layout/layout.component';
+import {MaterialModule} from '../../material/material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {RouterModule} from '@angular/router';
+import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent],
+  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent],
   imports: [
     CommonModule,
-    MatDialogModule,
-    MatButtonModule
+    MaterialModule,
+    FlexLayoutModule,
+    RouterModule
   ],
   entryComponents: [ConfirmationDialogComponent],
-  exports: [MatButtonModule]
+  exports: [HeaderComponent, LayoutComponent, SidenavListComponent]
 })
 export class GuiModule { }
