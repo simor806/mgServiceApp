@@ -9,6 +9,7 @@ import { VehicleDetailsComponent } from './vehicles/vehicle-details/vehicle-deta
 import {DiaryModule} from './diary/diary.module';
 import { VehicleAlertComponent } from './vehicles/vehicle-alert/vehicle-alert.component';
 import {GuiModule} from './gui/gui.module';
+import {MaterialModule} from '../material/material.module';
 
 @NgModule({
   declarations: [VehiclesListComponent, VehicleFormComponent, VehicleDetailsComponent, VehicleAlertComponent],
@@ -19,6 +20,7 @@ import {GuiModule} from './gui/gui.module';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
     DiaryModule,
     GuiModule
   ],
