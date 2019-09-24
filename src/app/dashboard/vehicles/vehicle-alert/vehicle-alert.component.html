@@ -23,6 +23,5 @@
 </div>
 
 <div *ngIf="isIcon">
-  <span *ngIf="shouldChangeOilBecauseDate || shouldChangeOilBecauseMileage" style="color: orangered">!!!</span>
+  <mat-icon *ngIf="shouldChangeOilBecauseDate || shouldChangeOilBecauseMileage" matTooltip="Samochód wymaga wymiany oleju" [color]="'error'">warning</mat-icon>
 </div>
-
