@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule,
   MatDialogModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
   MatListModule,
@@ -12,6 +12,7 @@ import {
 
 const materialModules = [
   MatButtonModule,
+  MatCheckboxModule,
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
