@@ -10,6 +10,7 @@ import {DiaryModule} from './diary/diary.module';
 import { VehicleAlertComponent } from './vehicles/vehicle-alert/vehicle-alert.component';
 import {GuiModule} from './gui/gui.module';
 import {MaterialModule} from '../material/material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [VehiclesListComponent, VehicleFormComponent, VehicleDetailsComponent, VehicleAlertComponent],
@@ -18,6 +19,7 @@ import {MaterialModule} from '../material/material.module';
     CommonModule,
     ModelModule,
     RouterModule,
+    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,

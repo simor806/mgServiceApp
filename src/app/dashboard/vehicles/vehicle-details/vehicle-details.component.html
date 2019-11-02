@@ -1,50 +1,57 @@
-<span class="mat-display-2">{{vehicle?.registrationNumber}}</span><br>
-<span class="mat-display-1">{{vehicle?.brand}} {{vehicle?.model}} {{vehicle?.engine}}</span>
+<div id="main-info" fxLayout="row wrap" fxLayoutAlign="end start">
+  <div fxFlex="70">
+    <span class="mat-display-2">{{vehicle?.registrationNumber}}</span><br>
+    <span class="mat-display-1">{{vehicle?.brand}} {{vehicle?.model}} {{vehicle?.engine}}</span>
 
+    <div *ngFor="let ownerId of vehicle?.ownersIds">
+      <span class="mat-h3">
+        <mat-icon>person</mat-icon> {{owners.get(ownerId).fullName}}
+      </span>
+      <span class="mat-h4" *ngIf="owners.get(ownerId).phone">
+      ({{owners.get(ownerId).phone}})
+      </span>
+    </div>
+  </div>
 
-<div *ngFor="let ownerId of vehicle?.ownersIds">
+  <div fxFlex="30" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxLayoutGap.xs="10px">
+    <button mat-flat-button color="accent" [routerLink]="['/vehicles', vehicle?.id]">
+      <mat-icon>edit</mat-icon>
+      <span>Edytuj</span>
+    </button>
 
-  <span class="mat-h3">
-    <mat-icon>person</mat-icon> {{owners.get(ownerId).fullName}}
-  </span>
-  <span class="mat-h4" *ngIf="owners.get(ownerId).phone">
-    ({{owners.get(ownerId).phone}})
-  </span>
+    <button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">
+      <mat-icon>delete</mat-icon>
+      <span>Usuń</span>
+    </button>
+  </div>
 </div>
 
-<button mat-flat-button color="accent" [routerLink]="['/vehicles', vehicle?.id]">
-  <mat-icon>edit</mat-icon>
-  <span>Edytuj</span>
-</button>
+<div id="additional-info" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Przebieg</mat-label>
+      <input matInput value="{{vehicle?.diary[0]?.mileage || '?'}} km" disabled>
+    </mat-form-field>
+  </div>
 
-<button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">
-  <mat-icon>delete</mat-icon>
-  <span>Usuń</span>
-</button>
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Rok produkcji</mat-label>
+      <input matInput value="{{vehicle?.year}}" disabled>
+    </mat-form-field>
+  </div>
 
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Przebieg</mat-label>
-    <input matInput value="{{vehicle?.diary[0]?.mileage || '?'}} km" disabled>
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Numer VIN</mat-label>
+      <input matInput value="{{vehicle?.vin || '-'}}" disabled>
+    </mat-form-field>
+  </div>
 
-  </mat-form-field>
-</p>
-
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Rok produkcji</mat-label>
-    <input matInput value="{{vehicle?.year}}" disabled>
-  </mat-form-field>
-</p>
-
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Numer VIN</mat-label>
-    <input matInput value="{{vehicle?.vin || '-'}}" disabled>
-  </mat-form-field>
-</p>
-
-<mat-checkbox checked="vehicle?.hasLongLifeOil" color="primary" disabled>Olej longlife</mat-checkbox>
+  <div>
+    <mat-checkbox checked="vehicle?.hasLongLifeOil" color="primary" disabled>Olej longlife</mat-checkbox>
+  </div>
+</div>
 
 <app-vehicle-alert *ngIf="vehicle" [vehicle]="vehicle"></app-vehicle-alert>
 
