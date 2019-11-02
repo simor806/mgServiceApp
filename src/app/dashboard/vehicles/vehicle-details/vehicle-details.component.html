@@ -12,8 +12,15 @@
   </span>
 </div>
 
-<button mat-flat-button color="accent" [routerLink]="['/vehicles', vehicle?.id]">Edytuj</button>
-<button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">Usuń</button>
+<button mat-flat-button color="accent" [routerLink]="['/vehicles', vehicle?.id]">
+  <mat-icon>edit</mat-icon>
+  <span>Edytuj</span>
+</button>
+
+<button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">
+  <mat-icon>delete</mat-icon>
+  <span>Usuń</span>
+</button>
 
 <p>
   <mat-form-field appearance="legacy">
