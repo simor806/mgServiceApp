@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {GuiModule} from '../gui/gui.module';
 
 @NgModule({
   declarations: [DiaryComponent, DiaryFormComponent],
@@ -13,6 +14,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     CommonModule,
     FlexLayoutModule,
     FormsModule,
+    GuiModule,
     MaterialModule,
     ReactiveFormsModule,
     RouterModule

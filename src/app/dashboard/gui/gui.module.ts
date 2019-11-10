@@ -7,9 +7,14 @@ import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RouterModule} from '@angular/router';
 import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
+import { FilterInputComponent } from './shared-components/input/filter-input/filter-input.component';
+
+const inputs = [
+  FilterInputComponent
+];
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent],
+  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent, FilterInputComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -17,6 +22,6 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
     RouterModule
   ],
   entryComponents: [ConfirmationDialogComponent],
-  exports: [HeaderComponent, LayoutComponent, SidenavListComponent]
+  exports: [HeaderComponent, LayoutComponent, SidenavListComponent, ...inputs]
 })
 export class GuiModule { }

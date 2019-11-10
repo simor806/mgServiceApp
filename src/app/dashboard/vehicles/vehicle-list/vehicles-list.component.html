@@ -3,9 +3,7 @@
   <span> Dodaj pojazd</span>
 </button>
 
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtruj">
-</mat-form-field>
+<app-filter-input [dataSource]="dataSource"></app-filter-input>
 
 <table mat-table [dataSource]="dataSource">
 

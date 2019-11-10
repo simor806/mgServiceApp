@@ -21,7 +21,4 @@ export class DiaryComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.vehicle.diary);
   }
 
-  public applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 }

@@ -1,8 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="20px">
   <div fxFlex>
-    <mat-form-field class="app-filter-input">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtruj">
-    </mat-form-field>
+    <app-filter-input [dataSource]="dataSource"></app-filter-input>
   </div>
 
   <div fxFlex="none">
