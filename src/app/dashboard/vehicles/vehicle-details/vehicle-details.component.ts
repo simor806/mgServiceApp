@@ -6,7 +6,7 @@ import {OwnerService} from '../../owners/owner.service';
 import {forkJoin} from 'rxjs';
 import {Owner} from '../../../model/owner';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {ConfirmationDialogComponent} from '../../gui/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../../gui/shared-components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import {DiaryService} from '../../diary/diary.service';
 
 @Component({
