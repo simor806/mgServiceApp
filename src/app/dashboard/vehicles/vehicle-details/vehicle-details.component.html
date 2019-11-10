@@ -53,6 +53,8 @@
   </div>
 </div>
 
-<app-vehicle-alert *ngIf="vehicle" [vehicle]="vehicle"></app-vehicle-alert>
+<div id="alert">
+  <app-vehicle-alert *ngIf="vehicle" [vehicle]="vehicle"></app-vehicle-alert>
+</div>
 
 <app-diary *ngIf="vehicle" [vehicle]="vehicle"></app-diary>

@@ -15,9 +15,19 @@ html, body {
   float: right;
 }
 
+table {
+  width: 100%;
+}
+
 tr.mat-row {
   cursor: pointer;
 }
+
+.app-filter-input {
+  font-size: 14px;
+  width: 100%;
+}
+
 
 button mat-icon {
   padding-right: 8px;

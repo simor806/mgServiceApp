@@ -4,12 +4,16 @@ import {DiaryComponent} from './diary.component';
 import {DiaryFormComponent} from './diary-form/diary-form.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../material/material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [DiaryComponent, DiaryFormComponent],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
     RouterModule
   ],

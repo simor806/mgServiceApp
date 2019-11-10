@@ -1,31 +1,61 @@
-<table>
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Mileage</th>
-    <th>Oil changed</th>
-    <th>Repairs</th>
-    <th>Images</th>
-    <th>Notes</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let diaryEntry of vehicle?.diary">
-    <td>{{diaryEntry.date}}</td>
-    <td>{{diaryEntry.mileage}}</td>
-    <td>{{diaryEntry.isOilChanged}}</td>
-    <td>
-      <ul>
+<div fxLayout="row wrap" fxLayoutGap="20px">
+  <div fxFlex>
+    <mat-form-field class="app-filter-input">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtruj">
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="none">
+    <button mat-flat-button color="primary"  [routerLink]="['/vehicles', vehicle?.id, 'diary', 'new']">
+      <mat-icon>add</mat-icon>
+      <span> Dodaj wpis</span>
+    </button>
+  </div>
+</div>
+
+<table *ngIf="dataSource && vehicle.diary" mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Data</th>
+    <td mat-cell *matCellDef="let diaryEntry"> {{diaryEntry.date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="mileage">
+    <th mat-header-cell *matHeaderCellDef>Przebieg</th>
+    <td mat-cell *matCellDef="let diaryEntry">
+      <span *ngIf="diaryEntry.mileage">{{diaryEntry.mileage}} km</span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="isOilChanged">
+    <th mat-header-cell *matHeaderCellDef>Wymiana oleju</th>
+    <td mat-cell *matCellDef="let diaryEntry">
+      <mat-checkbox checked="diaryEntry.isOilChanged" color="primary" disabled></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="repairs">
+    <th mat-header-cell *matHeaderCellDef>Naprawy</th>
+    <td mat-cell *matCellDef="let diaryEntry">
+      <ul id="repairs-list">
         <li *ngFor="let repair of diaryEntry.repairs">{{repair}}</li>
         <li *ngFor="let additionalRepair of diaryEntry.additionalRepairs">{{additionalRepair}}</li>
       </ul>
     </td>
-    <td>
-      <img *ngFor="let imgUrl of diaryEntry.imageUrls" src="{{imgUrl}}">
-    <td>{{diaryEntry.note}}</td>
-    <td><span style="color:orange;" [routerLink]="['/vehicles', vehicle?.id, 'diary', diaryEntry.id]">edit</span> </td>
-  </tr>
-  </tbody>
+  </ng-container>
+
+  <!--TODO: images-->
+  <!--<ng-container matColumnDef="images">-->
+    <!--<th mat-header-cell *matHeaderCellDef>Zdjęcia</th>-->
+    <!--<td mat-cell *matCellDef="let diaryEntry"> {{diaryEntry.images}} </td>-->
+  <!--</ng-container>-->
+
+  <ng-container matColumnDef="note">
+    <th mat-header-cell *matHeaderCellDef>Notatki</th>
+    <td mat-cell *matCellDef="let diaryEntry"> {{diaryEntry.note}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      [routerLink]="'/vehicles/' + vehicle.id + '/diary/' + row.id"></tr>
+
 </table>
-<button [routerLink]="['/vehicles', vehicle?.id, 'diary', 'new']">Dodaj wpis</button>
