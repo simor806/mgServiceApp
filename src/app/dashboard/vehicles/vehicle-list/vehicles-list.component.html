@@ -1,9 +1,15 @@
-<button mat-flat-button color="primary" class="right" [routerLink]="['/vehicles/new']">
-  <mat-icon>add</mat-icon>
-  <span> Dodaj pojazd</span>
-</button>
+<div fxLayout="row wrap" fxLayoutGap="20px">
+  <div fxFlex>
+    <app-filter-input [dataSource]="dataSource"></app-filter-input>
+  </div>
 
-<app-filter-input [dataSource]="dataSource"></app-filter-input>
+  <div fxFlex="none">
+    <button mat-flat-button color="primary" [routerLink]="['/vehicles/new']">
+      <mat-icon>add</mat-icon>
+      <span> Dodaj pojazd</span>
+    </button>
+  </div>
+</div>
 
 <table mat-table [dataSource]="dataSource">
 
