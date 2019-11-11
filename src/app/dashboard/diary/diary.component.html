@@ -4,10 +4,7 @@
   </div>
 
   <div fxFlex="none">
-    <button mat-flat-button color="primary"  [routerLink]="['/vehicles', vehicle?.id, 'diary', 'new']">
-      <mat-icon>add</mat-icon>
-      <span> Dodaj wpis</span>
-    </button>
+    <app-add-button text="Dodaj wpis" [routerLink]="['/vehicles', vehicle?.id, 'diary', 'new']"></app-add-button>
   </div>
 </div>
 
