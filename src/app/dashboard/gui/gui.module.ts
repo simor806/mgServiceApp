@@ -12,8 +12,8 @@ import { AddButtonComponent } from './shared-components/buttons/add-button/add-b
 import { EditButtonComponent } from './shared-components/buttons/edit-button/edit-button.component';
 import { BaseButtonComponent } from './shared-components/buttons/base-button/base-button.component';
 
-const inputs = [
-  FilterInputComponent
+const baseComponents = [
+  BaseButtonComponent
 ];
 
 const buttons = [
@@ -21,22 +21,38 @@ const buttons = [
   EditButtonComponent
 ];
 
-const baseComponents = [
-  BaseButtonComponent
+const dialogs = [
+  ConfirmationDialogComponent
+];
+
+const inputs = [
+  FilterInputComponent
+];
+
+const layout = [
+  HeaderComponent,
+  LayoutComponent,
+  SidenavListComponent
 ];
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent,
+  declarations: [
     ...baseComponents,
     ...buttons,
-    ...inputs],
+    ...dialogs,
+    ...inputs,
+    ...layout
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
     RouterModule
   ],
-  entryComponents: [ConfirmationDialogComponent],
-  exports: [HeaderComponent, LayoutComponent, SidenavListComponent, ...buttons, ...inputs]
+  entryComponents: [...dialogs],
+  exports: [
+    ...buttons,
+    ...inputs,
+    ...layout]
 })
 export class GuiModule { }
