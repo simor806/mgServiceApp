@@ -9,17 +9,27 @@ import {RouterModule} from '@angular/router';
 import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 import { FilterInputComponent } from './shared-components/input/filter-input/filter-input.component';
 import { AddButtonComponent } from './shared-components/buttons/add-button/add-button.component';
+import { EditButtonComponent } from './shared-components/buttons/edit-button/edit-button.component';
+import { BaseButtonComponent } from './shared-components/buttons/base-button/base-button.component';
 
 const inputs = [
   FilterInputComponent
 ];
 
 const buttons = [
-  AddButtonComponent
-]
+  AddButtonComponent,
+  EditButtonComponent
+];
+
+const baseComponents = [
+  BaseButtonComponent
+];
 
 @NgModule({
-  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent, ...inputs, ...buttons],
+  declarations: [ConfirmationDialogComponent, HeaderComponent, LayoutComponent, SidenavListComponent,
+    ...baseComponents,
+    ...buttons,
+    ...inputs],
   imports: [
     CommonModule,
     MaterialModule,
@@ -27,6 +37,6 @@ const buttons = [
     RouterModule
   ],
   entryComponents: [ConfirmationDialogComponent],
-  exports: [HeaderComponent, LayoutComponent, SidenavListComponent, ...inputs, ...buttons]
+  exports: [HeaderComponent, LayoutComponent, SidenavListComponent, ...buttons, ...inputs]
 })
 export class GuiModule { }

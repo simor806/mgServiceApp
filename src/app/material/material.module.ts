@@ -28,10 +28,10 @@ const materialModules = [
   declarations: [],
   imports: [
     CommonModule,
-    materialModules
+    ...materialModules
   ],
   exports: [
-    materialModules
+    ...materialModules
   ]
 })
 export class MaterialModule { }

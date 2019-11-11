@@ -14,10 +14,7 @@
   </div>
 
   <div fxFlex="30" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxLayoutGap.xs="10px">
-    <button mat-flat-button color="accent" [routerLink]="['/vehicles', vehicle?.id]">
-      <mat-icon>edit</mat-icon>
-      <span>Edytuj</span>
-    </button>
+    <app-edit-button [routerLink]="['/vehicles', vehicle?.id]"></app-edit-button>
 
     <button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">
       <mat-icon>delete</mat-icon>
