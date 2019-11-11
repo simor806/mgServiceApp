@@ -6,6 +6,11 @@ import {Owner} from '../../../model/owner';
 import {forkJoin} from 'rxjs';
 import {MatTableDataSource} from '@angular/material';
 
+interface VehicleListItem extends Vehicle {
+  owners: Owner[];
+  ownersNames: string[];
+}
+
 @Component({
   selector: 'app-vehicles',
   templateUrl: './vehicles-list.component.html',
@@ -13,23 +18,26 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class VehiclesListComponent implements OnInit {
 
-  public vehicles: Vehicle[];
-  public owners = new Map<number, Owner>();
   public displayedColumns: string[] = ['alert', 'registrationNumber', 'brand', 'year', 'mileage', 'owners'];
-  public dataSource: MatTableDataSource<Vehicle>;
+  public dataSource: MatTableDataSource<VehicleListItem>;
 
-  constructor(private vehicleService: VehicleService, private ownerService: OwnerService) {
+  constructor(private vehicleService: VehicleService,
+              private ownerService: OwnerService) {
   }
 
   ngOnInit() {
-
     forkJoin(
       this.vehicleService.getVehicles(),
       this.ownerService.getOwners()
-    ).subscribe(([vehicles, owners]) => {
-      this.vehicles = vehicles;
-      this.dataSource = new MatTableDataSource(vehicles);
-      owners.forEach((owner: Owner) => this.owners.set(owner.id, owner));
+    ).subscribe(([vehicles, owners]: [Vehicle[], Owner[]]) => {
+      const vehicleList = vehicles.map((vehicle: Vehicle) => <VehicleListItem> vehicle);
+      vehicleList.forEach((vehicle: VehicleListItem) => {
+        const filteredOwners = owners.filter((owner: Owner) => vehicle.ownersIds.includes(owner.id));
+        vehicle.owners = filteredOwners;
+        vehicle.ownersNames = filteredOwners.map((owner: Owner) => owner.fullName);
+      });
+
+      this.dataSource = new MatTableDataSource(vehicleList);
     });
   }
 

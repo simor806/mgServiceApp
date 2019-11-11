@@ -40,9 +40,9 @@
   <ng-container matColumnDef="owners">
     <th mat-header-cell *matHeaderCellDef>Właściciel(e)</th>
     <td mat-cell *matCellDef="let vehicle">
-      <div *ngFor="let ownerId of vehicle.ownersIds">
-        <span>{{owners.get(ownerId).fullName}}</span>
-        <span *ngIf="owners.get(ownerId).phone" style="font-size: smaller"> (Tel.: {{owners.get(ownerId).phone}})</span>
+      <div *ngFor="let owner of vehicle.owners">
+        <span>{{owner.fullName}}</span>
+        <span *ngIf="owner.phone" style="font-size: smaller"> (Tel.: {{owner.phone}})</span>
       </div>
     </td>
   </ng-container>
