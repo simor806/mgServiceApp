@@ -15,11 +15,7 @@
 
   <div fxFlex="30" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxLayoutGap.xs="10px">
     <app-edit-button [routerLink]="['/vehicles', vehicle?.id]"></app-edit-button>
-
-    <button mat-flat-button color="warn" (click)="openDeleteVehicleConfirmationDialog()">
-      <mat-icon>delete</mat-icon>
-      <span>Usuń</span>
-    </button>
+    <app-delete-button (click)="openDeleteVehicleConfirmationDialog()"></app-delete-button>
   </div>
 </div>
 

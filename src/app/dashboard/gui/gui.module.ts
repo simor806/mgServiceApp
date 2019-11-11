@@ -11,6 +11,7 @@ import { FilterInputComponent } from './shared-components/input/filter-input/fil
 import { AddButtonComponent } from './shared-components/buttons/add-button/add-button.component';
 import { EditButtonComponent } from './shared-components/buttons/edit-button/edit-button.component';
 import { BaseButtonComponent } from './shared-components/buttons/base-button/base-button.component';
+import { DeleteButtonComponent } from './shared-components/buttons/delete-button/delete-button.component';
 
 const baseComponents = [
   BaseButtonComponent
@@ -18,6 +19,7 @@ const baseComponents = [
 
 const buttons = [
   AddButtonComponent,
+  DeleteButtonComponent,
   EditButtonComponent
 ];
 
