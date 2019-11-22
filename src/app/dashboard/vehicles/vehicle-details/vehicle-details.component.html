@@ -30,7 +30,7 @@
   <div>
     <mat-form-field appearance="legacy">
       <mat-label>Rok produkcji</mat-label>
-      <input matInput value="{{vehicle?.year}}" disabled>
+      <input matInput value="{{vehicle?.year || '-'}}" disabled>
     </mat-form-field>
   </div>
 

@@ -29,7 +29,7 @@
 
   <ng-container matColumnDef="year">
     <th mat-header-cell *matHeaderCellDef>Rok produkcji</th>
-    <td mat-cell *matCellDef="let vehicle"> {{vehicle.year}} </td>
+    <td mat-cell *matCellDef="let vehicle"> {{vehicle.year || '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="mileage">
