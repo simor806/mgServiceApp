@@ -1,38 +1,43 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>{{form.get('id').value ? 'Edycja klienta' : 'Rejestracja klienta'}}</h1>
-
-      <form [formGroup]="form" (ngSubmit)="save()">
-        <div class="control-group">
-          <label class="control-label">Imię:</label>
-          <input type="text" formControlName="firstName">
-          <span *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched" class="error">
-            podaj wartość
-          </span>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Nazwisko:</label>
-          <input type="text" formControlName="lastName">
-          <span *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched" class="error">
-            podaj wartość
-          </span>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Telefon:</label>
-          <input type="text" formControlName="phone">
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Notatka:</label>
-          <input type="text" formControlName="note">
-        </div>
-
-        <button type="submit" [disabled]="form.invalid">Zapisz</button>
-      </form>
-      <button type="button" routerLink="../..">Anuluj</button>
+      <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja klienta' : 'Rejestracja klienta'}}</h1>
     </div>
   </div>
-</div>
+  <form [formGroup]="form" (ngSubmit)="saveOwner()">
+    <div class="row">
+      <div class="col-12">
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Imię</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="hasError('firstName', 'required')">Imię jest wymagane</mat-error>
+          </mat-form-field>
 
+          <mat-form-field appearance="legacy">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="hasError('lastName', 'required')">Nazwisko jest wymagane</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Telefon</mat-label>
+            <input type="tel" matInput formControlName="phone">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Notatki</mat-label>
+            <textarea matInput formControlName="note"></textarea>
+          </mat-form-field>
+        </div>
+
+        <button mat-button type="button" routerLink="../..">Anuluj</button>
+        <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -5,6 +5,7 @@ import { OwnerFormComponent } from './owner-form/owner-form.component';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../material/material.module';
 
 @NgModule({
   declarations: [OwnersListComponent, OwnerFormComponent],
@@ -13,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     HttpClientModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule
   ],
   exports: [OwnersListComponent, OwnerFormComponent]

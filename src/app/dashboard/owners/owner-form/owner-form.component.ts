@@ -34,11 +34,16 @@ export class OwnerFormComponent implements OnInit {
       });
   }
 
-  save(): void {
+  saveOwner(): void {
     const ownerAttrs = this.form.value;
     this.ownerService.saveOwner(ownerAttrs).subscribe(
       () => this.router.navigate(['../..'], {relativeTo: this.route}),
       () => alert('Nie udało się zapisać klienta!')
     );
   }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  }
+
 }
