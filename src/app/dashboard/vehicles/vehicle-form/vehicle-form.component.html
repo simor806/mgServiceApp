@@ -1,81 +1,85 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>{{form.get('id').value ? 'Edycja pojazdu' : 'Rejestracja pojazdu'}}</h1>
-
-      <form [formGroup]="form" (ngSubmit)="save()">
-        <div class="control-group">
-          <label class="control-label">Numer rejestracyjny:</label>
-          <input type="text" formControlName="registrationNumber">
-          <span *ngIf="form.get('registrationNumber').hasError('required') && form.get('registrationNumber').touched" class="error">
-            podaj wartość
-          </span>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Marka:</label>
-          <select type="text" formControlName="brand">
-            <option *ngFor="let brand of brandsModelsMap | keyvalue" [value]="brand.key">{{brand.key}}</option>
-          </select>
-          <span *ngIf="form.get('brand').hasError('required') && form.get('brand').touched" class="error">
-            podaj wartość
-          </span>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Model:</label>
-          <select type="text" formControlName="model">
-            <option *ngFor="let model of brandsModelsMap.get(form.get('brand').value)" [value]="model">{{model}}</option>
-          </select>
-          <span *ngIf="form.get('model').hasError('required') && form.get('model').touched" class="error">
-            podaj wartość
-          </span>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Silnik:</label>
-          <input type="text" formControlName="engine">
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Rok produkcji:</label>
-          <input type="number" formControlName="year">
-          <span *ngIf="(form.get('year').hasError('min') || form.get('year').hasError('max')) && form.get('year').touched" class="error">
-            Nieprawidłowy rok produkcji
-          </span>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">VIN:</label>
-          <input type="text" formControlName="vin">
-          <span *ngIf="form.get('vin').hasError('minlength') && form.get('vin').touched" class="error">
-            Za mało znaków, numer VIN powinien mieć 17 znaków
-          </span>
-          <span *ngIf="form.get('vin').hasError('maxlength')" class="error">
-            Za dużo znaków, numer VIN powinien mieć 17 znaków
-          </span>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Właściciel:</label>
-          <select type="text" formControlName="ownersIds" multiple>
-            <option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Olej longlife:</label>
-          <input type="checkbox" formControlName="hasLongLifeOil">
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Notatka:</label>
-          <textarea formControlName="note"></textarea>
-        </div>
-
-        <button type="submit" [disabled]="form.invalid">Zapisz</button>
-      </form>
-      <button type="button" routerLink="../..">Anuluj</button>
+      <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja pojazdu' : 'Rejestracja pojazdu'}}</h1>
     </div>
   </div>
+  <form [formGroup]="form" (ngSubmit)="saveVehicle()">
+    <div class="row">
+      <div class="col-12">
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Numer rejestracyjny</mat-label>
+            <input matInput formControlName="registrationNumber" required>
+            <mat-error *ngIf="hasError('registrationNumber', 'required')">Numer rejestracyjny jest wymagany</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Właściciel(e)</mat-label>
+            <mat-select formControlName="ownersIds" multiple>
+              <mat-option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Marka</mat-label>
+        <input type="text" matInput formControlName="brand" [matAutocomplete]="autocompleteBrands" required>
+        <mat-error *ngIf="hasError('brand', 'required')">Marka jest wymagana</mat-error>
+      </mat-form-field>
+      <mat-autocomplete #autocompleteBrands="matAutocomplete">
+        <mat-option *ngFor="let brand of brandsModelsMap | keyvalue" [value]="brand.key">{{brand.key}}</mat-option>
+      </mat-autocomplete>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Model</mat-label>
+        <input type="text" matInput formControlName="model" [matAutocomplete]="autocompleteModels" required>
+        <mat-error *ngIf="hasError('model', 'required')">Model jest wymagany</mat-error>
+      </mat-form-field>
+      <mat-autocomplete #autocompleteModels="matAutocomplete">
+        <mat-option *ngFor="let model of brandsModelsMap.get(form.get('brand').value)" [value]="model">
+          {{model}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Silnik</mat-label>
+        <input matInput formControlName="engine">
+      </mat-form-field>
+
+      <mat-checkbox formControlName="hasLongLifeOil">Olej longlife</mat-checkbox>
+    </div>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Rok produkcji</mat-label>
+        <input type="text" matInput formControlName="year" [matAutocomplete]="autocompleteYears">
+      </mat-form-field>
+      <mat-autocomplete #autocompleteYears="matAutocomplete">
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-autocomplete>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>VIN</mat-label>
+        <input matInput #vinInput formControlName="vin" maxlength="17" minlength="17">
+        <mat-hint align="end">{{vinInput.value?.length || 0}}/17</mat-hint>
+        <mat-error *ngIf="hasError('vin', 'minlength')">Za krótka wartość. VIN powinien mieć 17 znaków</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Notatki</mat-label>
+        <textarea matInput formControlName="note" placeholder="Notatki"></textarea>
+      </mat-form-field>
+    </div>
+    <button mat-button type="button" routerLink="../..">Anuluj</button>
+    <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+  </form>
 </div>
 

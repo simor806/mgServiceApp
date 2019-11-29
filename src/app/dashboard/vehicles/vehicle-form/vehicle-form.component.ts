@@ -18,6 +18,7 @@ export class VehicleFormComponent implements OnInit {
   public form: FormGroup;
   public owners: Owner[];
   public brandsModelsMap = carsBrands;
+  public years = new Array<number>();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -56,13 +57,44 @@ export class VehicleFormComponent implements OnInit {
       });
 
     this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
+
+    this.setYears();
   }
 
-  save(): void {
+  private setYears() {
+    for (let i = 1900; i <= new Date().getFullYear(); i++) {
+      this.years.push(i);
+    }
+  }
+
+  public saveVehicle(): void {
     const vehicleAttrs = this.form.value;
     this.vehicleService.saveVehicle(vehicleAttrs).subscribe(
       (vehicle: Vehicle) => this.router.navigate(['/vehicles', vehicle.id, 'diary'], {relativeTo: this.route}),
       () => alert('Nie udało się zapisać pojazdu!')
     );
+  }
+  //
+  // addNewOwner(firstName: string, lastName: string) {
+  //   const that = this;
+  //   const ownerAttrs = {firstName: firstName, lastName: lastName} as OwnerAttrs;
+  //   this.ownerService.saveOwner(ownerAttrs).subscribe((owner: Owner) => {
+  //     this.owners.push(owner);
+  //     this.addOwnerFormShowed = false;
+  //     const currentOwnersId = [];
+  //     // const currentOwnersId = that.form.get('ownersId').value;
+  //     currentOwnersId.push(owner.id);
+  //     // this.form.get('ownersId').setValue(currentOwnersId);
+  //   });
+  // }
+
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //
+  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  // }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
   }
 }
