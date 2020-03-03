@@ -1,22 +1,35 @@
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Note</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let owner of owners">
-    <td>{{owner.firstName}} {{owner.lastName}}</td>
-    <td>{{owner.phone}}</td>
-    <td>{{owner.note}}</td>
-    <td>
-      <span style="color: orange; margin-right: 20px" [routerLink]="['/owners', owner.id]">edit</span>
-      <span style="color: red;" (click)="deleteOwner(owner.id)">x</span>
-    </td>
-  </tr>
-  </tbody>
+<div fxLayout="row wrap" fxLayoutGap="20px">
+  <div fxFlex>
+    <app-filter-input [dataSource]="dataSource"></app-filter-input>
+  </div>
+
+  <div fxFlex="none">
+    <app-add-button text="Dodaj klienta" [routerLink]="['/owners/new']"></app-add-button>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Nazwisko</th>
+    <td mat-cell *matCellDef="let owner"> {{owner.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef>Imię</th>
+    <td mat-cell *matCellDef="let owner"> {{owner.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Telefon</th>
+    <td mat-cell *matCellDef="let owner"> {{owner.phone || '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="note">
+    <th mat-header-cell *matHeaderCellDef>Notatka</th>
+    <td mat-cell *matCellDef="let owner"> {{owner.note}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'/owners/' + row.id"></tr>
+
 </table>
-<button [routerLink]="['/owners/new']">Dodaj klienta</button>

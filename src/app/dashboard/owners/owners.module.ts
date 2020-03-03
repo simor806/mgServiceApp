@@ -6,6 +6,8 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
+import {GuiModule} from '../gui/gui.module';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [OwnersListComponent, OwnerFormComponent],
@@ -13,7 +15,9 @@ import {MaterialModule} from '../../material/material.module';
     CommonModule,
     RouterModule,
     HttpClientModule,
+    FlexModule,
     FormsModule,
+    GuiModule,
     MaterialModule,
     ReactiveFormsModule
   ],
