@@ -11,7 +11,7 @@ import {MatTableDataSource} from '@angular/material';
 export class OwnersListComponent implements OnInit {
 
   public owners: Owner[];
-  public displayedColumns: string[] = ['lastName', 'firstName', 'phone', 'note'];
+  public displayedColumns: string[] = ['name', 'phone', 'note'];
   public dataSource: MatTableDataSource<Owner>;
 
   constructor(private ownerService: OwnerService) { }
