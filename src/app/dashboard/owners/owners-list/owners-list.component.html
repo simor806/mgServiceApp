@@ -16,7 +16,10 @@
 
   <ng-container matColumnDef="phone">
     <th mat-header-cell *matHeaderCellDef>Telefon</th>
-    <td mat-cell *matCellDef="let owner"> {{owner.phone || '-'}} </td>
+    <td mat-cell *matCellDef="let owner">
+      <a *ngIf="owner.phone" href="{{'tel:' + owner.phone}}">{{owner.phone}}</a>
+      <span *ngIf="!owner.phone">-</span>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="note">
