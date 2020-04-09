@@ -13,6 +13,7 @@ export class OwnersListComponent implements OnInit {
   public owners: Owner[];
   public displayedColumns: string[] = ['name', 'phone', 'note'];
   public dataSource: MatTableDataSource<Owner>;
+  public readonly maxLengthOfOwnerNote = 100;
 
   constructor(private ownerService: OwnerService) { }
 
