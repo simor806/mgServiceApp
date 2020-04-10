@@ -1,0 +1,27 @@
+<div id="main-info" fxLayout="row wrap" fxLayoutAlign="end start">
+  <div fxFlex="70">
+    <span class="mat-display-1">
+      <mat-icon class="header-icon">person</mat-icon>
+      <span>{{owner.fullName}}</span>
+    </span>
+    <br>
+    <span class="mat-h4 mat-accent" *ngIf="owner.phone">
+      (<app-phone-link [phoneNumber]="owner.phone"></app-phone-link>)
+    </span>
+  </div>
+
+  <div fxFlex="30" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxLayoutGap.xs="10px">
+    <app-edit-button [routerLink]="['/owners', owner?.id]"></app-edit-button>
+    <app-delete-button (click)="openDeleteOwnerConfirmationDialog()"></app-delete-button>
+  </div>
+</div>
+
+<div id="additional-info" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+  <div class="app-width-100">
+    <mat-form-field appearance="legacy" class="app-width-100">
+      <mat-label>Notatki</mat-label>
+      <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10" value="{{owner.note}}"
+                disabled></textarea>
+    </mat-form-field>
+  </div>
+</div>

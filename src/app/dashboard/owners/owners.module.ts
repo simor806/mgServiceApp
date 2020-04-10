@@ -8,9 +8,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
 import {GuiModule} from '../gui/gui.module';
 import {FlexModule} from '@angular/flex-layout';
+import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 
 @NgModule({
-  declarations: [OwnersListComponent, OwnerFormComponent],
+  declarations: [OwnersListComponent, OwnerFormComponent, OwnerDetailsComponent],
   imports: [
     CommonModule,
     RouterModule,
