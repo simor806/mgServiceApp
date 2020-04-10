@@ -12,6 +12,7 @@ import { AddButtonComponent } from './shared-components/buttons/add-button/add-b
 import { EditButtonComponent } from './shared-components/buttons/edit-button/edit-button.component';
 import { BaseButtonComponent } from './shared-components/buttons/base-button/base-button.component';
 import { DeleteButtonComponent } from './shared-components/buttons/delete-button/delete-button.component';
+import { PhoneLinkComponent } from './shared-components/others/phone-link/phone-link.component';
 
 const baseComponents = [
   BaseButtonComponent
@@ -37,13 +38,18 @@ const layout = [
   SidenavListComponent
 ];
 
+const others = [
+  PhoneLinkComponent
+];
+
 @NgModule({
   declarations: [
     ...baseComponents,
     ...buttons,
     ...dialogs,
     ...inputs,
-    ...layout
+    ...layout,
+    ...others
   ],
   imports: [
     CommonModule,
@@ -55,6 +61,8 @@ const layout = [
   exports: [
     ...buttons,
     ...inputs,
-    ...layout]
+    ...layout,
+    ...others
+  ]
 })
 export class GuiModule { }
