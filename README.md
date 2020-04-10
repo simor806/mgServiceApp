@@ -36,3 +36,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - PWA
 - authentication
 - integration with email server
+- move to GitHub
+- unit tests
+- e2e tests
+- Electron
+- integration with Whatsapp (???)
