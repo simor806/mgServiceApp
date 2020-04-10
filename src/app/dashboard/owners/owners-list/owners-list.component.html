@@ -11,14 +11,13 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Nazwisko i imię</th>
-    <td mat-cell *matCellDef="let owner"> {{owner.lastName}} {{owner.firstName}} </td>
+    <td mat-cell *matCellDef="let owner"> {{owner.fullName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="phone">
     <th mat-header-cell *matHeaderCellDef>Telefon</th>
     <td mat-cell *matCellDef="let owner">
       <app-phone-link [phoneNumber]="owner.phone"></app-phone-link>
-      <span *ngIf="!owner.phone">-</span>
     </td>
   </ng-container>
 
