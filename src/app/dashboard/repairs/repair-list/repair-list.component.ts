@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Repair, RepairAttrs} from '../../../model/repair';
 import {RepairService} from '../repair.service';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../gui/shared-components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-repair-list',
@@ -12,7 +14,9 @@ export class RepairListComponent implements OnInit {
   public repairs: Repair[];
   public repairsToEdit = new Map<number, boolean>();
 
-  constructor(private repairService: RepairService) { }
+  private dialogRef: MatDialogRef<ConfirmationDialogComponent>;
+
+  constructor(private dialog: MatDialog, private repairService: RepairService) { }
 
   ngOnInit() {
     this.getRepairs();
@@ -28,7 +32,24 @@ export class RepairListComponent implements OnInit {
     this.repairsToEdit.set(repairId, false);
   }
 
-  public deleteRepair(repairId: number): void {
+
+  public openDeleteRepairConfirmationDialog(repair: Repair) {
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmTitle = 'Usunąć usługę?';
+    this.dialogRef.componentInstance.confirmMessage = `Usługa "${repair.name}" zostanie trwale usunięta z bazy.`;
+    this.dialogRef.componentInstance.confirmColor = 'warn';
+    this.dialogRef.componentInstance.confirmButton = 'Usuń';
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteRepair(repair.id);
+      }
+      this.dialogRef = null;
+    });
+  }
+
+  private deleteRepair(repairId: number): void {
     this.repairService.deleteRepair(repairId).subscribe(
       (deletedRepair: Repair) => this.repairs.splice(this.repairs.findIndex((repair: Repair) => repair.id === repairId), 1),
       () => console.log(`Error deleting repair with id=${repairId}`));

@@ -5,11 +5,12 @@
       <input #repairNameInput [hidden]="!repairsToEdit.get(repair.id)" [value]="repair.name">
     </td>
     <td>
-      <span *ngIf="!repairsToEdit.get(repair.id)" style="color: orange" (click)="repairsToEdit.set(repair.id, true)">edit</span>
-      <span *ngIf="repairsToEdit.get(repair.id)" style="color: green" (click)="saveRepair(repair.id, repairNameInput.value)">save</span>
+      <span *ngIf="!repairsToEdit.get(repair.id)" style="color: orange" (click)="repairsToEdit.set(repair.id, true)">edytuj</span>
+      <span *ngIf="repairsToEdit.get(repair.id)" style="color: green" (click)="saveRepair(repair.id, repairNameInput.value)">zapisz</span>
     </td>
     <td>
-      <span style="color: red;" (click)="deleteRepair(repair.id)">x</span>
+      <span style="color: red" *ngIf="repairsToEdit.get(repair.id)" (click)="repairsToEdit.set(repair.id, false);">anuluj</span>
+      <span style="color: red;" *ngIf="!repairsToEdit.get(repair.id)" (click)="openDeleteRepairConfirmationDialog(repair)">usuń</span>
     </td>
   </tr>
   <tr>
@@ -17,7 +18,7 @@
       <input #newRepairNameInput type="text">
     </td>
     <td>
-      <span style="color: green" (click)="saveRepair(null, newRepairNameInput.value); newRepairNameInput.value = '';">save</span>
+      <span style="color: green" (click)="saveRepair(null, newRepairNameInput.value); newRepairNameInput.value = '';">zapisz</span>
     </td>
   </tr>
 </table>
