@@ -37,7 +37,7 @@ export class OwnerFormComponent implements OnInit {
   saveOwner(): void {
     const ownerAttrs = this.form.value;
     this.ownerService.saveOwner(ownerAttrs).subscribe(
-      () => this.router.navigate(['../..'], {relativeTo: this.route}),
+      () => this.router.navigate(['../'], {relativeTo: this.route}),
       () => alert('Nie udało się zapisać klienta!')
     );
   }
