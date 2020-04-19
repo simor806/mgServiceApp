@@ -58,7 +58,7 @@ export class DiaryFormComponent implements OnInit {
     this.repairs = this.repairsService.getRepairs();
   }
 
-  public save(): void {
+  public saveDiary(): void {
     const diaryAttrs = this.getDiaryToSave();
     this.diaryService.saveDiaryEntry(diaryAttrs).subscribe(
       () => this.router.navigate(['/vehicles', diaryAttrs.vehicleId, 'diary']),
