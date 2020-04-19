@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatCheckboxModule,
+  MatButtonModule, MatCheckboxModule, MatDatepickerModule,
   MatDialogModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
-  MatListModule, MatSelectModule,
+  MatListModule, MatNativeDateModule, MatSelectModule,
   MatSidenavModule, MatTableModule,
   MatToolbarModule,
   MatTooltipModule
@@ -15,11 +15,13 @@ const materialModules = [
   MatAutocompleteModule,
   MatButtonModule,
   MatCheckboxModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatNativeDateModule,
   MatSelectModule,
   MatSidenavModule,
   MatTableModule,

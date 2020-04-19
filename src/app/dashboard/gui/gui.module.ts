@@ -13,6 +13,8 @@ import { EditButtonComponent } from './shared-components/buttons/edit-button/edi
 import { BaseButtonComponent } from './shared-components/buttons/base-button/base-button.component';
 import { DeleteButtonComponent } from './shared-components/buttons/delete-button/delete-button.component';
 import { PhoneLinkComponent } from './shared-components/others/phone-link/phone-link.component';
+import { DatepickerComponent } from './shared-components/input/datepicker/datepicker.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const baseComponents = [
   BaseButtonComponent
@@ -29,6 +31,7 @@ const dialogs = [
 ];
 
 const inputs = [
+  DatepickerComponent,
   FilterInputComponent
 ];
 
@@ -55,6 +58,7 @@ const others = [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   entryComponents: [...dialogs],

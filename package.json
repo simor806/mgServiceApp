@@ -31,7 +31,8 @@
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",
     "structurizr-typescript": "^1.0.7",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@angular/material-moment-adapter": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.8",
