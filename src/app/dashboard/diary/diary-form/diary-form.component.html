@@ -32,7 +32,7 @@
         <div class="control-group">
           <label class="control-label">Wykonane naprawy (standardowe):</label>
           <select type="text" formControlName="repairs" multiple>
-            <option *ngFor="let repair of repairs" [value]="repair.name">{{repair.name}}</option>
+            <option *ngFor="let repair of repairs | async" [value]="repair.name">{{repair.name}}</option>
           </select>
         </div>
 

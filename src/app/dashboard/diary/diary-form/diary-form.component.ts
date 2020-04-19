@@ -8,6 +8,7 @@ import {RepairService} from '../../repairs/repair.service';
 import {Repair} from '../../../model/repair';
 import {DatePipe} from '@angular/common';
 import {DiaryValidators} from '../diary-validators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-diary-form',
@@ -17,7 +18,7 @@ import {DiaryValidators} from '../diary-validators';
 export class DiaryFormComponent implements OnInit {
 
   public form: FormGroup;
-  public repairs: Repair[];
+  public repairs: Observable<Repair[]>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -54,7 +55,7 @@ export class DiaryFormComponent implements OnInit {
         });
       });
 
-    this.repairsService.getRepairs().subscribe((repairs: Repair[]) => this.repairs = repairs);
+    this.repairs = this.repairsService.getRepairs();
   }
 
   public save(): void {
