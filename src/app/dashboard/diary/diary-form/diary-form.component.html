@@ -8,23 +8,8 @@
     <div class="row">
       <div class="col-12">
         <div>
-          <app-datepicker formControlName="date">
-            <!--TODO: implement validations-->
-            <!--<mat-error *ngIf="hasError('date', 'required')">Data jest wymagana</mat-error>-->
-            <!--<mat-error *ngIf="hasError('date', 'sameDates') && form.get('date').touched">Istnieje już wpis w dzienniku napraw pod tą datą</mat-error>-->
-          </app-datepicker>
-
-        <!--FIXME: remove after adding validations in custom datepicker-->
-        <!--<div class="control-group">-->
-          <!--<label class="control-label">Data:</label>-->
-          <!--<input type="date" formControlName="date">-->
-          <!--<span *ngIf="form.get('date').hasError('required') && form.get('date').touched" class="error">-->
-            <!--Podaj wartość-->
-          <!--</span>-->
-          <!--<span *ngIf="form.hasError('sameDates') && form.get('date').touched" class="error">-->
-            <!--Istnieje już wpis w dzienniku napraw pod tą datą-->
-          <!--</span>-->
-        <!--</div>-->
+          <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form.errors?.sameDates"></app-datepicker>
+        </div>
 
         <div class="control-group">
           <label class="control-label">Przebieg:</label>
@@ -68,7 +53,6 @@
         </div>
 
         <button type="submit" [disabled]="form.invalid">Zapisz</button>
-      </div>
       </div>
     </div>
     <button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">Anuluj</button>

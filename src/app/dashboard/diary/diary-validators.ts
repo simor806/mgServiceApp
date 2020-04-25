@@ -34,7 +34,7 @@ export class DiaryValidators {
                 error = {mileageTooSmall: true};
               }
             } else {
-              error = {sameDates: true};
+              error = {sameDates: 'Istnieje już wpis w dzienniku napraw pod tą datą'};
             }
           });
           return error;
