@@ -5,10 +5,7 @@ const YEAR_FORMAT = 'YYYY';
 
 export const CUSTOM_DATE_FORMATS: MatDateFormats = {
   parse: {
-    dateInput: {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric' },
+    dateInput: APP_DATE_FORMAT
   },
   display: {
     dateInput: APP_DATE_FORMAT,
