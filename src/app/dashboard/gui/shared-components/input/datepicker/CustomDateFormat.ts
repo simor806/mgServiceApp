@@ -1,4 +1,7 @@
 import {MatDateFormats} from '@angular/material';
+import {APP_DATE_FORMAT} from '../../../../../app-config';
+
+const YEAR_FORMAT = 'YYYY';
 
 export const CUSTOM_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -8,9 +11,9 @@ export const CUSTOM_DATE_FORMATS: MatDateFormats = {
       day: 'numeric' },
   },
   display: {
-    dateInput: 'LL',
-    monthYearLabel: 'YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
+    dateInput: APP_DATE_FORMAT,
+    monthYearLabel: YEAR_FORMAT,
+    dateA11yLabel: APP_DATE_FORMAT,
+    monthYearA11yLabel: YEAR_FORMAT,
   }
 };

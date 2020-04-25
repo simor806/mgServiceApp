@@ -4,6 +4,7 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {CUSTOM_DATE_FORMATS} from './CustomDateFormat';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import * as moment from 'moment';
+import {APP_DATE_FORMAT} from '../../../../../app-config';
 
 @Component({
   selector: 'app-datepicker',
@@ -51,6 +52,6 @@ export class DatepickerComponent implements ControlValueAccessor {
   private propagateChange = (_: any) => { };
 
   private formatDate(date) {
-    return moment(date).format(this.DATE_FORMAT);
+    return moment(date).format(APP_DATE_FORMAT);
   }
 }
