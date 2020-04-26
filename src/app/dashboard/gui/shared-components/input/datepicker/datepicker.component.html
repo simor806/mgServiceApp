@@ -1,8 +1,13 @@
 <div>
   <mat-form-field appearance="legacy">
     <mat-label>Data</mat-label>
-    <input matInput [matDatepicker]="datepicker" [required]="required" [max]="maxDate" [value]="dateValue"
-           [formControl]="formControl" (dateInput)="addEvent($event)">
+    <input #datePickerControl matInput
+           [formControl]="formControl"
+           [matDatepicker]="datepicker"
+           [max]="maxDate"
+           [required]="required"
+           (blur)="onBlur($event)"
+           (dateChange)="onDateChange($event)">
     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
     <mat-datepicker #datepicker></mat-datepicker>
     <mat-error *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)">
