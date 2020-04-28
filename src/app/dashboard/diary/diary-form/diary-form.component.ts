@@ -9,6 +9,7 @@ import {Repair} from '../../../model/repair';
 import {DatePipe} from '@angular/common';
 import {DiaryValidators} from '../diary-validators';
 import {Observable} from 'rxjs';
+import {ParentErrorStateMatcher} from './ParentErrorStateMacher';
 
 @Component({
   selector: 'app-diary-form',
@@ -19,6 +20,9 @@ export class DiaryFormComponent implements OnInit {
 
   public form: FormGroup;
   public repairs: Observable<Repair[]>;
+
+
+  public parentErrorStateMatcher = new ParentErrorStateMatcher();
 
   constructor(private route: ActivatedRoute,
               private router: Router,

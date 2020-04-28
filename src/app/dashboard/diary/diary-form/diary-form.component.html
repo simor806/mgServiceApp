@@ -11,18 +11,23 @@
           <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form.errors?.sameDates"></app-datepicker>
         </div>
 
-        <div class="control-group">
-          <label class="control-label">Przebieg:</label>
-          <input type="number" formControlName="mileage">
-          <span *ngIf="form.get('mileage').hasError('required') && form.get('mileage').touched" class="error">
-            Podaj wartość
-          </span>
-          <span *ngIf="form.hasError('mileageTooSmall') && form.get('mileage').touched" class="error">
-            Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?
-          </span>
-          <span *ngIf="form.hasError('mileageTooBig') && form.get('mileage').touched" class="error">
-            Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku
-          </span>
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Przebieg</mat-label>
+            <input matInput formControlName="mileage" [errorStateMatcher]="parentErrorStateMatcher">
+            <span matSuffix>km</span>
+            <mat-error>
+              <div *ngIf="form.hasError('mileageTooBig')">
+                Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku
+              </div>
+              <div *ngIf="form.get('mileage').hasError('required') && form.get('mileage').touched" class="error">
+                Przebieg wymagany
+              </div>
+              <div *ngIf="form.hasError('mileageTooSmall')">
+                Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?
+              </div>
+            </mat-error>
+          </mat-form-field>
         </div>
 
         <div class="control-group">
