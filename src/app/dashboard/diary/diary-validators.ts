@@ -3,6 +3,7 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup} from '@angular/forms';
 import {DiaryEntry} from '../../model/diary-entry';
 import * as moment from 'moment';
+import {of} from 'rxjs';
 
 export class DiaryValidators {
 
@@ -14,8 +15,11 @@ export class DiaryValidators {
   }
 
   static validateWithOtherDiaryEntries(formGroup: FormGroup) {
-    const id = formGroup.get('id') as FormControl;
     const mileage = formGroup.get('mileage') as FormControl;
+    if (!mileage.value) {
+      return of(null);
+    }
+    const id = formGroup.get('id') as FormControl;
     const vehicleId = formGroup.get('vehicleId') as FormControl;
     const date = formGroup.get('date') as FormControl;
 
@@ -26,11 +30,11 @@ export class DiaryValidators {
           let error = null;
           diary.forEach((diaryEntry: DiaryEntry) => {
             if (moment(diaryEntry.date) > moment(date.value)) {
-              if (diaryEntry.mileage <= mileage.value) {
+              if (diaryEntry.mileage && diaryEntry.mileage <= mileage.value) {
                 error = {mileageTooBig: true};
               }
             } else if (moment(diaryEntry.date) < moment(date.value)) {
-              if (diaryEntry.mileage > mileage.value) {
+              if (diaryEntry.mileage && diaryEntry.mileage > mileage.value && mileage.value > 0) {
                 error = {mileageTooSmall: true};
               }
             } else {

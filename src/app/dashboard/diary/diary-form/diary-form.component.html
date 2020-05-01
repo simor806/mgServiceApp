@@ -14,14 +14,15 @@
         <div>
           <mat-form-field appearance="legacy">
             <mat-label>Przebieg</mat-label>
-            <input matInput formControlName="mileage" [errorStateMatcher]="parentErrorStateMatcher">
+            <input matInput formControlName="mileage" [errorStateMatcher]="parentErrorStateMatcher"
+                   [min]="minMileageValue">
             <span matSuffix>km</span>
             <mat-error>
+              <div *ngIf="form.get('mileage').hasError('min')">
+                Wartość przebiegu musi być większa od {{minMileageValue}}
+              </div>
               <div *ngIf="form.hasError('mileageTooBig')">
                 Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku
-              </div>
-              <div *ngIf="form.get('mileage').hasError('required') && form.get('mileage').touched" class="error">
-                Przebieg wymagany
               </div>
               <div *ngIf="form.hasError('mileageTooSmall')">
                 Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?

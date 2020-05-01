@@ -18,6 +18,8 @@ import {ParentErrorStateMatcher} from './ParentErrorStateMacher';
 })
 export class DiaryFormComponent implements OnInit {
 
+  public readonly minMileageValue = 1;
+
   public form: FormGroup;
   public repairs: Observable<Repair[]>;
 
@@ -43,7 +45,7 @@ export class DiaryFormComponent implements OnInit {
             validators: [Validators.required]
           }),
           mileage: new FormControl(diary.mileage, {
-            validators: [Validators.required]
+            validators: [Validators.min(this.minMileageValue)]
           }),
           repairs: new FormControl(diary.repairs, {
             validators: [Validators.required]
