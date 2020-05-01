@@ -10,6 +10,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { InputThousandsSeparatorDirective } from './directives/input-thousands-separator.directive';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -26,16 +27,23 @@ const materialModules = [
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+];
+
+const customDirectives = [
+  InputThousandsSeparatorDirective
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...customDirectives
+  ],
   imports: [
     CommonModule,
     ...materialModules
   ],
   exports: [
+    ...customDirectives,
     ...materialModules
   ]
 })

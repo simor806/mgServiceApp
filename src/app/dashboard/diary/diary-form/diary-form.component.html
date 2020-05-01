@@ -14,7 +14,7 @@
         <div>
           <mat-form-field appearance="legacy">
             <mat-label>Przebieg</mat-label>
-            <input matInput formControlName="mileage" [errorStateMatcher]="parentErrorStateMatcher"
+            <input matInput formControlName="mileage" appInputThousandsSeparator [errorStateMatcher]="parentErrorStateMatcher"
                    [min]="minMileageValue">
             <span matSuffix>km</span>
             <mat-error>
@@ -62,6 +62,10 @@
       </div>
     </div>
     <button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">Anuluj</button>
+  <!--<span *ngIf="form.invalid && form.errors?.mileageTooBig"  class="error">-->
+            <!--Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?-->
+          <!--</span>-->
   </form>
+  <button type="button" (click)="log()">errors</button>
 </div>
 
