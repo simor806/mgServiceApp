@@ -16,7 +16,8 @@ export class DiaryValidators {
 
   static validateWithOtherDiaryEntries(formGroup: FormGroup) {
     const mileage = formGroup.get('mileage') as FormControl;
-    if (!mileage.value) {
+    const mileageValue = Number(mileage.value);
+    if (!mileageValue) {
       return of(null);
     }
     const id = formGroup.get('id') as FormControl;
@@ -29,12 +30,13 @@ export class DiaryValidators {
         map((diary: DiaryEntry[]) => {
           let error = null;
           diary.forEach((diaryEntry: DiaryEntry) => {
+            const diaryEntryMileageValue = Number(diaryEntry.mileage);
             if (moment(diaryEntry.date) > moment(date.value)) {
-              if (diaryEntry.mileage && diaryEntry.mileage <= mileage.value) {
+              if (diaryEntryMileageValue && diaryEntryMileageValue <= mileageValue) {
                 error = {mileageTooBig: true};
               }
             } else if (moment(diaryEntry.date) < moment(date.value)) {
-              if (diaryEntry.mileage && diaryEntry.mileage > mileage.value && mileage.value > 0) {
+              if (diaryEntryMileageValue && diaryEntryMileageValue > mileageValue && mileageValue > 0) {
                 error = {mileageTooSmall: true};
               }
             } else {
