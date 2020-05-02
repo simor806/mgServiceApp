@@ -1,22 +1,20 @@
-<div>
-  <mat-form-field appearance="legacy">
-    <mat-label>Data</mat-label>
-    <input #datePickerControl matInput
-           [formControl]="formControl"
-           [matDatepicker]="datepicker"
-           [max]="maxDate"
-           [required]="required"
-           (blur)="onBlur($event)"
-           (dateChange)="onDateChange($event)">
-    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-    <mat-datepicker #datepicker></mat-datepicker>
-    <mat-error *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)">
-      <div *ngIf="formControl.errors['required'] && !formControl.errors['matDatepickerParse']">
-        Data jest wymagana
-      </div>
-      <div *ngIf="formControl.errors['matDatepickerMax']">Data nie może być przyszła</div>
-      <div *ngIf="formControl.errors['matDatepickerParse']">Niepoprawny format daty</div>
-      <div *ngIf="formControl.errors['asyncParentError']">{{formControl.errors['asyncParentError']}}</div>
-    </mat-error>
-  </mat-form-field>
-</div>
+<mat-form-field appearance="legacy">
+  <mat-label>Data</mat-label>
+  <input #datePickerControl matInput
+         [formControl]="formControl"
+         [matDatepicker]="datepicker"
+         [max]="maxDate"
+         [required]="required"
+         (blur)="onBlur($event)"
+         (dateChange)="onDateChange($event)">
+  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #datepicker></mat-datepicker>
+  <mat-error *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)">
+    <div *ngIf="formControl.errors['required'] && !formControl.errors['matDatepickerParse']">
+      Data jest wymagana
+    </div>
+    <div *ngIf="formControl.errors['matDatepickerMax']">Data nie może być przyszła</div>
+    <div *ngIf="formControl.errors['matDatepickerParse']">Niepoprawny format daty</div>
+    <div *ngIf="formControl.errors['asyncParentError']">{{formControl.errors['asyncParentError']}}</div>
+  </mat-error>
+</mat-form-field>
