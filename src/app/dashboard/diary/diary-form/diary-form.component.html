@@ -13,7 +13,7 @@
       <div fxFlex="50">
         <mat-form-field appearance="legacy">
           <mat-label>Przebieg</mat-label>
-          <input matInput formControlName="mileage" appInputThousandsSeparator [errorStateMatcher]="parentErrorStateMatcher"
+          <input matInput formControlName="mileage" appInputThousandsSeparator [errorStateMatcher]="mileageParentErrorStateMatcher"
                  [min]="minMileageValue">
           <span matSuffix>km</span>
           <mat-error>
@@ -31,38 +31,58 @@
       </div>
     </div>
 
-        <div class="control-group">
-          <label class="control-label">Wykonane naprawy (standardowe):</label>
-          <select type="text" formControlName="repairs" multiple>
-            <option *ngFor="let repair of repairs | async" [value]="repair.name">{{repair.name}}</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Dodatkowe naprawy:</label>
-          <textarea formControlName="additionalRepairs"></textarea>
-
-          <span *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched)" class="error">
+    <div fxLayout="row">
+      <div fxFlex="50">
+        <mat-form-field>
+          <mat-label>Standardowe naprawy</mat-label>
+          <mat-select formControlName="repairs" multiple [errorStateMatcher]="repairsParentErrorStateMatcher">
+            <mat-select-trigger>
+              {{form.get('repairs').value ? form.get('repairs').value[0] : ''}}
+              <span *ngIf="form.get('repairs').value?.length > 1" class="additional-selection">
+                (+{{form.get('repairs').value?.length - 1}} {{form.get('repairs').value?.length === 2 ? 'inny' : 'inne'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let repair of repairs | async" [value]="repair.name">{{repair.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched)">
             Wybierz wykonaną usługę z listy usług lub dopisz niestandardową usługę
-          </span>
-        </div>
+          </mat-error>
+        </mat-form-field>
 
-        <div class="control-group">
-          <label class="control-label">Wymiana oleju:</label>
-          <input type="checkbox" formControlName="isOilChanged">
-        </div>
+        <mat-form-field appearance="legacy">
+          <mat-label>Dodatkowe naprawy</mat-label>
+          <textarea matInput formControlName="additionalRepairs" cdkTextareaAutosize cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
 
+        <mat-checkbox formControlName="isOilChanged" color="primary" >Wymiana oleju</mat-checkbox>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Wykonane naprawy</mat-label>
+          <textarea matInput [value]="form.get('repairs').value?.concat(form.get('additionalRepairs').value?.split('\n')).join('\n')"
+                    cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="9" disabled></textarea>
+        </mat-form-field>
+      </div>
+    </div>
 
-        <div class="control-group">
-          <label class="control-label">Notatka:</label>
-          <textarea formControlName="note"></textarea>
-        </div>
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <mat-form-field appearance="legacy" class="app-width-100">
+          <mat-label>Notatki</mat-label>
+          <textarea matInput formControlName="note" cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
 
-        <button type="submit" [disabled]="form.invalid">Zapisz</button>
-    <button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">Anuluj</button>
-  <!--<span *ngIf="form.invalid && form.errors?.mileageTooBig"  class="error">-->
-            <!--Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?-->
-          <!--</span>-->
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <button mat-button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">
+          Anuluj
+        </button>
+        <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+      </div>
+    </div>
   </form>
   <button type="button" (click)="log()">errors</button>
 </div>

@@ -9,7 +9,7 @@ import {Repair} from '../../../model/repair';
 import {DatePipe} from '@angular/common';
 import {DiaryValidators} from '../diary-validators';
 import {Observable} from 'rxjs';
-import {ParentErrorStateMatcher} from './ParentErrorStateMacher';
+import {MileageParentErrorStateMatcher, RepairsParentErrorStateMatcher} from './ParentErrorStateMacher';
 
 @Component({
   selector: 'app-diary-form',
@@ -22,9 +22,8 @@ export class DiaryFormComponent implements OnInit {
 
   public form: FormGroup;
   public repairs: Observable<Repair[]>;
-
-
-  public parentErrorStateMatcher = new ParentErrorStateMatcher();
+  public repairsParentErrorStateMatcher = new RepairsParentErrorStateMatcher();
+  public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -47,9 +46,7 @@ export class DiaryFormComponent implements OnInit {
           mileage: new FormControl(diary.mileage, {
             validators: [Validators.min(this.minMileageValue)]
           }),
-          repairs: new FormControl(diary.repairs, {
-            validators: [Validators.required]
-          }),
+          repairs: new FormControl(diary.repairs),
           additionalRepairs: new FormControl(diary.additionalRepairs ? diary.additionalRepairs.join('\n') : null),
           isOilChanged: new FormControl(diary.isOilChanged || false),
           note: new FormControl(diary.note),

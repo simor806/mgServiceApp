@@ -11,7 +11,7 @@ export class DiaryValidators {
     const repairs = formGroup.get('repairs') as FormControl;
     const additionalRepairs = formGroup.get('additionalRepairs') as FormControl;
 
-    return (repairs.value || additionalRepairs.value) ? null : {repairsRequired: true};
+    return ((repairs.value && repairs.value.length) || additionalRepairs.value.length) ? null : {repairsRequired: true};
   }
 
   static validateWithOtherDiaryEntries(formGroup: FormGroup) {
