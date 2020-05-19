@@ -7,7 +7,7 @@
   <form [formGroup]="form" (ngSubmit)="saveDiary()">
     <div fxLayout="row">
       <div fxFlex="50">
-        <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form.errors?.sameDates"></app-datepicker>
+        <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form?.errors?.sameDates"></app-datepicker>
       </div>
 
       <div fxFlex="50">
