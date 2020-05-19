@@ -44,7 +44,7 @@
             </mat-select-trigger>
             <mat-option *ngFor="let repair of repairs | async" [value]="repair.name">{{repair.name}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched)">
+          <mat-error *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched || form.get('isOilChanged').touched)">
             Wybierz wykonaną usługę z listy usług lub dopisz niestandardową usługę
           </mat-error>
         </mat-form-field>

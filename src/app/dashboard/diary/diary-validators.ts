@@ -10,8 +10,9 @@ export class DiaryValidators {
   static repairsRequired(formGroup: FormGroup) {
     const repairs = formGroup.get('repairs') as FormControl;
     const additionalRepairs = formGroup.get('additionalRepairs') as FormControl;
+    const isOilChanged = formGroup.get('isOilChanged') as FormControl;
 
-    if ((repairs.value && repairs.value.length) || (additionalRepairs.value && additionalRepairs.value.length)) {
+    if ((repairs.value && repairs.value.length) || (additionalRepairs.value && additionalRepairs.value.length) || isOilChanged.value) {
       return null;
     } else {
       return { repairsRequired: true };
