@@ -55,7 +55,9 @@
                     cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field>
 
-        <mat-checkbox formControlName="isOilChanged" color="primary" >Wymiana oleju</mat-checkbox>
+        <mat-checkbox formControlName="isOilChanged" color="primary" >
+          Wymiana oleju {{vehicle?.hasLongLifeOil ? '(longlife)' : ''}}
+        </mat-checkbox>
       </div>
       <div fxFlex="50">
         <mat-form-field appearance="legacy">

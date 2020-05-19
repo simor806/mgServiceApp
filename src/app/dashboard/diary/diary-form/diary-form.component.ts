@@ -10,6 +10,8 @@ import {DatePipe} from '@angular/common';
 import {DiaryValidators} from '../diary-validators';
 import {Observable} from 'rxjs';
 import {MileageParentErrorStateMatcher, RepairsParentErrorStateMatcher} from './ParentErrorStateMacher';
+import {Vehicle} from '../../../model/vehicle';
+import {VehicleService} from '../../vehicles/vehicle.service';
 
 @Component({
   selector: 'app-diary-form',
@@ -24,12 +26,14 @@ export class DiaryFormComponent implements OnInit {
   public repairs: Observable<Repair[]>;
   public repairsParentErrorStateMatcher = new RepairsParentErrorStateMatcher();
   public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
+  public vehicle: Vehicle;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private diaryService: DiaryService,
               private datePipe: DatePipe,
-              private repairsService: RepairService) { }
+              private repairsService: RepairService,
+              private vehicleService: VehicleService) { }
 
   ngOnInit() {
     this.route.data
@@ -56,6 +60,7 @@ export class DiaryFormComponent implements OnInit {
           asyncValidators: [DiaryValidators.validateWithOtherDiaryEntries],
           updateOn: 'change'
         });
+        this.vehicleService.getVehicle(diary.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);
       });
 
     this.repairs = this.repairsService.getRepairs();
@@ -78,5 +83,11 @@ export class DiaryFormComponent implements OnInit {
       diaryAttrs.additionalRepairs = additionalRepairsValue.split('\n');
     }
     return diaryAttrs;
+  }
+
+  public log = () => {
+    console.log('form', this.form);
+    console.log('errors', this.form.errors);
+    console.log('hasRerror', this.form.hasError('mileageTooBig'));
   }
 }
