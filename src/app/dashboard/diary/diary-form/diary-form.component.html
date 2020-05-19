@@ -69,7 +69,7 @@
       <div fxFlex="50">
         <mat-form-field appearance="legacy">
           <mat-label>Wykonane naprawy</mat-label>
-          <textarea matInput [value]="form.get('repairs').value?.concat(form.get('additionalRepairs').value?.split('\n')).join('\n')"
+          <textarea matInput [value]="(form.get('repairs').value || [])?.concat(form.get('additionalRepairs').value?.split('\n')).join('\n')"
                     cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="9" disabled></textarea>
         </mat-form-field>
       </div>
