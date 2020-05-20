@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -28,7 +28,8 @@ export class DiaryFormComponent implements OnInit {
   public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
   public vehicle: Vehicle;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private changeDetector: ChangeDetectorRef,
+              private route: ActivatedRoute,
               private router: Router,
               private diaryService: DiaryService,
               private datePipe: DatePipe,
@@ -61,6 +62,7 @@ export class DiaryFormComponent implements OnInit {
           updateOn: 'change'
         });
         this.vehicleService.getVehicle(diary.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);
+        this.changeDetector.detectChanges();
       });
 
     this.repairs = this.repairsService.getRepairs();

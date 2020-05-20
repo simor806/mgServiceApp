@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import {Vehicle} from '../../../model/vehicle';
 import {VehicleService} from '../vehicle.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -22,7 +26,8 @@ export class VehicleDetailsComponent implements OnInit {
 
   private dialogRef: MatDialogRef<ConfirmationDialogComponent>;
 
-  constructor(public dialog: MatDialog,
+  constructor(private changeDetector: ChangeDetectorRef,
+              public dialog: MatDialog,
               private diaryService: DiaryService,
               private route: ActivatedRoute,
               private router: Router,
@@ -38,6 +43,7 @@ export class VehicleDetailsComponent implements OnInit {
     ).subscribe(([vehicle, owners]) => {
         this.vehicle = vehicle;
         owners.forEach((owner: Owner) => this.owners.set(owner.id, owner));
+        this.changeDetector.detectChanges();
     });
   }
 
