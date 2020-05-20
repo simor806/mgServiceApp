@@ -31,7 +31,9 @@
         <mat-error *ngIf="hasError('brand', 'required')">Marka jest wymagana</mat-error>
       </mat-form-field>
       <mat-autocomplete #autocompleteBrands="matAutocomplete">
-        <mat-option *ngFor="let brand of brandsModelsMap | keyvalue" [value]="brand.key">{{brand.key}}</mat-option>
+        <mat-option *ngFor="let brand of (filteredBrandsModelsMap | async) | keyvalue" [value]="brand.key">
+          {{brand.key}}
+        </mat-option>
       </mat-autocomplete>
 
       <mat-form-field appearance="legacy">

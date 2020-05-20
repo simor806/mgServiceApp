@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {map, startWith} from 'rxjs/operators';
 import {VehicleService} from '../vehicle.service';
 import {Vehicle} from '../../../model/vehicle';
 import {OwnerService} from '../../owners/owner.service';
 import {Owner} from '../../../model/owner';
-import {carsBrands} from '../../../model/car-list';
+import {carsBrandsWithModels} from '../../../model/car-list';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -15,10 +16,12 @@ import {carsBrands} from '../../../model/car-list';
 })
 export class VehicleFormComponent implements OnInit {
 
+  public filteredBrandsModelsMap: Observable<Map<string, string[]>>;
   public form: FormGroup;
   public owners: Owner[];
-  public brandsModelsMap = carsBrands;
   public years = new Array<number>();
+
+  private brandsModelsMap = carsBrandsWithModels;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -53,7 +56,13 @@ export class VehicleFormComponent implements OnInit {
             validators: [Validators.required]
           }),
           hasLongLifeOil: new FormControl(vehicle.hasLongLifeOil || false),
-        }, {updateOn: 'blur'});
+        });
+
+        this.filteredBrandsModelsMap = this.form.get('brand').valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterBrands(value))
+          );
       });
 
     this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
@@ -88,13 +97,18 @@ export class VehicleFormComponent implements OnInit {
   //   });
   // }
 
-  // private _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //
-  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  // }
-
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
+  }
+
+  private _filterBrands(brand: string): Map<string, string[]> {
+    const searchedValue = brand.toLowerCase();
+    const filteredBrandsModelsMap = new Map(this.brandsModelsMap);
+    for (const key of filteredBrandsModelsMap.keys()) {
+      if (!key.toLowerCase().startsWith(searchedValue)) {
+        filteredBrandsModelsMap.delete(key);
+      }
+    }
+    return filteredBrandsModelsMap;
   }
 }
