@@ -1,14 +1,14 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {DiaryService} from '../diary.service';
 import {DiaryEntry, DiaryEntryAttrs} from '../../../model/diary-entry';
 import {RepairService} from '../../repairs/repair.service';
 import {Repair} from '../../../model/repair';
 import {DatePipe} from '@angular/common';
 import {DiaryValidators} from '../diary-validators';
-import {Observable} from 'rxjs';
+import {ReplaySubject, Subject} from 'rxjs';
 import {MileageParentErrorStateMatcher, RepairsParentErrorStateMatcher} from './ParentErrorStateMacher';
 import {Vehicle} from '../../../model/vehicle';
 import {VehicleService} from '../../vehicles/vehicle.service';
@@ -18,15 +18,19 @@ import {VehicleService} from '../../vehicles/vehicle.service';
   templateUrl: './diary-form.component.html',
   styleUrls: ['./diary-form.component.scss']
 })
-export class DiaryFormComponent implements OnInit {
+export class DiaryFormComponent implements OnInit, OnDestroy {
 
   public readonly minMileageValue = 1;
 
+  public filteredRepairs: ReplaySubject<Repair[]> = new ReplaySubject<Repair[]>(1);
   public form: FormGroup;
-  public repairs: Observable<Repair[]>;
+  public repairsFilterCtrl: FormControl = new FormControl();
   public repairsParentErrorStateMatcher = new RepairsParentErrorStateMatcher();
   public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
   public vehicle: Vehicle;
+
+  private onDestroy = new Subject<void>();
+  private repairs: Repair[];
 
   constructor(private changeDetector: ChangeDetectorRef,
               private route: ActivatedRoute,
@@ -65,7 +69,19 @@ export class DiaryFormComponent implements OnInit {
         this.changeDetector.detectChanges();
       });
 
-    this.repairs = this.repairsService.getRepairs();
+    this.repairsService.getRepairs().subscribe((repairs: Repair[]) => {
+      this.repairs = repairs;
+      this.filteredRepairs.next(this.repairs);
+    });
+
+    this.repairsFilterCtrl.valueChanges
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(() => this.filterRepairs());
+  }
+
+  ngOnDestroy() {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 
   public saveDiary(): void {
@@ -85,6 +101,20 @@ export class DiaryFormComponent implements OnInit {
       diaryAttrs.additionalRepairs = additionalRepairsValue.split('\n');
     }
     return diaryAttrs;
+  }
+
+  private filterRepairs() {
+    if (!this.repairs) {
+      return;
+    }
+    let searchedValue = this.repairsFilterCtrl.value;
+    if (!searchedValue) {
+      this.filteredRepairs.next(this.repairs);
+      return;
+    } else {
+      searchedValue = searchedValue.toLowerCase();
+    }
+    this.filteredRepairs.next(this.repairs.filter((repair: Repair) => repair.name.toLowerCase().indexOf(searchedValue) > -1));
   }
 
   public log = () => {

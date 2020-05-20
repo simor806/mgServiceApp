@@ -43,7 +43,10 @@
                   (+{{form.get('repairs').value?.length - 1}} {{form.get('repairs').value?.length === 2 ? 'inny' : 'inne'}})
                 </span>
               </mat-select-trigger>
-              <mat-option *ngFor="let repair of repairs | async" [value]="repair.name">{{repair.name}}</mat-option>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="repairsFilterCtrl" placeholderLabel="Filtruj"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let repair of filteredRepairs | async" [value]="repair.name">{{repair.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched || form.get('isOilChanged').touched)">
               Wybierz wykonaną usługę z listy usług lub dopisz niestandardową usługę

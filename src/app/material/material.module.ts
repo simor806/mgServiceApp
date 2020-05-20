@@ -11,6 +11,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { InputThousandsSeparatorDirective } from './directives/input-thousands-separator.directive';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -30,6 +31,10 @@ const materialModules = [
   MatTooltipModule,
 ];
 
+const otherModules = [
+  NgxMatSelectSearchModule
+];
+
 const customDirectives = [
   InputThousandsSeparatorDirective
 ];
@@ -40,11 +45,13 @@ const customDirectives = [
   ],
   imports: [
     CommonModule,
-    ...materialModules
+    ...materialModules,
+    ...otherModules
   ],
   exports: [
     ...customDirectives,
-    ...materialModules
+    ...materialModules,
+    ...otherModules
   ]
 })
 export class MaterialModule { }
