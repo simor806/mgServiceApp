@@ -4,7 +4,7 @@
       <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja pojazdu' : 'Rejestracja pojazdu'}}</h1>
     </div>
   </div>
-  <form [formGroup]="form" (ngSubmit)="saveVehicle()">
+  <form [formGroup]="form" (ngSubmit)="saveVehicle()" (keydown.enter)="$event.preventDefault()">
     <div class="row">
       <div class="col-12">
         <div>

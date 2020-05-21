@@ -4,7 +4,7 @@
       <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja wpisu dziennika napraw' : 'Rejestracja wpisu dziennika napraw'}}</h1>
     </div>
   </div>
-  <form [formGroup]="form" (ngSubmit)="saveDiary()">
+  <form [formGroup]="form" (ngSubmit)="saveDiary()" (keydown.enter)="$event.preventDefault()">
     <div fxLayout="row">
       <div fxFlex="50">
         <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form?.errors?.sameDates"></app-datepicker>

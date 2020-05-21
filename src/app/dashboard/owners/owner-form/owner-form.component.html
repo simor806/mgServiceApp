@@ -4,7 +4,7 @@
       <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja klienta' : 'Rejestracja klienta'}}</h1>
     </div>
   </div>
-  <form [formGroup]="form" (ngSubmit)="saveOwner()">
+  <form [formGroup]="form" (ngSubmit)="saveOwner()" (keydown.enter)="$event.preventDefault()">
     <div class="row">
       <div class="col-12">
         <div>
