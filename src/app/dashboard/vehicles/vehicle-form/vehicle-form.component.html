@@ -42,9 +42,7 @@
         <mat-error *ngIf="hasError('model', 'required')">Model jest wymagany</mat-error>
       </mat-form-field>
       <mat-autocomplete #autocompleteModels="matAutocomplete">
-        <mat-option *ngFor="let model of brandsModelsMap.get(form.get('brand').value)" [value]="model">
-          {{model}}
-        </mat-option>
+        <mat-option *ngFor="let model of filteredModels | async" [value]="model">{{model}}</mat-option>
       </mat-autocomplete>
     </div>
 

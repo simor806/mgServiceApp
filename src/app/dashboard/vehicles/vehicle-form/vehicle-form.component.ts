@@ -17,6 +17,7 @@ import {Observable} from 'rxjs';
 export class VehicleFormComponent implements OnInit {
 
   public filteredBrandsModelsMap: Observable<Map<string, string[]>>;
+  public filteredModels: Observable<string[]>;
   public form: FormGroup;
   public owners: Owner[];
   public years = new Array<number>();
@@ -62,6 +63,12 @@ export class VehicleFormComponent implements OnInit {
           .pipe(
             startWith(''),
             map(value => this._filterBrands(value))
+          );
+
+        this.filteredModels = this.form.get('model').valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterModels(value))
           );
       });
 
@@ -109,6 +116,21 @@ export class VehicleFormComponent implements OnInit {
         filteredBrandsModelsMap.delete(key);
       }
     }
+    this.form.get('model').setValue(this.form.get('model').value);
     return filteredBrandsModelsMap;
+  }
+
+  private _filterModels(model: string): string[] {
+    const models = this.brandsModelsMap.get(this.form.get('brand').value);
+    if (!models) {
+      return [];
+    }
+    let searchedValue = model;
+    if (!model) {
+      return models;
+    } else {
+      searchedValue = searchedValue.toLowerCase();
+    }
+    return models.filter((filteredModel: string) =>  filteredModel.toLowerCase().startsWith(searchedValue));
   }
 }
