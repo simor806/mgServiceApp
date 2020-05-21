@@ -6,7 +6,7 @@ export class RepairsParentErrorStateMatcher implements ErrorStateMatcher {
     const isSubmitted = !!(form && form.submitted);
     const controlInvalid = !!(control && control.invalid);
     const parentInvalid = !!(control && control.parent && control.parent.invalid && (control.parent.dirty || control.parent.touched));
-    const repairsError = form.hasError('repairsRequired');
+    const repairsError = form.form.controls['repairsGroup'].hasError('repairsRequired');
 
     return isSubmitted || controlInvalid || (parentInvalid && repairsError);
   }
@@ -14,10 +14,11 @@ export class RepairsParentErrorStateMatcher implements ErrorStateMatcher {
 
 export class MileageParentErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const mainInfoGroup = form.form.controls['mainInfoGroup']
     const isSubmitted = !!(form && form.submitted);
     const controlInvalid = !!(control && control.invalid);
     const parentInvalid = !!(control && control.parent && control.parent.invalid && (control.parent.dirty || control.parent.touched));
-    const mileageError = form.hasError('mileageTooSmall') || form.hasError('mileageTooBig') || control.hasError('min');
+    const mileageError = mainInfoGroup.hasError('mileageTooSmall') || mainInfoGroup.hasError('mileageTooBig') || control.hasError('min');
 
     return isSubmitted || controlInvalid || (parentInvalid && mileageError);
   }

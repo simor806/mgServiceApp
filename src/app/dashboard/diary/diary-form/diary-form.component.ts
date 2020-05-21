@@ -45,24 +45,30 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
       .pipe(map((data) => data.diary))
       .subscribe((diary: DiaryEntry) => {
         this.form = new FormGroup({
-          id: new FormControl(diary.id),
-          vehicleId: new FormControl(Number(diary.vehicleId), {
-            validators: [Validators.required]
+          mainInfoGroup: new FormGroup({
+            id: new FormControl(diary.id),
+            vehicleId: new FormControl(Number(diary.vehicleId), {
+              validators: [Validators.required]
+            }),
+            date: new FormControl(diary.date || this.datePipe.transform(Date.now(), 'yyyy-MM-dd'), {
+              validators: [Validators.required]
+            }),
+            mileage: new FormControl(diary.mileage, {
+              validators: [Validators.min(this.minMileageValue)]
+            })
+          }, {
+            asyncValidators: [DiaryValidators.validateWithOtherDiaryEntries],
           }),
-          date: new FormControl(diary.date || this.datePipe.transform(Date.now(), 'yyyy-MM-dd'), {
-            validators: [Validators.required]
+          repairsGroup: new FormGroup({
+            repairs: new FormControl(diary.repairs),
+            additionalRepairs: new FormControl(diary.additionalRepairs ? diary.additionalRepairs.join('\n') : null),
+            isOilChanged: new FormControl(diary.isOilChanged || false)
+          }, {
+            asyncValidators: [DiaryValidators.repairsRequired],
           }),
-          mileage: new FormControl(diary.mileage, {
-            validators: [Validators.min(this.minMileageValue)]
-          }),
-          repairs: new FormControl(diary.repairs),
-          additionalRepairs: new FormControl(diary.additionalRepairs ? diary.additionalRepairs.join('\n') : null),
-          isOilChanged: new FormControl(diary.isOilChanged || false),
           note: new FormControl(diary.note),
           imageUrls: new FormControl(diary.imageUrls)
         }, {
-          validators: [DiaryValidators.repairsRequired],
-          asyncValidators: [DiaryValidators.validateWithOtherDiaryEntries],
           updateOn: 'change'
         });
         this.vehicleService.getVehicle(diary.vehicleId).subscribe((vehicle: Vehicle) => this.vehicle = vehicle);

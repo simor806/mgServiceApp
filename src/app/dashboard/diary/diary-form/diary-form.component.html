@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja wpisu dziennika napraw' : 'Rejestracja wpisu dziennika napraw'}}</h1>
+      <h1 class="mat-display-1">{{form.get('mainInfoGroup').get('id').value ? 'Edycja wpisu dziennika napraw' : 'Rejestracja wpisu dziennika napraw'}}</h1>
     </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="saveDiary()" (keydown.enter)="$event.preventDefault()">
-    <div fxLayout="row">
+    <div fxLayout="row" formGroupName="mainInfoGroup">
       <div fxFlex="50">
-        <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form?.errors?.sameDates"></app-datepicker>
+        <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form?.get('mainInfoGroup')?.errors?.sameDates"></app-datepicker>
       </div>
 
       <div fxFlex="50">
@@ -17,30 +17,30 @@
                  [min]="minMileageValue">
           <span matSuffix>km</span>
           <mat-error>
-            <div *ngIf="form.get('mileage').hasError('min')">
+            <div *ngIf="form.get('mainInfoGroup').get('mileage').hasError('min')">
               Wartość przebiegu musi być większa od {{minMileageValue}}
             </div>
-            <div *ngIf="form.hasError('mileageTooBig')">
-              Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku
+            <div *ngIf="form.get('mainInfoGroup').hasError('mileageTooBig')">
+              Wartość przebiegu większa niż wartość z kolejnego wpisu w dzienniku ({{form.get('mainInfoGroup').errors?.mileageTooBig}} km)
             </div>
-            <div *ngIf="form.hasError('mileageTooSmall')">
-              Wartość przebiegu mniejsza niż poprzednim razem... Czyżbyś kręcił licznik?
+            <div *ngIf="form.get('mainInfoGroup').hasError('mileageTooSmall')">
+              Wartość przebiegu mniejsza niż poprzednim razem ({{form.get('mainInfoGroup').errors?.mileageTooSmall}} km) Czyżbyś kręcił licznik?
             </div>
           </mat-error>
         </mat-form-field>
       </div>
     </div>
 
-    <div fxLayout="row">
+    <div fxLayout="row" formGroupName="repairsGroup">
       <div fxFlex="50" fxLayout="column">
-        <div fxFlex="grow">
+        <div fxFlex="grow" >
           <mat-form-field>
             <mat-label>Standardowe naprawy</mat-label>
             <mat-select formControlName="repairs" multiple [errorStateMatcher]="repairsParentErrorStateMatcher">
               <mat-select-trigger>
-                {{form.get('repairs').value ? form.get('repairs').value[0] : ''}}
-                <span *ngIf="form.get('repairs').value?.length > 1" class="additional-selection">
-                  (+{{form.get('repairs').value?.length - 1}} {{form.get('repairs').value?.length === 2 ? 'inny' : 'inne'}})
+                {{form.get('repairsGroup').get('repairs').value ? form.get('repairsGroup').get('repairs').value[0] : ''}}
+                <span *ngIf="form.get('repairsGroup').get('repairs').value?.length > 1" class="additional-selection">
+                  (+{{form.get('repairsGroup').get('repairs').value?.length - 1}} {{form.get('repairsGroup').get('repairs').value?.length === 2 ? 'inny' : 'inne'}})
                 </span>
               </mat-select-trigger>
               <mat-option>
@@ -48,7 +48,7 @@
               </mat-option>
               <mat-option *ngFor="let repair of filteredRepairs | async" [value]="repair.name">{{repair.name}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="form.hasError('repairsRequired') && (form.get('repairs').touched || form.get('additionalRepairs').touched || form.get('isOilChanged').touched)">
+            <mat-error *ngIf="form.get('repairsGroup').hasError('repairsRequired') && (form.get('repairsGroup').get('repairs').touched || form.get('repairsGroup').get('additionalRepairs').touched || form.get('repairsGroup').get('isOilChanged').touched)">
               Wybierz wykonaną usługę z listy usług lub dopisz niestandardową usługę
             </mat-error>
           </mat-form-field>
@@ -72,8 +72,8 @@
       <div fxFlex="50">
         <mat-form-field appearance="legacy">
           <mat-label>Wykonane naprawy</mat-label>
-          <textarea matInput [value]="(form.get('repairs').value || [])?.concat(form.get('additionalRepairs').value?.split('\n')).join('\n')"
-                    cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="9" disabled></textarea>
+          <textarea matInput [value]="(form.get('repairsGroup').get('repairs').value || [])?.concat(form.get('repairsGroup').get('additionalRepairs').value?.split('\n')).join('\n')"
+                    cdkTextareaAutosize cdkAutosizeMinRows="9" cdkAutosizeMaxRows="9" disabled></textarea>
         </mat-form-field>
       </div>
     </div>
@@ -89,7 +89,7 @@
 
     <div fxLayout="row">
       <div fxFlex="100">
-        <button mat-button type="button" [routerLink]="['/vehicles', form.get('vehicleId').value, 'diary']">
+        <button mat-button type="button" [routerLink]="['/vehicles', form.get('mainInfoGroup').get('vehicleId').value, 'diary']">
           Anuluj
         </button>
         <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>

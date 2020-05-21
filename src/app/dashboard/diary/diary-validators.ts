@@ -13,18 +13,15 @@ export class DiaryValidators {
     const isOilChanged = formGroup.get('isOilChanged') as FormControl;
 
     if ((repairs.value && repairs.value.length) || (additionalRepairs.value && additionalRepairs.value.length) || isOilChanged.value) {
-      return null;
+      return of(null);
     } else {
-      return { repairsRequired: true };
+      return of({ repairsRequired: true });
     }
   }
 
   static validateWithOtherDiaryEntries(formGroup: FormGroup) {
     const mileage = formGroup.get('mileage') as FormControl;
     const mileageValue = Number(mileage.value);
-    if (!mileageValue) {
-      return of(null);
-    }
     const id = formGroup.get('id') as FormControl;
     const vehicleId = formGroup.get('vehicleId') as FormControl;
     const date = formGroup.get('date') as FormControl;
@@ -33,22 +30,25 @@ export class DiaryValidators {
       .pipe(
         map((ajaxResponse) => ajaxResponse.response),
         map((diary: DiaryEntry[]) => {
-          let error = null;
+          let errors = null;
           diary.forEach((diaryEntry: DiaryEntry) => {
             const diaryEntryMileageValue = Number(diaryEntry.mileage);
             if (moment(diaryEntry.date) > moment(date.value)) {
               if (diaryEntryMileageValue && diaryEntryMileageValue <= mileageValue) {
-                error = {mileageTooBig: true};
+                const mileageTooBigError = {mileageTooBig: diaryEntryMileageValue};
+                errors ? Object.assign(errors, mileageTooBigError) : errors = mileageTooBigError;
               }
             } else if (moment(diaryEntry.date) < moment(date.value)) {
               if (diaryEntryMileageValue && diaryEntryMileageValue > mileageValue && mileageValue > 0) {
-                error = {mileageTooSmall: true};
+                const mileageTooSmallError = {mileageTooSmall: diaryEntryMileageValue};
+                errors ? Object.assign(errors, mileageTooSmallError) : errors = mileageTooSmallError;
               }
             } else {
-              error = {sameDates: 'Istnieje już wpis w dzienniku napraw pod tą datą'};
+              const sameDateError = {sameDates: 'Istnieje już wpis w dzienniku napraw pod tą datą'}
+              errors ? Object.assign(errors, sameDateError) : errors = sameDateError;
             }
           });
-          return error;
+          return errors;
         })
     );
   }
