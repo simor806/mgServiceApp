@@ -12,6 +12,8 @@ import {ReplaySubject, Subject} from 'rxjs';
 import {MileageParentErrorStateMatcher, RepairsParentErrorStateMatcher} from './ParentErrorStateMacher';
 import {Vehicle} from '../../../model/vehicle';
 import {VehicleService} from '../../vehicles/vehicle.service';
+import {ConfirmationDialogComponent} from '../../gui/shared-components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-diary-form',
@@ -29,10 +31,12 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
   public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
   public vehicle: Vehicle;
 
+  private diaryEntry: DiaryEntry;
   private onDestroy = new Subject<void>();
   private repairs: Repair[];
 
   constructor(private changeDetector: ChangeDetectorRef,
+              public dialog: MatDialog,
               private route: ActivatedRoute,
               private router: Router,
               private diaryService: DiaryService,
@@ -44,6 +48,7 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(map((data) => data.diary))
       .subscribe((diary: DiaryEntry) => {
+        this.diaryEntry = diary;
         this.form = new FormGroup({
           mainInfoGroup: new FormGroup({
             id: new FormControl(diary.id),
@@ -96,6 +101,29 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
       () => this.router.navigate(['/vehicles', diaryAttrs.vehicleId, 'diary']),
       () => alert('Nie udało się dodać wpisu do dziennika!')
     );
+  }
+
+  public deleteDiaryEntry() {
+    this.diaryService.deleteDiaryEntry(this.diaryEntry.id).subscribe(
+      () => this.router.navigate(['/vehicles', this.diaryEntry.vehicleId, 'diary']),
+      () => alert('Wystąpił błąd podczas usuwania wpisu dziennika.')
+    );
+  }
+
+  public openDeleteDiaryEntryConfirmationDialog() {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: false
+    });
+    dialogRef.componentInstance.confirmTitle = 'Usunąć wpis?';
+    dialogRef.componentInstance.confirmMessage = `Wpis dziennika z dnia ${this.diaryEntry.date} zostanie trwale usunięty z bazy.`;
+    dialogRef.componentInstance.confirmColor = 'warn';
+    dialogRef.componentInstance.confirmButton = 'Usuń';
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteDiaryEntry();
+      }
+      dialogRef = null;
+    });
   }
 
   private getDiaryToSave(): DiaryEntryAttrs {

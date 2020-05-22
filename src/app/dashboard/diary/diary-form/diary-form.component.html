@@ -93,6 +93,7 @@
           Anuluj
         </button>
         <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+        <app-delete-button *ngIf="diaryEntry?.id" (click)="openDeleteDiaryEntryConfirmationDialog()"></app-delete-button>
       </div>
     </div>
   </form>
