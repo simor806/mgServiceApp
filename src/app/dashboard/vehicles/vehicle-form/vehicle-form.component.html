@@ -19,6 +19,7 @@
             <mat-select formControlName="ownersIds" multiple>
               <mat-option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="hasError('ownersIds', 'required')">Właściciel jest wymagany</mat-error>
           </mat-form-field>
         </div>
       </div>
