@@ -12,6 +12,7 @@ import {
 } from '@angular/material';
 import { InputThousandsSeparatorDirective } from './directives/input-thousands-separator.directive';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import { InputOnlyNumbersDirective } from './directives/input-only-numbers.directive';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -36,12 +37,13 @@ const otherModules = [
 ];
 
 const customDirectives = [
+  InputOnlyNumbersDirective,
   InputThousandsSeparatorDirective
 ];
 
 @NgModule({
   declarations: [
-    ...customDirectives
+    ...customDirectives,
   ],
   imports: [
     CommonModule,

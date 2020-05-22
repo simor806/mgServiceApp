@@ -79,7 +79,7 @@ export class VehicleFormComponent implements OnInit {
 
   private setYears() {
     for (let i = 1900; i <= new Date().getFullYear(); i++) {
-      this.years.push(i);
+      this.years.unshift(i);
     }
   }
 
