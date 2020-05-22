@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
+  <div fxLayout="row">
+    <div fxFlex>
       <h1 class="mat-display-1">{{diaryEntry?.id ? 'Edycja' : 'Rejestracja'}} wpisu dziennika napraw</h1>
     </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="saveDiary()" (keydown.enter)="$event.preventDefault()">
-    <div fxLayout="row" formGroupName="mainInfoGroup">
+    <div fxLayout="row" fxLayoutGap="40px" formGroupName="mainInfoGroup">
       <div fxFlex="50">
         <app-datepicker formControlName="date" [required]="true" [allowFutureDates]="false" [asyncParentError]="form?.get('mainInfoGroup')?.errors?.sameDates"></app-datepicker>
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div fxLayout="row" formGroupName="repairsGroup">
+    <div fxLayout="row" fxLayoutGap="40px" formGroupName="repairsGroup">
       <div fxFlex="50" fxLayout="column">
         <div fxFlex="grow" >
           <mat-form-field>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <div fxLayout="row">
+    <div fxLayout="row" fxLayoutGap="40px">
       <div fxFlex="100">
         <mat-form-field appearance="legacy" class="app-width-100">
           <mat-label>Notatki</mat-label>
@@ -93,7 +93,7 @@
           Anuluj
         </button>
         <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
-        <app-delete-button *ngIf="diaryEntry?.id" (click)="openDeleteDiaryEntryConfirmationDialog()"></app-delete-button>
+        <app-delete-button *ngIf="diaryEntry?.id" (click)="openDeleteDiaryEntryConfirmationDialog()" class="app-float-right"></app-delete-button>
       </div>
     </div>
   </form>

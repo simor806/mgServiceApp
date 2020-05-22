@@ -1,43 +1,51 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
+  <div fxLayout="row">
+    <div fxFlex="100">
       <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja klienta' : 'Rejestracja klienta'}}</h1>
     </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="saveOwner()" (keydown.enter)="$event.preventDefault()">
-    <div class="row">
-      <div class="col-12">
-        <div>
-          <mat-form-field appearance="legacy">
-            <mat-label>Imię</mat-label>
-            <input matInput formControlName="firstName" required autocomplete="off">
-            <mat-error *ngIf="hasError('firstName', 'required')">Imię jest wymagane</mat-error>
-          </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Imię</mat-label>
+          <input matInput formControlName="firstName" required autocomplete="off">
+          <mat-error *ngIf="hasError('firstName', 'required')">Imię jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
 
-          <mat-form-field appearance="legacy">
-            <mat-label>Nazwisko</mat-label>
-            <input matInput formControlName="lastName" required autocomplete="off">
-            <mat-error *ngIf="hasError('lastName', 'required')">Nazwisko jest wymagane</mat-error>
-          </mat-form-field>
-        </div>
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Nazwisko</mat-label>
+          <input matInput formControlName="lastName" required autocomplete="off">
+          <mat-error *ngIf="hasError('lastName', 'required')">Nazwisko jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
-        <div>
-          <mat-form-field appearance="legacy">
-            <mat-label>Telefon</mat-label>
-            <input type="tel" matInput formControlName="phone" autocomplete="off">
-          </mat-form-field>
-        </div>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Telefon</mat-label>
+          <input type="tel" matInput formControlName="phone" autocomplete="off">
+        </mat-form-field>
+      </div>
 
-        <div>
-          <mat-form-field appearance="legacy">
-            <mat-label>Notatki</mat-label>
-            <textarea matInput formControlName="note"></textarea>
-          </mat-form-field>
-        </div>
+      <div fxFlex="50"></div>
+    </div>
 
+    <div fxLayout="row">
+      <div fxFlex>
+        <mat-form-field appearance="legacy">
+          <mat-label>Notatki</mat-label>
+          <textarea matInput formControlName="note"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row">
         <button mat-button type="button" routerLink="../">Anuluj</button>
         <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
-      </div>
     </div>
   </form>
 </div>

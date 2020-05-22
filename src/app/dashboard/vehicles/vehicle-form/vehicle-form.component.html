@@ -1,88 +1,104 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
+  <div fxLayout="row">
+    <div fxFlex="100">
       <h1 class="mat-display-1">{{form.get('id').value ? 'Edycja pojazdu' : 'Rejestracja pojazdu'}}</h1>
     </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="saveVehicle()" (keydown.enter)="$event.preventDefault()">
-    <div class="row">
-      <div class="col-12">
-        <div>
-          <mat-form-field appearance="legacy">
-            <mat-label>Numer rejestracyjny</mat-label>
-            <input matInput formControlName="registrationNumber" required autocomplete="off">
-            <mat-error *ngIf="hasError('registrationNumber', 'required')">Numer rejestracyjny jest wymagany</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Właściciel(e)</mat-label>
-            <mat-select formControlName="ownersIds" multiple>
-              <mat-option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="hasError('ownersIds', 'required')">Właściciel jest wymagany</mat-error>
-          </mat-form-field>
-        </div>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Numer rejestracyjny</mat-label>
+          <input matInput formControlName="registrationNumber" required autocomplete="off">
+          <mat-error *ngIf="hasError('registrationNumber', 'required')">Numer rejestracyjny jest wymagany</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field>
+          <mat-label>Właściciel(e)</mat-label>
+          <mat-select formControlName="ownersIds" multiple>
+            <mat-option *ngFor="let owner of owners" [value]="owner.id">{{owner.fullName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('ownersIds', 'required')">Właściciel jest wymagany</mat-error>
+        </mat-form-field>
       </div>
     </div>
 
-    <div>
-      <mat-form-field appearance="legacy">
-        <mat-label>Marka</mat-label>
-        <input type="text" matInput formControlName="brand" [matAutocomplete]="autocompleteBrands" required>
-        <mat-error *ngIf="hasError('brand', 'required')">Marka jest wymagana</mat-error>
-      </mat-form-field>
-      <mat-autocomplete #autocompleteBrands="matAutocomplete">
-        <mat-option *ngFor="let brand of (filteredBrandsModelsMap | async) | keyvalue" [value]="brand.key">
-          {{brand.key}}
-        </mat-option>
-      </mat-autocomplete>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Marka</mat-label>
+          <input type="text" matInput formControlName="brand" [matAutocomplete]="autocompleteBrands" required>
+          <mat-error *ngIf="hasError('brand', 'required')">Marka jest wymagana</mat-error>
+        </mat-form-field>
+        <mat-autocomplete #autocompleteBrands="matAutocomplete">
+          <mat-option *ngFor="let brand of (filteredBrandsModelsMap | async) | keyvalue" [value]="brand.key">
+            {{brand.key}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
 
-      <mat-form-field appearance="legacy">
-        <mat-label>Model</mat-label>
-        <input type="text" matInput formControlName="model" [matAutocomplete]="autocompleteModels" required>
-        <mat-error *ngIf="hasError('model', 'required')">Model jest wymagany</mat-error>
-      </mat-form-field>
-      <mat-autocomplete #autocompleteModels="matAutocomplete">
-        <mat-option *ngFor="let model of filteredModels | async" [value]="model">{{model}}</mat-option>
-      </mat-autocomplete>
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Model</mat-label>
+          <input type="text" matInput formControlName="model" [matAutocomplete]="autocompleteModels" required>
+          <mat-error *ngIf="hasError('model', 'required')">Model jest wymagany</mat-error>
+        </mat-form-field>
+        <mat-autocomplete #autocompleteModels="matAutocomplete">
+          <mat-option *ngFor="let model of filteredModels | async" [value]="model">{{model}}</mat-option>
+        </mat-autocomplete>
+      </div>
     </div>
 
-    <div>
-      <mat-form-field appearance="legacy">
-        <mat-label>Silnik</mat-label>
-        <input matInput formControlName="engine" autocomplete="off">
-      </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Silnik</mat-label>
+          <input matInput formControlName="engine" autocomplete="off">
+        </mat-form-field>
+      </div>
 
-      <mat-checkbox formControlName="hasLongLifeOil">Olej longlife</mat-checkbox>
+      <div fxFlex="50" fxLayoutAlign="start center">
+        <mat-checkbox formControlName="hasLongLifeOil">Olej longlife</mat-checkbox>
+      </div>
     </div>
 
-    <div>
-      <mat-form-field appearance="legacy">
-        <mat-label>Rok produkcji</mat-label>
-        <input type="text" matInput formControlName="year" [matAutocomplete]="autocompleteYears" appInputOnlyNumbers
-               maxlength="4">
-        <mat-error *ngIf="hasError('year', 'min') || hasError('year', 'max')">Niepoprawny rok</mat-error>
-      </mat-form-field>
-      <mat-autocomplete #autocompleteYears="matAutocomplete">
-        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
-      </mat-autocomplete>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>Rok produkcji</mat-label>
+          <input type="text" matInput formControlName="year" [matAutocomplete]="autocompleteYears" appInputOnlyNumbers
+                 maxlength="4">
+          <mat-error *ngIf="hasError('year', 'min') || hasError('year', 'max')">Niepoprawny rok</mat-error>
+        </mat-form-field>
+        <mat-autocomplete #autocompleteYears="matAutocomplete">
+          <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+        </mat-autocomplete>
+      </div>
 
-      <mat-form-field appearance="legacy">
-        <mat-label>VIN</mat-label>
-        <input matInput #vinInput formControlName="vin" maxlength="17" minlength="17" autocomplete="off">
-        <mat-hint align="end">{{vinInput.value?.length || 0}}/17</mat-hint>
-        <mat-error *ngIf="hasError('vin', 'minlength')">Za krótka wartość. VIN powinien mieć 17 znaków</mat-error>
-      </mat-form-field>
+      <div fxFlex="50">
+        <mat-form-field appearance="legacy">
+          <mat-label>VIN</mat-label>
+          <input matInput #vinInput formControlName="vin" maxlength="17" minlength="17" autocomplete="off">
+          <mat-hint align="end">{{vinInput.value?.length || 0}}/17</mat-hint>
+          <mat-error *ngIf="hasError('vin', 'minlength')">Za krótka wartość. VIN powinien mieć 17 znaków</mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
-    <div>
-      <mat-form-field appearance="legacy">
-        <mat-label>Notatki</mat-label>
-        <textarea matInput formControlName="note" placeholder="Notatki"></textarea>
-      </mat-form-field>
+    <div fxLayout="row wrap" fxLayoutGap="40px">
+      <div fxFlex="100" fxLayoutAlign="start default">
+        <mat-form-field appearance="legacy" class="app-width-100">
+          <mat-label>Notatki</mat-label>
+          <textarea matInput formControlName="note" placeholder="Notatki"></textarea>
+        </mat-form-field>
+      </div>
     </div>
-    <button mat-button type="button" routerLink="../..">Anuluj</button>
-    <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+
+    <div fxLayout="row">
+      <button mat-button type="button" routerLink="../..">Anuluj</button>
+      <button mat-button type="submit" [disabled]="form.invalid" color="primary">Zapisz</button>
+    </div>
   </form>
 </div>
 
