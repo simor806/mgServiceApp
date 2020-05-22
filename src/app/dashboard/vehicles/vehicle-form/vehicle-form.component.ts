@@ -70,6 +70,11 @@ export class VehicleFormComponent implements OnInit {
             startWith(''),
             map(value => this._filterModels(value))
           );
+
+        const registrationNumberCtrl = this.form.get('registrationNumber');
+        registrationNumberCtrl.valueChanges.subscribe(() => {
+          registrationNumberCtrl.patchValue(registrationNumberCtrl.value.toUpperCase(), {emitEvent: false});
+        });
       });
 
     this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
