@@ -99,8 +99,8 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
   }
 
   private getDiaryToSave(): DiaryEntryAttrs {
-    const diaryAttrs: DiaryEntryAttrs = this.form.value;
-    const additionalRepairsValue = this.form.get('additionalRepairs').value;
+    const diaryAttrs = this.getDiaryAttrsFromForm();
+    const additionalRepairsValue = this.form.get('repairsGroup').get('additionalRepairs').value;
     if (additionalRepairsValue === '' || additionalRepairsValue === null) {
       diaryAttrs.additionalRepairs = null;
     } else {
@@ -123,9 +123,14 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
     this.filteredRepairs.next(this.repairs.filter((repair: Repair) => repair.name.toLowerCase().indexOf(searchedValue) > -1));
   }
 
-  public log = () => {
-    console.log('form', this.form);
-    console.log('errors', this.form.errors);
-    console.log('hasRerror', this.form.hasError('mileageTooBig'));
+  private getDiaryAttrsFromForm(): DiaryEntryAttrs {
+    const diaryEntryAttrs = {
+      ...this.form.value,
+      ...this.form.get('mainInfoGroup').value,
+      ...this.form.get('repairsGroup').value
+    } as DiaryEntryAttrs;
+    delete diaryEntryAttrs['mainInfoGroup'];
+    delete diaryEntryAttrs['repairsGroup'];
+    return diaryEntryAttrs;
   }
 }

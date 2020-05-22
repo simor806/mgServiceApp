@@ -66,12 +66,15 @@ export class InputThousandsSeparatorDirective {
   registerOnTouched() {
   }
 
-  private numberWithCommas(value) {
+  private numberWithCommas(value: string | number): string {
+    if (typeof value === 'number') {
+      value = value.toString();
+    }
     if (value) {
       if (value.startsWith('.') || (value.length >= 2 && value[1] === '.')) {
         value = 0;
       }
-      return parseInt(value, 10).toLocaleString();
+      return parseInt(String(value), 10).toLocaleString();
     } else {
       return null;
     }

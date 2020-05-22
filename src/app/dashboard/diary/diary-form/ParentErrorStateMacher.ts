@@ -18,8 +18,9 @@ export class MileageParentErrorStateMatcher implements ErrorStateMatcher {
     const isSubmitted = !!(form && form.submitted);
     const controlInvalid = !!(control && control.invalid);
     const parentInvalid = !!(control && control.parent && control.parent.invalid && (control.parent.dirty || control.parent.touched));
-    const mileageError = mainInfoGroup.hasError('mileageTooSmall') || mainInfoGroup.hasError('mileageTooBig') || control.hasError('min');
+    const asyncMileageError = mainInfoGroup.hasError('mileageTooSmall') || mainInfoGroup.hasError('mileageTooBig');
+    const mileageError = control && control.hasError('min');
 
-    return isSubmitted || controlInvalid || (parentInvalid && mileageError);
+    return isSubmitted || controlInvalid || (parentInvalid && (mileageError || asyncMileageError));
   }
 }
