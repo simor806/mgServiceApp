@@ -14,7 +14,7 @@
         <mat-form-field appearance="legacy">
           <mat-label>Przebieg</mat-label>
           <input matInput formControlName="mileage" appInputThousandsSeparator [errorStateMatcher]="mileageParentErrorStateMatcher"
-                 [min]="minMileageValue">
+                 [min]="minMileageValue" autocomplete="off">
           <span matSuffix>km</span>
           <mat-error>
             <div *ngIf="form.get('mainInfoGroup').get('mileage').hasError('min')">

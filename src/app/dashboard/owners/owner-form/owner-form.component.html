@@ -10,13 +10,13 @@
         <div>
           <mat-form-field appearance="legacy">
             <mat-label>Imię</mat-label>
-            <input matInput formControlName="firstName" required>
+            <input matInput formControlName="firstName" required autocomplete="off">
             <mat-error *ngIf="hasError('firstName', 'required')">Imię jest wymagane</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="legacy">
             <mat-label>Nazwisko</mat-label>
-            <input matInput formControlName="lastName" required>
+            <input matInput formControlName="lastName" required autocomplete="off">
             <mat-error *ngIf="hasError('lastName', 'required')">Nazwisko jest wymagane</mat-error>
           </mat-form-field>
         </div>
@@ -24,7 +24,7 @@
         <div>
           <mat-form-field appearance="legacy">
             <mat-label>Telefon</mat-label>
-            <input type="tel" matInput formControlName="phone">
+            <input type="tel" matInput formControlName="phone" autocomplete="off">
           </mat-form-field>
         </div>
 
