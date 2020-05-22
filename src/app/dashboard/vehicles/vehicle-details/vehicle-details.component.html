@@ -23,7 +23,8 @@
   <div>
     <mat-form-field appearance="legacy">
       <mat-label>Przebieg</mat-label>
-      <input matInput value="{{vehicle?.diary[0]?.mileage || '?'}} km" disabled>
+      <input matInput [value]="vehicle?.diary[0]?.mileage || '?'" disabled appInputThousandsSeparator>
+      <span matSuffix>km</span>
     </mat-form-field>
   </div>
 
