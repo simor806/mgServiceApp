@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="mat-display-1">{{form.get('mainInfoGroup').get('id').value ? 'Edycja wpisu dziennika napraw' : 'Rejestracja wpisu dziennika napraw'}}</h1>
+      <h1 class="mat-display-1">{{diaryEntry?.id ? 'Edycja' : 'Rejestracja'}} wpisu dziennika napraw</h1>
     </div>
   </div>
   <form [formGroup]="form" (ngSubmit)="saveDiary()" (keydown.enter)="$event.preventDefault()">
