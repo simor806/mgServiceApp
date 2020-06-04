@@ -11,8 +11,8 @@ export class BaseButtonComponent implements OnInit {
 
   @Input() public routerLink: string[];
   @Input() public text: string;
-  protected color: MaterialColor;
-  protected icon: MaterialIcon;
+  public color: MaterialColor;
+  public icon: MaterialIcon;
 
   constructor() { }
 

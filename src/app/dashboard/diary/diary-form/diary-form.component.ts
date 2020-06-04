@@ -24,6 +24,7 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
 
   public readonly minMileageValue = 1;
 
+  public diaryEntry: DiaryEntry;
   public filteredRepairs: ReplaySubject<Repair[]> = new ReplaySubject<Repair[]>(1);
   public form: FormGroup;
   public repairsFilterCtrl: FormControl = new FormControl();
@@ -31,7 +32,6 @@ export class DiaryFormComponent implements OnInit, OnDestroy {
   public mileageParentErrorStateMatcher = new MileageParentErrorStateMatcher();
   public vehicle: Vehicle;
 
-  private diaryEntry: DiaryEntry;
   private onDestroy = new Subject<void>();
   private repairs: Repair[];
 
