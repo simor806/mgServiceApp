@@ -5,10 +5,10 @@
   
   <p style="background-color: orangered" *ngIf="shouldChangeOilBecauseDate">
     <span *ngIf="!vehicle.hasLongLifeOil">
-      Ostatnia wymiana oleju była ponad rok temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenLastRepairAndLastOilChange - timeToOilChange}} dni</strong>.
+      Ostatnia wymiana oleju była ponad rok temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenTodayAndLastOilChange - timeToOilChange}} dni</strong>.
     </span>
     <span *ngIf="vehicle.hasLongLifeOil">
-      Ostatnia wymiana oleju longlife była ponad dwa lata temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenLastRepairAndLastOilChange - timeToOilLonglifeChange}} dni</strong>.
+      Ostatnia wymiana oleju longlife była ponad dwa lata temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenTodayAndLastOilChange - timeToOilLonglifeChange}} dni</strong>.
     </span>
   </p>
   

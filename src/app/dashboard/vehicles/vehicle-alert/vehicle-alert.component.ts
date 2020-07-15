@@ -19,7 +19,7 @@ export class VehicleAlertComponent implements OnInit {
   public shouldChangeOilBecauseDate = false;
   public shouldChangeOilBecauseMileage = false;
   public oilNeverChanged = false;
-  public diffBetweenLastRepairAndLastOilChange: number;
+  public diffBetweenTodayAndLastOilChange: number;
   public diffBetweenMileages: number;
   public timeToOilChange = this.DAYS_IN_YEAR;
   public timeToOilLonglifeChange = this.DAYS_IN_YEAR * this.YEARS_TO_OIL_CHANGE_FOR_LONGLIFE;
@@ -39,13 +39,13 @@ export class VehicleAlertComponent implements OnInit {
   }
 
   private checkOilByDate(diaryEntryWithLastOilChanged: DiaryEntry) {
-    const lastRepairDate = moment(this.vehicle.diary[0].date);
     const lastOilChangeDate = moment(diaryEntryWithLastOilChanged.date);
-    this.diffBetweenLastRepairAndLastOilChange = lastRepairDate.diff(lastOilChangeDate, 'days');
+    const today = moment();
+    this.diffBetweenTodayAndLastOilChange = today.diff(lastOilChangeDate, 'days');
     if (this.vehicle.hasLongLifeOil) {
-      this.shouldChangeOilBecauseDate = this.diffBetweenLastRepairAndLastOilChange > this.timeToOilLonglifeChange;
+      this.shouldChangeOilBecauseDate = this.diffBetweenTodayAndLastOilChange > this.timeToOilLonglifeChange;
     } else {
-      this.shouldChangeOilBecauseDate = this.diffBetweenLastRepairAndLastOilChange > this.timeToOilChange;
+      this.shouldChangeOilBecauseDate = this.diffBetweenTodayAndLastOilChange > this.timeToOilChange;
     }
   }
 
