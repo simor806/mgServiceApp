@@ -13,6 +13,7 @@ import {
 import { InputThousandsSeparatorDirective } from './directives/input-thousands-separator.directive';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import { InputOnlyNumbersDirective } from './directives/input-only-numbers.directive';
+import {SharedModule} from '../shared/shared.module';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -47,6 +48,7 @@ const customDirectives = [
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ...materialModules,
     ...otherModules
   ],

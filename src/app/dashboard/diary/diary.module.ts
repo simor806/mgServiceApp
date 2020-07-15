@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {GuiModule} from '../gui/gui.module';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [DiaryComponent, DiaryFormComponent],
@@ -17,7 +18,8 @@ import {GuiModule} from '../gui/gui.module';
     GuiModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [DiaryComponent, DiaryFormComponent]
 })

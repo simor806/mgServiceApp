@@ -23,9 +23,8 @@
      fxLayoutGap="20px" fxLayoutGap.xs="10px">
   <div>
     <mat-form-field appearance="legacy">
-      <mat-label>Przebieg</mat-label>
-      <input matInput [value]="vehicle?.diary[0]?.mileage || '?'" disabled appInputThousandsSeparator>
-      <span matSuffix>km</span>
+      <mat-label>Przebieg [km]</mat-label>
+      <input matInput [value]="(vehicle?.diary[0]?.mileage | thousandsSeparator) || '?'" disabled>
     </mat-form-field>
   </div>
 

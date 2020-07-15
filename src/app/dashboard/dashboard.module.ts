@@ -11,6 +11,7 @@ import { VehicleAlertComponent } from './vehicles/vehicle-alert/vehicle-alert.co
 import {GuiModule} from './gui/gui.module';
 import {MaterialModule} from '../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [VehiclesListComponent, VehicleFormComponent, VehicleDetailsComponent, VehicleAlertComponent],
@@ -24,7 +25,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     MaterialModule,
     DiaryModule,
-    GuiModule
+    GuiModule,
+    SharedModule
   ],
   providers: [DatePipe]
 })

@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GuiModule} from './dashboard/gui/gui.module';
 import {MaterialModule} from './material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     GuiModule,
     OwnersModule,
     RepairsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -33,8 +33,8 @@
   </ng-container>
 
   <ng-container matColumnDef="mileage">
-    <th mat-header-cell *matHeaderCellDef>Przebieg</th>
-    <td mat-cell *matCellDef="let vehicle"> {{vehicle.diary[0]?.mileage || '?'}} km </td>
+    <th mat-header-cell *matHeaderCellDef>Przebieg [km]</th>
+    <td mat-cell *matCellDef="let vehicle">{{vehicle.diary[0]?.mileage | thousandsSeparator}}</td>
   </ng-container>
 
   <ng-container matColumnDef="owners">
@@ -42,7 +42,7 @@
     <td mat-cell *matCellDef="let vehicle">
       <div *ngFor="let owner of vehicle.owners">
         <span>{{owner.fullName}}</span>
-        <span *ngIf="owner.phone" style="font-size: smaller"> (Tel.: {{owner.phone}})</span>
+        <span *ngIf="owner.phone" style="font-size: smaller"> (tel.: {{owner.phone}})</span>
       </div>
     </td>
   </ng-container>

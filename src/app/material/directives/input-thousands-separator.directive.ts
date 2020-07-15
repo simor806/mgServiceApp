@@ -1,18 +1,20 @@
 import {Directive, ElementRef, forwardRef, HostListener, Input} from '@angular/core';
 import {MAT_INPUT_VALUE_ACCESSOR} from '@angular/material';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ThousandsSeparatorPipe} from '../../shared/pipes/thousands-separator.pipe';
 
 @Directive({
   selector: 'input[appInputThousandsSeparator]',
   providers: [
     {provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: InputThousandsSeparatorDirective},
-    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputThousandsSeparatorDirective), multi: true}
+    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputThousandsSeparatorDirective), multi: true},
+    {provide: ThousandsSeparatorPipe, useClass: ThousandsSeparatorPipe}
   ]
 })
 export class InputThousandsSeparatorDirective {
   private _value: string;
 
-  constructor(private elementRef: ElementRef<HTMLInputElement>) {
+  constructor(private elementRef: ElementRef<HTMLInputElement>, private thousandsSeparatorPipe: ThousandsSeparatorPipe) {
   }
 
   get value(): string {
@@ -74,7 +76,7 @@ export class InputThousandsSeparatorDirective {
       if (value.startsWith('.') || (value.length >= 2 && value[1] === '.')) {
         value = 0;
       }
-      return parseInt(String(value), 10).toLocaleString();
+      return this.thousandsSeparatorPipe.transform(value);
     } else {
       return null;
     }

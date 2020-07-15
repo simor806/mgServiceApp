@@ -12,10 +12,9 @@
 
       <div fxFlex="50">
         <mat-form-field appearance="legacy">
-          <mat-label>Przebieg</mat-label>
+          <mat-label>Przebieg [km]</mat-label>
           <input matInput formControlName="mileage" appInputThousandsSeparator [errorStateMatcher]="mileageParentErrorStateMatcher"
                  [min]="minMileageValue" autocomplete="off">
-          <span matSuffix>km</span>
           <mat-error>
             <div *ngIf="form.get('mainInfoGroup').get('mileage').hasError('min')">
               Wartość przebiegu musi być większa od {{minMileageValue}}
