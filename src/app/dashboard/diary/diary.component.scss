@@ -1,3 +1,21 @@
 ul#repairs-list {
   padding-left: 0;
 }
+
+.mat-column-date {
+  width: 15%;
+}
+.mat-column-mileage {
+  width: 15%;
+  text-align: right;
+  padding-right: 10px;
+}
+.mat-column-isOilChanged {
+  width: 10%;
+}
+.mat-column-repairs {
+  width: 30%;
+}
+.mat-column-note {
+  width: 30%;
+}

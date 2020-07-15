@@ -1,0 +1,19 @@
+//'alert', 'registrationNumber', 'brand', 'year', 'mileage', 'owners'
+
+.mat-column-alert {
+  width: 7%;
+}
+.mat-column-registrationNumber {
+  width: 13%;
+}
+.mat-column-year {
+  width: 10%;
+}
+.mat-column-mileage {
+  width: 10%;
+  text-align: right;
+  padding-right: 10px;
+}
+//.mat-column-note {
+//  width: 50%;
+//}
