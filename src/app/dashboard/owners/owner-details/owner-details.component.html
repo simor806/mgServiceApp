@@ -12,7 +12,7 @@
 
   <div fxFlex="30" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxLayoutGap.xs="10px">
     <app-edit-button [routerLink]="['/owners', owner?.id]"></app-edit-button>
-    <app-delete-button (click)="openDeleteOwnerConfirmationDialog()"></app-delete-button>
+    <app-delete-button (click)="openDeleteDialog()"></app-delete-button>
   </div>
 </div>
 
