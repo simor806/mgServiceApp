@@ -1,27 +1,27 @@
-<div *ngIf="!isIcon">
-  <p style="background-color: orange" *ngIf="oilNeverChanged">
+<div *ngIf="!isIcon" class="banner-alert">
+  <button mat-button type="button" color="accent" *ngIf="oilNeverChanged">
     Olej w tym pojeździe nie był nigdy wymieniany przez Ciebie.
-  </p>
+  </button>
   
-  <p style="background-color: orangered" *ngIf="shouldChangeOilBecauseDate">
+  <button mat-button type="button" color="warn" *ngIf="shouldChangeOilBecauseDate">
     <span *ngIf="!vehicle.hasLongLifeOil">
       Ostatnia wymiana oleju była ponad rok temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenTodayAndLastOilChange - timeToOilChange}} dni</strong>.
     </span>
     <span *ngIf="vehicle.hasLongLifeOil">
       Ostatnia wymiana oleju longlife była ponad dwa lata temu! Od zalecanej wymiany minęło już <strong>{{diffBetweenTodayAndLastOilChange - timeToOilLonglifeChange}} dni</strong>.
     </span>
-  </p>
-  
-  <p style="background-color: orangered" *ngIf="shouldChangeOilBecauseMileage">
+  </button>
+
+  <button mat-button type="button" color="warn" *ngIf="shouldChangeOilBecauseMileage">
     <span *ngIf="!vehicle.hasLongLifeOil">
       Pojazd przejechał <strong>{{diffBetweenMileages}} km</strong> od ostatniej wymiany oleju! Zalecana maksymalna wartość, to {{MILEAGE_TO_OIL_CHANGE}} km.
     </span>
     <span *ngIf="vehicle.hasLongLifeOil">
       Pojazd przejechał <strong>{{diffBetweenMileages}} km</strong> od ostatniej wymiany oleju longlife! Zalecana maksymalna wartość, to {{MILEAGE_TO_OIL_LONGLIFE_CHANGE}} km.
     </span>
-  </p>
+  </button>
 </div>
 
-<div *ngIf="isIcon">
+<div *ngIf="isIcon" class="icon-alert">
   <mat-icon *ngIf="shouldChangeOilBecauseDate || shouldChangeOilBecauseMileage" matTooltip="Samochód wymaga wymiany oleju" [color]="'error'">warning</mat-icon>
 </div>
