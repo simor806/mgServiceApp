@@ -14,10 +14,10 @@
 
   <button mat-button type="button" color="warn" *ngIf="shouldChangeOilBecauseMileage">
     <span *ngIf="!vehicle.hasLongLifeOil">
-      Pojazd przejechał <strong>{{diffBetweenMileages}} km</strong> od ostatniej wymiany oleju! Zalecana maksymalna wartość, to {{MILEAGE_TO_OIL_CHANGE}} km.
+      Pojazd przejechał <strong>{{diffBetweenMileages | thousandsSeparator}} km</strong> od ostatniej wymiany oleju! Zalecana maksymalna wartość to {{MILEAGE_TO_OIL_CHANGE | thousandsSeparator}} km.
     </span>
     <span *ngIf="vehicle.hasLongLifeOil">
-      Pojazd przejechał <strong>{{diffBetweenMileages}} km</strong> od ostatniej wymiany oleju longlife! Zalecana maksymalna wartość, to {{MILEAGE_TO_OIL_LONGLIFE_CHANGE}} km.
+      Pojazd przejechał <strong>{{diffBetweenMileages | thousandsSeparator}} km</strong> od ostatniej wymiany oleju longlife! Zalecana maksymalna wartość to {{MILEAGE_TO_OIL_LONGLIFE_CHANGE | thousandsSeparator}} km.
     </span>
   </button>
 </div>

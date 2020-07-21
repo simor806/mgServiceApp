@@ -32,6 +32,8 @@ export class VehicleAlertComponent implements OnInit {
       if (diaryEntriesWithLastOilChanged.length > 0) {
         this.checkOilByDate(diaryEntriesWithLastOilChanged[0]);
         this.checkOilByMileage(diaryEntriesWithLastOilChanged[0]);
+      } else {
+        this.oilNeverChanged = true;
       }
     } else {
       this.oilNeverChanged = true;
