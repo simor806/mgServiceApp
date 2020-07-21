@@ -43,7 +43,8 @@
                 </span>
               </mat-select-trigger>
               <mat-option>
-                <ngx-mat-select-search [formControl]="repairsFilterCtrl" placeholderLabel="Filtruj"></ngx-mat-select-search>
+                <ngx-mat-select-search [formControl]="repairsFilterCtrl" placeholderLabel="Filtruj"
+                                       noEntriesFoundLabel="Brak pasujących napraw"></ngx-mat-select-search>
               </mat-option>
               <mat-option *ngFor="let repair of filteredRepairs | async" [value]="repair.name">{{repair.name}}</mat-option>
             </mat-select>
