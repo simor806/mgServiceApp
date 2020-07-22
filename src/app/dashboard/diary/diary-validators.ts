@@ -47,7 +47,7 @@ export class DiaryValidators {
                 errors ? Object.assign(errors, mileageTooSmallError) : errors = mileageTooSmallError;
               }
             } else {
-              const sameDateError = {sameDates: 'Istnieje już wpis w dzienniku napraw pod tą datą'}
+              const sameDateError = {sameDates: 'Istnieje już wpis w dzienniku napraw pod tą datą'};
               errors ? Object.assign(errors, sameDateError) : errors = sameDateError;
             }
           });
