@@ -2,26 +2,27 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Owner, OwnerAttrs} from '../../model/owner';
-import {StaticDataSource} from '../../model/static.datasource';
 import {map} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OwnerService {
 
-  constructor(private http: HttpClient,
-              private staticDS: StaticDataSource,
-              ) { }
+  private readonly API_URL = `${environment.apiUrl}/owners`;
+
+  constructor(private http: HttpClient) {
+  }
 
   getOwners(): Observable<Owner[]> {
-    return this.http.get<OwnerAttrs[]>('/api/owners').pipe(
+    return this.http.get<OwnerAttrs[]>(this.API_URL).pipe(
       map((data) => data.map((ownerAttrs) => new Owner(ownerAttrs)))
     );
   }
 
   getOwner(id: number): Observable<Owner> {
-    return this.http.get<OwnerAttrs>(`/api/owners/${id}`).pipe(
+    return this.http.get<OwnerAttrs>(`${this.API_URL}/${id}`).pipe(
       map((ownerAttrs) => new Owner(ownerAttrs))
     );
   }
@@ -35,18 +36,18 @@ export class OwnerService {
   }
 
   private editOwner(ownerAttrs: OwnerAttrs): Observable<Owner> {
-    return this.http.put<OwnerAttrs>(`/api/owners/${ownerAttrs.id}`, ownerAttrs).pipe(
+    return this.http.put<OwnerAttrs>(`${this.API_URL}/${ownerAttrs.id}`, ownerAttrs).pipe(
       map((data) => new Owner(data))
     );
   }
   private createOwner(ownerAttrs: OwnerAttrs): Observable<Owner> {
-    return this.http.post<OwnerAttrs>(`/api/owners`, ownerAttrs).pipe(
+    return this.http.post<OwnerAttrs>(this.API_URL, ownerAttrs).pipe(
       map((data) => new Owner(data))
     );
   }
 
   public deleteOwner(ownerId: number): Observable<Owner> {
-    return this.http.delete<Owner>(`/api/owners/${ownerId}`);
+    return this.http.delete<Owner>(`${this.API_URL}/${ownerId}`);
   }
 
 

@@ -4,16 +4,19 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Vehicle, VehicleAttrs} from '../../model/vehicle';
 import {DiaryEntry} from '../../model/diary-entry';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
 
+  private readonly API_URL = `${environment.apiUrl}/vehicles`;
+
   constructor(private http: HttpClient) { }
 
   getVehicles(): Observable<Vehicle[]> {
-    return this.http.get<VehicleAttrs[]>('/api/vehicles?_embed=diary').pipe(
+    return this.http.get<VehicleAttrs[]>(`${this.API_URL}?_embed=diary`).pipe(
       map((data: VehicleAttrs[]) => data.map((vehicleAttrs) => {
         this.sortDiaryByDate(vehicleAttrs.diary);
         return new Vehicle(vehicleAttrs);
@@ -22,7 +25,7 @@ export class VehicleService {
   }
 
   getVehicle(id: number): Observable<Vehicle> {
-    return this.http.get<VehicleAttrs>(`/api/vehicles/${id}?_embed=diary`).pipe(
+    return this.http.get<VehicleAttrs>(`${this.API_URL}/${id}?_embed=diary`).pipe(
       map((vehicleAttrs: VehicleAttrs) => {
         this.sortDiaryByDate(vehicleAttrs.diary);
         return new Vehicle(vehicleAttrs);
@@ -39,18 +42,18 @@ export class VehicleService {
   }
 
   private editVehicle(vehicleAttrs: VehicleAttrs): Observable<Vehicle> {
-    return this.http.put<VehicleAttrs>(`/api/vehicles/${vehicleAttrs.id}`, vehicleAttrs).pipe(
+    return this.http.put<VehicleAttrs>(`${this.API_URL}/${vehicleAttrs.id}`, vehicleAttrs).pipe(
       map((data) => new Vehicle(data))
     );
   }
   private createVehicle(vehicleAttrs: VehicleAttrs): Observable<Vehicle> {
-    return this.http.post<VehicleAttrs>(`/api/vehicles`, vehicleAttrs).pipe(
+    return this.http.post<VehicleAttrs>(`${this.API_URL}`, vehicleAttrs).pipe(
       map((data) => new Vehicle(data))
     );
   }
 
   public deleteVehicle(vehicleId: number): Observable<Vehicle> {
-    return this.http.delete<VehicleAttrs>(`/api/vehicles/${vehicleId}`);
+    return this.http.delete<VehicleAttrs>(`${this.API_URL}/${vehicleId}`);
   }
 
   private sortDiaryByDate(diary: DiaryEntry[]) {

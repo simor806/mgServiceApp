@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Repair, RepairAttrs} from '../../model/repair';
-import {catchError, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RepairService {
 
+  private readonly API_URL = `${environment.apiUrl}/repairs`;
+
   constructor(private http: HttpClient) { }
 
   getRepairs(): Observable<Repair[]> {
-    return this.http.get<RepairAttrs[]>('/api/repairs?_sort=name').pipe(
+    return this.http.get<RepairAttrs[]>(`${this.API_URL}?_sort=name`).pipe(
       map((data) => data.map((repairAttrs) => new Repair(repairAttrs)))
     );
   }
 
   getRepair(id: number): Observable<Repair> {
-    return this.http.get<RepairAttrs>(`/api/repairs/${id}`).pipe(
+    return this.http.get<RepairAttrs>(`${this.API_URL}/${id}`).pipe(
       map((repairAttrs) => new Repair(repairAttrs))
     );
   }
@@ -32,16 +35,16 @@ export class RepairService {
   }
 
   private editRepair(repairAttrs: RepairAttrs): Observable<Repair | string> {
-    return this.http.put<RepairAttrs>(`/api/repairs/${repairAttrs.id}`, repairAttrs).pipe(
+    return this.http.put<RepairAttrs>(`${this.API_URL}/${repairAttrs.id}`, repairAttrs).pipe(
       map((data) => new Repair(data)));
   }
   private createRepair(repairAttrs: RepairAttrs): Observable<Repair | string> {
-    return this.http.post<RepairAttrs>(`/api/repairs`, repairAttrs).pipe(
+    return this.http.post<RepairAttrs>(`${this.API_URL}`, repairAttrs).pipe(
       map((data) => new Repair(data)));
   }
 
   public deleteRepair(repairId: number): Observable<Repair> {
-    return this.http.delete<Repair>(`/api/repairs/${repairId}`);
+    return this.http.delete<Repair>(`${this.API_URL}/${repairId}`);
   }
 
 
