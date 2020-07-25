@@ -95,19 +95,6 @@ export class VehicleFormComponent implements OnInit {
       () => alert('Nie udało się zapisać pojazdu!')
     );
   }
-  //
-  // addNewOwner(firstName: string, lastName: string) {
-  //   const that = this;
-  //   const ownerAttrs = {firstName: firstName, lastName: lastName} as OwnerAttrs;
-  //   this.ownerService.saveOwner(ownerAttrs).subscribe((owner: Owner) => {
-  //     this.owners.push(owner);
-  //     this.addOwnerFormShowed = false;
-  //     const currentOwnersId = [];
-  //     // const currentOwnersId = that.form.get('ownersId').value;
-  //     currentOwnersId.push(owner.id);
-  //     // this.form.get('ownersId').setValue(currentOwnersId);
-  //   });
-  // }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
