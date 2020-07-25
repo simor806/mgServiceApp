@@ -8,7 +8,7 @@ const pipes = [
 
 @NgModule({
   declarations: [
-    ...pipes,
+    ...pipes
   ],
   imports: [
     CommonModule
