@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {OwnerService} from '../owner.service';
 import {Owner} from '../../../model/owner';
+import { Location } from '@angular/common';
+import {NavigateService} from '../../../shared/services/navigate.service';
 
 @Component({
   selector: 'app-owner-form',
@@ -14,7 +16,8 @@ export class OwnerFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router, private  ownerService: OwnerService) { }
+  constructor(public navigateService: NavigateService, private route: ActivatedRoute, private router: Router, private ownerService: OwnerService) {
+  }
 
   ngOnInit() {
     this.route.data
@@ -37,7 +40,7 @@ export class OwnerFormComponent implements OnInit {
   saveOwner(): void {
     const ownerAttrs = this.form.value;
     this.ownerService.saveOwner(ownerAttrs).subscribe(
-      () => this.router.navigate(['../'], {relativeTo: this.route}),
+      () => this.navigateService.goToPreviousPage(),
       () => alert('Nie udało się zapisać klienta!')
     );
   }

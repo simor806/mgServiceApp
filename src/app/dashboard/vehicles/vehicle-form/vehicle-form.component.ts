@@ -8,6 +8,7 @@ import {OwnerService} from '../../owners/owner.service';
 import {Owner} from '../../../model/owner';
 import {carsBrandsWithModels} from '../../../model/car-list';
 import {Observable} from 'rxjs';
+import {NavigateService} from '../../../shared/services/navigate.service';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -26,6 +27,7 @@ export class VehicleFormComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              public navigateService: NavigateService,
               private ownerService: OwnerService,
               private vehicleService: VehicleService) {
   }
