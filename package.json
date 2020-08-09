@@ -7,7 +7,7 @@
     "build": "ng build",
     "prebuild": "if exist dist rd dist /s /q",
     "build-prod": "npm run prebuild && ng build --prod && npm run postbuild",
-    "postbuild": "xcopy /e /v \"src\\post_build_files\\*.*\" \".\\dist\\MgService\"",
+    "postbuild": "xcopy /e /v \"src\\post_build_files\\*.*\" \".\\dist\\MGservice\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
