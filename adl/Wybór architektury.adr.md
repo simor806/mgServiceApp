@@ -18,7 +18,7 @@
   - **Pisanie kodu z zastosowaniem technologii powiązanych z Angularem**
 ### 5. Cele projektowe
   - Nauka nowych technologii przy okazji napisania aplikacji
-  - **Rozwijanie umiejętności pisania apliakcji w Angular**
+  - **Rozwijanie umiejętności pisania aplikacji w Angular**
    
 ## Konsekwencje
   - Konieczność korzystania z przeglądarki (w przypadku braku zastosowania Elektrona)
