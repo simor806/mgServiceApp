@@ -79,7 +79,7 @@ export class VehicleFormComponent implements OnInit {
         });
       });
 
-    this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners);
+    this.ownerService.getOwners().subscribe((owners: Owner[]) => this.owners = owners.sort(this._sortOwnersByIdDesc));
 
     this.setYears();
   }
@@ -126,5 +126,15 @@ export class VehicleFormComponent implements OnInit {
       searchedValue = searchedValue.toLowerCase();
     }
     return models.filter((filteredModel: string) =>  filteredModel.toLowerCase().startsWith(searchedValue));
+  }
+
+  private _sortOwnersByIdDesc(a: Owner, b: Owner) {
+    if (a.id > b.id) {
+      return -1;
+    }
+    if (a.id < b.id) {
+      return 1;
+    }
+    return 0;
   }
 }
