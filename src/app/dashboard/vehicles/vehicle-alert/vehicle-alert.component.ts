@@ -12,7 +12,7 @@ export class VehicleAlertComponent implements OnInit {
 
   private readonly DAYS_IN_YEAR = 365;
   private readonly YEARS_TO_OIL_CHANGE_FOR_LONGLIFE = 2;
-  public readonly MILEAGE_TO_OIL_CHANGE = 10000;
+  public readonly MILEAGE_TO_OIL_CHANGE = 15000;
   public readonly MILEAGE_TO_OIL_LONGLIFE_CHANGE = 30000;
   @Input() public vehicle: Vehicle;
   @Input() public isIcon = false;
